@@ -16,10 +16,14 @@ public class InsertCustomer
 	{
 		final String DATABASE_URL = "jdbc:mysql://localhost/oosd_ca3";
 		Connection connection = null ;
-		PreparedStatement pstat = null ;
+		PreparedStatement prepstat = null ;
 		String firstname = "Mark";
 		String lastname = "Power";
-		String address = "Irish Street 6, Bunclody,Co.Wexford";
+		String street = "Irish Street 6";
+		String city = "Carlow";
+		String zcode = "R93 GH89";
+		String country = "Ireland";
+		String email = "markpower123@gmail.com";
 		String phone = "+353-87-321-1085";
 		String dob = "1973-03-11";
 		int i = 0;
@@ -32,17 +36,21 @@ public class InsertCustomer
 			connection = DriverManager.getConnection(DATABASE_URL, "root", "");
 			
 			// create Prepared Statement for inserting data into table
-			pstat = connection.prepareStatement("INSERT INTO Customer (FirstName, LastName, Address, PhoneNo, DateOfBirth)VALUES (?,?,?,?,?)");
+			prepstat = connection.prepareStatement("INSERT INTO Customer (FirstName, LastName, Street, City, ZipCode, Country, Email, Phone, DateOfBirth)VALUES (?,?,?,?,?,?,?,?,?)");
 			
-			pstat.setString(1, firstname);
-			pstat.setString(2, lastname);
-			pstat.setString(3, address);
-			pstat.setString(4, phone);
-			pstat.setDate(5, date);
+			prepstat.setString(1, firstname);
+			prepstat.setString(2, lastname);
+			prepstat.setString(3, street);
+			prepstat.setString(4, city);
+			prepstat.setString(5, zcode);
+			prepstat.setString(6, country);
+			prepstat.setString(7, email);
+			prepstat.setString(8, phone);
+			prepstat.setDate(9, date);
 			
 			// insert data into table
-			i = pstat .executeUpdate();
-			System.out. println ( i + " record successfully added to the table .");
+			i = prepstat.executeUpdate();
+			System.out.println (i + " record successfully added to the table.");
 		}
 		catch(SQLException sqlException)
 		{
@@ -52,7 +60,7 @@ public class InsertCustomer
 		{
 			try
 			{
-				pstat.close();
+				prepstat.close();
 				connection.close();
 			}
 			catch (Exception exception)
