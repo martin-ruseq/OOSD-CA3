@@ -42,6 +42,7 @@ public class loginframe extends JFrame
 				{
 					loginframe frame = new loginframe();
 					frame.setVisible(true);
+					frame.setLocation(550,150);
 				}
 				catch (Exception e)
 				{
@@ -54,7 +55,6 @@ public class loginframe extends JFrame
 	/* Create the frame */
 	public loginframe()
 	{
-		setAlwaysOnTop(true);
 		setPreferredSize(new Dimension(400, 560));
 		setMinimumSize(new Dimension(400, 560));
 		setMaximumSize(new Dimension(400, 560));
@@ -76,10 +76,10 @@ public class loginframe extends JFrame
 		JButton signupButton = new JButton("Sign Up");
 		signupButton.addMouseListener(new MouseAdapter() 
 		{
-			@SuppressWarnings("deprecation")
+
 			public void mouseClicked(MouseEvent e) 
 			{
-				new signupframe().show();
+				new signupframe().setVisible(true);
 			}
 		});
 		signupButton.setFont(new Font("Tahoma", Font.BOLD, 10));
