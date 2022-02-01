@@ -77,23 +77,18 @@ public class signupframe extends JFrame
 		setAlwaysOnTop(true);
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 451, 801);
+		setBounds(100, 100, 451, 681);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.LIGHT_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel signupLogo = new JLabel("");
-		signupLogo.setIcon(new ImageIcon(signupframe.class.getResource("/resources/logo.png")));
-		signupLogo.setBounds(42, 10, 366, 120);
-		contentPane.add(signupLogo);
-		
 		JPanel pDetailsPanel = new JPanel();
 		pDetailsPanel.setFont(new Font("Tahoma", Font.BOLD, 12));
 		pDetailsPanel.setBackground(Color.LIGHT_GRAY);
 		pDetailsPanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "PERSONAL DETAILS", TitledBorder.CENTER, TitledBorder.TOP, null, Color.DARK_GRAY));
-		pDetailsPanel.setBounds(10, 140, 417, 170);
+		pDetailsPanel.setBounds(10, 10, 417, 170);
 		contentPane.add(pDetailsPanel);
 		pDetailsPanel.setLayout(null);
 		
@@ -159,7 +154,7 @@ public class signupframe extends JFrame
 		aDetailsPanel.setFont(new Font("Tahoma", Font.BOLD, 12));
 		aDetailsPanel.setBackground(Color.LIGHT_GRAY);
 		aDetailsPanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "ADDRESS DETAILS", TitledBorder.CENTER, TitledBorder.TOP, null, Color.DARK_GRAY));
-		aDetailsPanel.setBounds(10, 320, 417, 170);
+		aDetailsPanel.setBounds(10, 190, 417, 170);
 		contentPane.add(aDetailsPanel);
 		aDetailsPanel.setLayout(null);
 		
@@ -219,7 +214,7 @@ public class signupframe extends JFrame
 		lDetailsPanel.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lDetailsPanel.setBackground(Color.LIGHT_GRAY);
 		lDetailsPanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "LOGIN DETAILS", TitledBorder.CENTER, TitledBorder.TOP, null, Color.DARK_GRAY));
-		lDetailsPanel.setBounds(10, 500, 417, 170);
+		lDetailsPanel.setBounds(10, 370, 417, 170);
 		contentPane.add(lDetailsPanel);
 		lDetailsPanel.setLayout(null);
 		
@@ -278,7 +273,7 @@ public class signupframe extends JFrame
 		JButton btnSubmit = new JButton("SUBMIT");
 		btnSubmit.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnSubmit.setBackground(new Color(0, 204, 102));
-		btnSubmit.setBounds(100, 724, 100, 30);
+		btnSubmit.setBounds(111, 585, 100, 30);
 		contentPane.add(btnSubmit);
 		
 		JButton btnClear = new JButton("CLEAR");
@@ -291,18 +286,18 @@ public class signupframe extends JFrame
 				
 			}
 		});
-		btnClear.setBounds(234, 724, 100, 30);
+		btnClear.setBounds(245, 585, 100, 30);
 		contentPane.add(btnClear);
 		
 		JCheckBox chckbxTnCAccept = new JCheckBox("");
 		chckbxTnCAccept.setBackground(Color.LIGHT_GRAY);
 		chckbxTnCAccept.setActionCommand("");
-		chckbxTnCAccept.setBounds(72, 689, 21, 25);
+		chckbxTnCAccept.setBounds(73, 550, 21, 25);
 		contentPane.add(chckbxTnCAccept);
 		
 		JLabel lblAgreement = new JLabel("I agree to");
 		lblAgreement.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblAgreement.setBounds(100, 689, 67, 25);
+		lblAgreement.setBounds(101, 550, 67, 25);
 		contentPane.add(lblAgreement);
 		
 		JLabel lblTerms = new JLabel("Terms of Use");
@@ -310,7 +305,7 @@ public class signupframe extends JFrame
 		lblTerms.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblTerms.setForeground(Color.BLUE.darker());
 		lblTerms.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblTerms.setBounds(165, 694, 78, 16);
+		lblTerms.setBounds(166, 555, 78, 16);
 		lblTerms.addMouseListener(new MouseAdapter() 
 		{
 			public void mouseClicked(MouseEvent e) 
@@ -322,7 +317,7 @@ public class signupframe extends JFrame
 		
 		JLabel lblAnd = new JLabel("and");
 		lblAnd.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblAnd.setBounds(248, 689, 31, 25);
+		lblAnd.setBounds(249, 550, 31, 25);
 		contentPane.add(lblAnd);
 		
 		JLabel lblPrivacyPolicy = new JLabel("Privacy Policy");
@@ -330,7 +325,7 @@ public class signupframe extends JFrame
 		lblPrivacyPolicy.setForeground(new Color(0, 0, 178));
 		lblPrivacyPolicy.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblPrivacyPolicy.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblPrivacyPolicy.setBounds(276, 694, 86, 16);
+		lblPrivacyPolicy.setBounds(277, 555, 86, 16);
 		lblPrivacyPolicy.addMouseListener(new MouseAdapter() 
 		{
 			public void mouseClicked(MouseEvent e) 
