@@ -14,6 +14,8 @@ import java.awt.Panel;
 
 public class MyAccPanel extends JPanel
 {
+	private static final long serialVersionUID = 1L;
+
 	public MyAccPanel()
 	{
 		setBounds(0, 0, 625, 493);

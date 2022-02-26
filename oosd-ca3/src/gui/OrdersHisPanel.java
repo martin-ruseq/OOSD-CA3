@@ -7,12 +7,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Panel;
-import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
 
 // Student Name:	Marcin Rusiecki
@@ -21,12 +19,15 @@ import javax.swing.SwingConstants;
 
 public class OrdersHisPanel extends JPanel
 {
+
+	private static final long serialVersionUID = 1L;
 	private JTable OrdersTable;
 	private JTextField textFieldInvoiceID;
 	private JTextField textFieldProductName;
 	private JTextField textFieldPaymentType;
 	private JTextField textFieldQuantity;
 	private JTextField textFieldTotalPrice;
+	
 	public OrdersHisPanel()
 	{
 		setBounds(0, 0, 625, 493);
@@ -42,7 +43,8 @@ public class OrdersHisPanel extends JPanel
 		OrdersTable.setFillsViewportHeight(true);
 		OrdersTable.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		OrdersTable.setModel(new DefaultTableModel(
-			new Object[][] {
+			new Object[][] 
+			{
 				{null, null, null, null, null},
 				{null, null, null, null, null},
 				{null, null, null, null, null},
@@ -52,14 +54,21 @@ public class OrdersHisPanel extends JPanel
 				{null, null, null, null, null},
 				{null, null, null, null, null},
 			},
-			new String[] {
+			new String[] 
+			{
 				"Invoice ID", "Product Name", "Payment Type", "Quantity", "Total Price"
 			}
-		) {
-			Class[] columnTypes = new Class[] {
+		){
+
+			private static final long serialVersionUID = 1L;
+			
+			@SuppressWarnings("rawtypes")
+			Class[] columnTypes = new Class[] 
+			{
 				Integer.class, String.class, String.class, Integer.class, Double.class
 			};
-			public Class getColumnClass(int columnIndex) {
+			public Class<?> getColumnClass(int columnIndex) 
+			{
 				return columnTypes[columnIndex];
 			}
 		});

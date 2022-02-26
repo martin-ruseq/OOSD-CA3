@@ -12,6 +12,8 @@ import javax.swing.SwingConstants;
 
 public class SettingsPanel extends JPanel
 {
+	private static final long serialVersionUID = 1L;
+
 	public SettingsPanel()
 	{
 		setBounds(0, 0, 625, 493);

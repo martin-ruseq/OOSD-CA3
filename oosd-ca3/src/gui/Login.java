@@ -24,9 +24,10 @@ import javax.swing.DebugGraphics;
 // Student ID:		C00263263
 // Date:			18/01/2022
 
-@SuppressWarnings("serial")
+
 public class Login extends JFrame
 {
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPasswordField txtPassword;
 	private JTextField txtEmail;

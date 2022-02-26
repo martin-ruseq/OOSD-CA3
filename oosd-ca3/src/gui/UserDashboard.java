@@ -24,6 +24,11 @@ import java.awt.event.MouseEvent;
 
 public class UserDashboard extends JFrame
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private JPanel mainPanel;
 	
 	private StorePanel storePanel;

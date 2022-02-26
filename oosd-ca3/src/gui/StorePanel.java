@@ -3,17 +3,12 @@ package gui;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JTable;
-
 import java.awt.Panel;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.ListSelectionModel;
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
 import java.awt.SystemColor;
 import javax.swing.border.TitledBorder;
@@ -28,6 +23,8 @@ import javax.swing.SwingConstants;
 
 public class StorePanel extends JPanel
 {
+
+	private static final long serialVersionUID = 1L;
 	private JTable storeTable;
 	private JTextField textFieldItemID;
 	private JTextField textFieldItemName;
@@ -36,6 +33,7 @@ public class StorePanel extends JPanel
 	private JTextField textFieldItemPrice;
 	private JTextField textFieldItemStock;
 
+	@SuppressWarnings({"rawtypes", "unchecked"})
 	public StorePanel()
 	{
 		setBounds(0, 0, 625, 493);
@@ -50,10 +48,6 @@ public class StorePanel extends JPanel
 		
 		JButton btnBuy = new JButton("BUY");
 		btnBuy.setFont(new Font("Tahoma", Font.BOLD, 16));
-		btnBuy.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnBuy.setBounds(1, 224, 605, 39);
 		panelDetails.add(btnBuy);
 		
@@ -175,7 +169,8 @@ public class StorePanel extends JPanel
 		storeTable.setFillsViewportHeight(true);
 		storeTable.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		storeTable.setModel(new DefaultTableModel(
-			new Object[][] {
+			new Object[][] 
+			{
 				{null, null, null, null},
 				{null, null, null, null},
 				{null, null, null, null},
@@ -192,14 +187,20 @@ public class StorePanel extends JPanel
 				{null, null, null, null},
 				{null, null, null, null},
 			},
-			new String[] {
+			
+			new String[] 
+			{
 				"Item ID", "Item Name", "Price", "Stock"
 			}
-		) {
-			Class[] columnTypes = new Class[] {
+		){
+
+			private static final long serialVersionUID = 1L;
+			Class[] columnTypes = new Class[] 
+			{
 				Integer.class, String.class, Double.class, Integer.class
 			};
-			public Class getColumnClass(int columnIndex) {
+			public Class getColumnClass(int columnIndex) 
+			{
 				return columnTypes[columnIndex];
 			}
 		});
