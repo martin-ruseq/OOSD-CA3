@@ -25,7 +25,7 @@ import javax.swing.DebugGraphics;
 // Date:			18/01/2022
 
 @SuppressWarnings("serial")
-public class loginframe extends JFrame
+public class Login extends JFrame
 {
 	private JPanel contentPane;
 	private JPasswordField txtPassword;
@@ -40,9 +40,9 @@ public class loginframe extends JFrame
 			{
 				try
 				{
-					loginframe frame = new loginframe();
+					Login frame = new Login();
 					frame.setVisible(true);
-					frame.setLocation(550,150);
+					frame.setLocationRelativeTo(null);
 				}
 				catch (Exception e)
 				{
@@ -53,7 +53,7 @@ public class loginframe extends JFrame
 	}
 
 	/* Create the frame */
-	public loginframe()
+	public Login()
 	{
 		setPreferredSize(new Dimension(400, 560));
 		setMinimumSize(new Dimension(400, 560));
@@ -61,8 +61,8 @@ public class loginframe extends JFrame
 		setMaximizedBounds(new Rectangle(0, 0, 400, 560));
 		setResizable(false);
 		setForeground(Color.WHITE);
-		setName("login");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(loginframe.class.getResource("/resources/icon.png")));
+		setName("Login");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/resources/icon.png")));
 		setBackground(Color.LIGHT_GRAY);
 		setTitle("Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -79,7 +79,12 @@ public class loginframe extends JFrame
 
 			public void mouseClicked(MouseEvent e) 
 			{
-				new signupframe().setVisible(true);
+				//new signupframe().setVisible(true);
+				SignUp signup = new SignUp();
+				signup.setVisible(true);
+				signup.setLocationRelativeTo(null);
+				dispose();
+
 			}
 		});
 		signupButton.setFont(new Font("Tahoma", Font.BOLD, 10));
@@ -87,7 +92,7 @@ public class loginframe extends JFrame
 		contentPane.add(signupButton);
 		
 		JLabel loginLogo = new JLabel("");
-		loginLogo.setIcon(new ImageIcon(loginframe.class.getResource("/resources/logo.png")));
+		loginLogo.setIcon(new ImageIcon(Login.class.getResource("/resources/logo.png")));
 		loginLogo.setBounds(20, 10, 366, 120);
 		contentPane.add(loginLogo);
 		
