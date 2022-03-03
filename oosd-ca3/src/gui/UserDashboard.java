@@ -99,7 +99,7 @@ public class UserDashboard extends JFrame
 		menuPanel.add(menuBtnsPanel);
 		menuBtnsPanel.setLayout(null);
 		
-		JButton btnStore = new JButton("Store");
+		JButton btnStore = new JButton("STORE");
 		btnStore.addMouseListener(new MouseAdapter()
 		{
 			@Override
@@ -116,11 +116,11 @@ public class UserDashboard extends JFrame
 				btnStore.setBackground(new Color(240, 240, 240));
 			}
 		});
-		btnStore.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnStore.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnStore.setBounds(10, 20, 173, 45);
 		menuBtnsPanel.add(btnStore);
 		
-		JButton btnOrdersHis = new JButton("Orders History");
+		JButton btnOrdersHis = new JButton("ORDERS HISTORY");
 		btnOrdersHis.addMouseListener(new MouseAdapter() 
 		{
 			@Override
@@ -137,11 +137,11 @@ public class UserDashboard extends JFrame
 				btnOrdersHis.setBackground(new Color(240, 240, 240));
 			}
 		});
-		btnOrdersHis.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnOrdersHis.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnOrdersHis.setBounds(10, 91, 173, 45);
 		menuBtnsPanel.add(btnOrdersHis);
 		
-		JButton btnSignOut = new JButton("Sign Out");
+		JButton btnSignOut = new JButton("SIGN OUT");
 		btnSignOut.setActionCommand("SIGN OUT");
 		btnSignOut.addMouseListener(new MouseAdapter() 
 		{
@@ -168,11 +168,11 @@ public class UserDashboard extends JFrame
 			}
 		});
 		btnSignOut.setForeground(new Color(204, 0, 0));
-		btnSignOut.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnSignOut.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnSignOut.setBounds(10, 391, 173, 45);
 		menuBtnsPanel.add(btnSignOut);
 		
-		JButton btnMyAcc = new JButton("My Account");
+		JButton btnMyAcc = new JButton("MY ACCOUNT");
 		btnMyAcc.addMouseListener(new MouseAdapter() 
 		{
 			@Override
@@ -191,9 +191,9 @@ public class UserDashboard extends JFrame
 		});
 		btnMyAcc.setBounds(10, 164, 173, 45);
 		menuBtnsPanel.add(btnMyAcc);
-		btnMyAcc.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnMyAcc.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
-		JButton btnSettings = new JButton("Settings");
+		JButton btnSettings = new JButton("SETTINGS");
 		btnSettings.addMouseListener(new MouseAdapter() 
 		{
 			@Override
@@ -210,7 +210,7 @@ public class UserDashboard extends JFrame
 				btnSettings.setBackground(new Color(240, 240, 240));
 			}
 		});
-		btnSettings.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnSettings.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnSettings.setBounds(10, 238, 173, 45);
 		menuBtnsPanel.add(btnSettings);
 		
