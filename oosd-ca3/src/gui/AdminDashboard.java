@@ -147,8 +147,8 @@ public class AdminDashboard extends JFrame
 		btnSignOut.setBounds(10, 391, 173, 45);
 		menuBtnsPanel.add(btnSignOut);
 		
-		JButton btnItems = new JButton("ITEMS");
-		btnItems.addMouseListener(new MouseAdapter()
+		JButton btnProducts = new JButton("PRODUCTS");
+		btnProducts.addMouseListener(new MouseAdapter()
 		{
 			@Override
 			public void mouseClicked(MouseEvent e)
@@ -157,16 +157,16 @@ public class AdminDashboard extends JFrame
 			}
 			public void mouseEntered(MouseEvent e) 
 			{
-				btnItems.setBackground(new Color(153, 204, 255));
+				btnProducts.setBackground(new Color(153, 204, 255));
 			}
 			public void mouseExited(MouseEvent e) 
 			{
-				btnItems.setBackground(new Color(240, 240, 240));
+				btnProducts.setBackground(new Color(240, 240, 240));
 			}
 		});
-		btnItems.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnItems.setBounds(10, 84, 173, 45);
-		menuBtnsPanel.add(btnItems);
+		btnProducts.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnProducts.setBounds(10, 84, 173, 45);
+		menuBtnsPanel.add(btnProducts);
 		
 		JButton btnInvoices = new JButton("INVOICES");
 		btnInvoices.addMouseListener(new MouseAdapter()

@@ -26,13 +26,13 @@ public class CustomersPanel extends JPanel
 {
 
 	private static final long serialVersionUID = 1L;
-	private JTable storeTable;
-	private JTextField textFieldItemID;
-	private JTextField textFieldItemName;
-	private JTextField textFieldItemPrice;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTable customersTable;
+	private JTextField textFieldCustomerID;
+	private JTextField textFieldCustomerFName;
+	private JTextField textFieldICustomerLName;
+	private JTextField textFieldCutomerDOB;
+	private JTextField textFieldCustomerEmail;
+	private JTextField textFieldCustomerPhone;
 
 
 	public CustomersPanel()
@@ -43,122 +43,115 @@ public class CustomersPanel extends JPanel
 		
 		Panel panelDetails = new Panel();
 		panelDetails.setName("");
-		panelDetails.setBounds(10, 230, 605, 263);
+		panelDetails.setBounds(10, 220, 605, 263);
 		add(panelDetails);
 		panelDetails.setLayout(null);
 		
-		JPanel selectedCustomerPanel = new JPanel();
-		selectedCustomerPanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "CUSTOMER DETAILS", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(64, 64, 64)));
-		selectedCustomerPanel.setBounds(1, 10, 297, 243);
-		selectedCustomerPanel.setBackground(new Color(102, 153, 204));
-		panelDetails.add(selectedCustomerPanel);
-		selectedCustomerPanel.setLayout(null);
+		JPanel CustomerDetailsPanel = new JPanel();
+		CustomerDetailsPanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "CUSTOMER DETAILS", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(64, 64, 64)));
+		CustomerDetailsPanel.setBounds(1, 0, 604, 263);
+		CustomerDetailsPanel.setBackground(new Color(102, 153, 204));
+		panelDetails.add(CustomerDetailsPanel);
+		CustomerDetailsPanel.setLayout(null);
 		
 		JLabel lblCustomerFName = new JLabel("First Name:");
 		lblCustomerFName.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblCustomerFName.setBounds(10, 68, 130, 30);
-		selectedCustomerPanel.add(lblCustomerFName);
+		CustomerDetailsPanel.add(lblCustomerFName);
 		
 		JLabel lblCustomerLName = new JLabel("Last Name:");
 		lblCustomerLName.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblCustomerLName.setBounds(10, 108, 130, 30);
-		selectedCustomerPanel.add(lblCustomerLName);
+		CustomerDetailsPanel.add(lblCustomerLName);
 		
-		textFieldItemID = new JTextField();
-		textFieldItemID.setEditable(false);
-		textFieldItemID.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldItemID.setBounds(113, 28, 50, 30);
-		selectedCustomerPanel.add(textFieldItemID);
-		textFieldItemID.setColumns(10);
+		textFieldCustomerID = new JTextField();
+		textFieldCustomerID.setEditable(false);
+		textFieldCustomerID.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textFieldCustomerID.setBounds(124, 29, 50, 30);
+		CustomerDetailsPanel.add(textFieldCustomerID);
+		textFieldCustomerID.setColumns(10);
 		
-		textFieldItemName = new JTextField();
-		textFieldItemName.setEditable(false);
-		textFieldItemName.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldItemName.setBounds(113, 68, 175, 30);
-		selectedCustomerPanel.add(textFieldItemName);
-		textFieldItemName.setColumns(10);
+		textFieldCustomerFName = new JTextField();
+		textFieldCustomerFName.setEditable(false);
+		textFieldCustomerFName.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textFieldCustomerFName.setBounds(124, 69, 175, 30);
+		CustomerDetailsPanel.add(textFieldCustomerFName);
+		textFieldCustomerFName.setColumns(10);
 		
-		JLabel lblCusAddress = new JLabel("Address:");
-		lblCusAddress.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblCusAddress.setBounds(10, 148, 97, 30);
-		selectedCustomerPanel.add(lblCusAddress);
+		JLabel lblCustomerAddress = new JLabel("Address:");
+		lblCustomerAddress.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblCustomerAddress.setBounds(10, 148, 97, 30);
+		CustomerDetailsPanel.add(lblCustomerAddress);
 		
-		textFieldItemPrice = new JTextField();
-		textFieldItemPrice.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldItemPrice.setEditable(false);
-		textFieldItemPrice.setColumns(10);
-		textFieldItemPrice.setBounds(113, 108, 175, 30);
-		selectedCustomerPanel.add(textFieldItemPrice);
+		textFieldICustomerLName = new JTextField();
+		textFieldICustomerLName.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textFieldICustomerLName.setEditable(false);
+		textFieldICustomerLName.setColumns(10);
+		textFieldICustomerLName.setBounds(124, 108, 175, 30);
+		CustomerDetailsPanel.add(textFieldICustomerLName);
 		
-		JLabel lblCusomerId = new JLabel("ID:");
+		JLabel lblCusomerId = new JLabel("Customer ID:");
 		lblCusomerId.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblCusomerId.setBounds(10, 28, 97, 30);
-		selectedCustomerPanel.add(lblCusomerId);
+		lblCusomerId.setBounds(10, 28, 120, 30);
+		CustomerDetailsPanel.add(lblCusomerId);
 		
-		JTextArea textAreaCAddress = new JTextArea();
-		textAreaCAddress.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textAreaCAddress.setEditable(false);
-		textAreaCAddress.setText("");
-		textAreaCAddress.setBounds(113, 148, 175, 85);
-		selectedCustomerPanel.add(textAreaCAddress);
+		JTextArea textAreaAddress = new JTextArea();
+		textAreaAddress.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textAreaAddress.setEditable(false);
+		textAreaAddress.setText("");
+		textAreaAddress.setBounds(124, 148, 175, 85);
+		CustomerDetailsPanel.add(textAreaAddress);
 		
-		JPanel selectedCustomerPanel_1 = new JPanel();
-		selectedCustomerPanel_1.setLayout(null);
-		selectedCustomerPanel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "CUSTOMER DETAILS", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(64, 64, 64)));
-		selectedCustomerPanel_1.setBackground(new Color(102, 153, 204));
-		selectedCustomerPanel_1.setBounds(308, 10, 297, 146);
-		panelDetails.add(selectedCustomerPanel_1);
+		textFieldCutomerDOB = new JTextField();
+		textFieldCutomerDOB.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textFieldCutomerDOB.setEditable(false);
+		textFieldCutomerDOB.setColumns(10);
+		textFieldCutomerDOB.setBounds(436, 68, 158, 30);
+		CustomerDetailsPanel.add(textFieldCutomerDOB);
+		
+		JLabel lblCustomerDOB = new JLabel("Date of Birth:");
+		lblCustomerDOB.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblCustomerDOB.setBounds(316, 68, 120, 30);
+		CustomerDetailsPanel.add(lblCustomerDOB);
 		
 		JLabel lblCustomerEmail = new JLabel("E-Mail:");
 		lblCustomerEmail.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblCustomerEmail.setBounds(10, 68, 130, 30);
-		selectedCustomerPanel_1.add(lblCustomerEmail);
+		lblCustomerEmail.setBounds(316, 108, 130, 30);
+		CustomerDetailsPanel.add(lblCustomerEmail);
+		
+		textFieldCustomerEmail = new JTextField();
+		textFieldCustomerEmail.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textFieldCustomerEmail.setEditable(false);
+		textFieldCustomerEmail.setColumns(10);
+		textFieldCustomerEmail.setBounds(419, 108, 175, 30);
+		CustomerDetailsPanel.add(textFieldCustomerEmail);
+		
+		textFieldCustomerPhone = new JTextField();
+		textFieldCustomerPhone.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textFieldCustomerPhone.setEditable(false);
+		textFieldCustomerPhone.setColumns(10);
+		textFieldCustomerPhone.setBounds(419, 148, 175, 30);
+		CustomerDetailsPanel.add(textFieldCustomerPhone);
 		
 		JLabel lblCustomerPhone = new JLabel("Phone:");
 		lblCustomerPhone.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblCustomerPhone.setBounds(10, 108, 130, 30);
-		selectedCustomerPanel_1.add(lblCustomerPhone);
+		lblCustomerPhone.setBounds(316, 148, 130, 30);
+		CustomerDetailsPanel.add(lblCustomerPhone);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		textField.setEditable(false);
-		textField.setColumns(10);
-		textField.setBounds(130, 28, 158, 30);
-		selectedCustomerPanel_1.add(textField);
+		JScrollPane scrollPaneCustomersTable = new JScrollPane();
+		scrollPaneCustomersTable.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		scrollPaneCustomersTable.setBounds(10, 37, 605, 177);
+		add(scrollPaneCustomersTable);
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		textField_1.setEditable(false);
-		textField_1.setColumns(10);
-		textField_1.setBounds(113, 68, 175, 30);
-		selectedCustomerPanel_1.add(textField_1);
-		
-		textField_2 = new JTextField();
-		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		textField_2.setEditable(false);
-		textField_2.setColumns(10);
-		textField_2.setBounds(113, 108, 175, 30);
-		selectedCustomerPanel_1.add(textField_2);
-		
-		JLabel lblDOB = new JLabel("Date of Birth:");
-		lblDOB.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblDOB.setBounds(10, 28, 120, 30);
-		selectedCustomerPanel_1.add(lblDOB);
-		
-		JScrollPane scrollPaneStoreTable = new JScrollPane();
-		scrollPaneStoreTable.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scrollPaneStoreTable.setBounds(10, 40, 605, 177);
-		add(scrollPaneStoreTable);
-		
-		storeTable = new JTable();
-		storeTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-		storeTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		storeTable.setRowHeight(20);
-		storeTable.setSelectionBackground(SystemColor.activeCaption);
-		storeTable.setName("CustomersTable");
-		storeTable.setFillsViewportHeight(true);
-		storeTable.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		storeTable.setModel(new DefaultTableModel(
+		customersTable = new JTable();
+		customersTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		customersTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		customersTable.setRowHeight(20);
+		customersTable.setSelectionBackground(SystemColor.activeCaption);
+		customersTable.setName("CustomersTable");
+		customersTable.setFillsViewportHeight(true);
+		customersTable.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		customersTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, "", null, null, null, null, null},
 				{null, null, null, null, null, null, null},
@@ -178,41 +171,38 @@ public class CustomersPanel extends JPanel
 				{null, null, null, null, null, null, null},
 			},
 			new String[] {
-				"ID", "First Name", "Last Name", "Address", "E-Mail", "DOB", "Phone"
+				"Customer ID", "First Name", "Last Name", "Address", "E-Mail", "Date of Birth", "Phone"
 			}
-		){
-			private static final long serialVersionUID = 1L;
-			boolean[] columnEditables = new boolean[] 
-			{
-				false, false, false, false, false, false, false
-			};
-			public boolean isCellEditable(int row, int column) 
-			{
-				return columnEditables[column];
-			}
-		});
-		storeTable.getColumnModel().getColumn(0).setResizable(false);
-		storeTable.getColumnModel().getColumn(0).setPreferredWidth(35);
-		storeTable.getColumnModel().getColumn(1).setResizable(false);
-		storeTable.getColumnModel().getColumn(1).setPreferredWidth(120);
-		storeTable.getColumnModel().getColumn(2).setResizable(false);
-		storeTable.getColumnModel().getColumn(2).setPreferredWidth(120);
-		storeTable.getColumnModel().getColumn(3).setResizable(false);
-		storeTable.getColumnModel().getColumn(3).setPreferredWidth(120);
-		storeTable.getColumnModel().getColumn(4).setResizable(false);
-		storeTable.getColumnModel().getColumn(4).setPreferredWidth(120);
-		storeTable.getColumnModel().getColumn(5).setResizable(false);
-		storeTable.getColumnModel().getColumn(5).setPreferredWidth(100);
-		storeTable.getColumnModel().getColumn(6).setResizable(false);
-		storeTable.getColumnModel().getColumn(6).setPreferredWidth(110);
-		scrollPaneStoreTable.setViewportView(storeTable);
+		));
+		customersTable.getColumnModel().getColumn(0).setResizable(false);
+		customersTable.getColumnModel().getColumn(0).setMinWidth(75);
+		customersTable.getColumnModel().getColumn(0).setMaxWidth(75);
+		customersTable.getColumnModel().getColumn(1).setResizable(false);
+		customersTable.getColumnModel().getColumn(1).setPreferredWidth(150);
+		customersTable.getColumnModel().getColumn(1).setMinWidth(150);
+		customersTable.getColumnModel().getColumn(2).setResizable(false);
+		customersTable.getColumnModel().getColumn(2).setPreferredWidth(150);
+		customersTable.getColumnModel().getColumn(2).setMinWidth(150);
+		customersTable.getColumnModel().getColumn(3).setResizable(false);
+		customersTable.getColumnModel().getColumn(3).setPreferredWidth(150);
+		customersTable.getColumnModel().getColumn(3).setMinWidth(150);
+		customersTable.getColumnModel().getColumn(4).setResizable(false);
+		customersTable.getColumnModel().getColumn(4).setPreferredWidth(150);
+		customersTable.getColumnModel().getColumn(4).setMinWidth(150);
+		customersTable.getColumnModel().getColumn(5).setResizable(false);
+		customersTable.getColumnModel().getColumn(5).setPreferredWidth(150);
+		customersTable.getColumnModel().getColumn(5).setMinWidth(150);
+		customersTable.getColumnModel().getColumn(6).setResizable(false);
+		customersTable.getColumnModel().getColumn(6).setPreferredWidth(120);
+		customersTable.getColumnModel().getColumn(6).setMinWidth(120);
+		scrollPaneCustomersTable.setViewportView(customersTable);
 		
-		JLabel lblNewLabel = new JLabel("CUSTOMERS");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setForeground(new Color(224, 255, 255));
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblNewLabel.setBounds(10, 0, 605, 40);
-		add(lblNewLabel);
+		JLabel lblCustomers = new JLabel("CUSTOMERS");
+		lblCustomers.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCustomers.setForeground(new Color(224, 255, 255));
+		lblCustomers.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblCustomers.setBounds(10, 0, 605, 40);
+		add(lblCustomers);
 		setVisible(true);
 	}
 }
