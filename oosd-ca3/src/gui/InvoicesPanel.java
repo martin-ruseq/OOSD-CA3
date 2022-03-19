@@ -25,17 +25,17 @@ public class InvoicesPanel extends JPanel
 
 	private static final long serialVersionUID = 1L;
 	private JTable invoicesTable;
-	private JTextField textFieldCustomerId;
-	private JTextField textFieldCustomerFName;
-	private JTextField textFieldCustomerLName;
-	private JTextField textFieldCustomerEmail;
-	private JTextField textFieldInvoiceId;
-	private JTextField textFieldProductId;
-	private JTextField textFieldProductName;
-	private JTextField textFieldPaymentType;
-	private JTextField textFieldProductQuantity;
-	private JTextField textFieldCustomerPhone;
-	private JTextField textFieldTotalPrice;
+	private JTextField txtCustomerId;
+	private JTextField txtCustomerFName;
+	private JTextField txtCustomerLName;
+	private JTextField txtCustomerEmail;
+	private JTextField txtInvoiceId;
+	private JTextField txtProductId;
+	private JTextField txtProductName;
+	private JTextField txtPaymentType;
+	private JTextField txtProductQuantity;
+	private JTextField txtCustomerPhone;
+	private JTextField txtTotalPrice;
 
 	@SuppressWarnings({})
 	public InvoicesPanel()
@@ -57,65 +57,65 @@ public class InvoicesPanel extends JPanel
 		customerDetailsPanel.setBounds(0, 0, 297, 263);
 		panelDetails.add(customerDetailsPanel);
 		
+		JLabel lblCustomerId = new JLabel("Customer ID:");
+		lblCustomerId.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblCustomerId.setBounds(10, 23, 118, 30);
+		customerDetailsPanel.add(lblCustomerId);
+		
+		txtCustomerId = new JTextField();
+		txtCustomerId.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtCustomerId.setEditable(false);
+		txtCustomerId.setColumns(10);
+		txtCustomerId.setBounds(125, 23, 50, 30);
+		customerDetailsPanel.add(txtCustomerId);
+		
 		JLabel lblCustomerFName = new JLabel("First Name:");
 		lblCustomerFName.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblCustomerFName.setBounds(10, 63, 118, 30);
 		customerDetailsPanel.add(lblCustomerFName);
+		
+		txtCustomerFName = new JTextField();
+		txtCustomerFName.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtCustomerFName.setEditable(false);
+		txtCustomerFName.setColumns(10);
+		txtCustomerFName.setBounds(125, 63, 163, 30);
+		customerDetailsPanel.add(txtCustomerFName);
 		
 		JLabel lblCustomerLName = new JLabel("Last Name:");
 		lblCustomerLName.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblCustomerLName.setBounds(10, 103, 118, 30);
 		customerDetailsPanel.add(lblCustomerLName);
 		
-		textFieldCustomerId = new JTextField();
-		textFieldCustomerId.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldCustomerId.setEditable(false);
-		textFieldCustomerId.setColumns(10);
-		textFieldCustomerId.setBounds(125, 23, 50, 30);
-		customerDetailsPanel.add(textFieldCustomerId);
-		
-		textFieldCustomerFName = new JTextField();
-		textFieldCustomerFName.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldCustomerFName.setEditable(false);
-		textFieldCustomerFName.setColumns(10);
-		textFieldCustomerFName.setBounds(125, 63, 163, 30);
-		customerDetailsPanel.add(textFieldCustomerFName);
+		txtCustomerLName = new JTextField();
+		txtCustomerLName.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtCustomerLName.setEditable(false);
+		txtCustomerLName.setColumns(10);
+		txtCustomerLName.setBounds(125, 103, 163, 30);
+		customerDetailsPanel.add(txtCustomerLName);
 		
 		JLabel lblCustomerEmail = new JLabel("Email:");
 		lblCustomerEmail.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblCustomerEmail.setBounds(10, 143, 118, 30);
 		customerDetailsPanel.add(lblCustomerEmail);
 		
-		textFieldCustomerLName = new JTextField();
-		textFieldCustomerLName.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldCustomerLName.setEditable(false);
-		textFieldCustomerLName.setColumns(10);
-		textFieldCustomerLName.setBounds(125, 103, 163, 30);
-		customerDetailsPanel.add(textFieldCustomerLName);
-		
-		JLabel lblCustomerId = new JLabel("Customer ID:");
-		lblCustomerId.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblCustomerId.setBounds(10, 23, 118, 30);
-		customerDetailsPanel.add(lblCustomerId);
-		
-		textFieldCustomerEmail = new JTextField();
-		textFieldCustomerEmail.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldCustomerEmail.setEditable(false);
-		textFieldCustomerEmail.setColumns(10);
-		textFieldCustomerEmail.setBounds(125, 143, 163, 30);
-		customerDetailsPanel.add(textFieldCustomerEmail);
-		
-		textFieldCustomerPhone = new JTextField();
-		textFieldCustomerPhone.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldCustomerPhone.setEditable(false);
-		textFieldCustomerPhone.setColumns(10);
-		textFieldCustomerPhone.setBounds(125, 183, 163, 30);
-		customerDetailsPanel.add(textFieldCustomerPhone);
+		txtCustomerEmail = new JTextField();
+		txtCustomerEmail.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtCustomerEmail.setEditable(false);
+		txtCustomerEmail.setColumns(10);
+		txtCustomerEmail.setBounds(125, 143, 163, 30);
+		customerDetailsPanel.add(txtCustomerEmail);
 		
 		JLabel lblCustomerPhone = new JLabel("Phone:");
 		lblCustomerPhone.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblCustomerPhone.setBounds(10, 183, 118, 30);
 		customerDetailsPanel.add(lblCustomerPhone);
+		
+		txtCustomerPhone = new JTextField();
+		txtCustomerPhone.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtCustomerPhone.setEditable(false);
+		txtCustomerPhone.setColumns(10);
+		txtCustomerPhone.setBounds(125, 183, 163, 30);
+		customerDetailsPanel.add(txtCustomerPhone);
 		
 		JPanel ivoiceDetailsPanel = new JPanel();
 		ivoiceDetailsPanel.setLayout(null);
@@ -124,78 +124,78 @@ public class InvoicesPanel extends JPanel
 		ivoiceDetailsPanel.setBounds(308, 0, 297, 263);
 		panelDetails.add(ivoiceDetailsPanel);
 		
+		JLabel lblInvoiceId = new JLabel("Invoice ID:");
+		lblInvoiceId.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblInvoiceId.setBounds(11, 23, 130, 30);
+		ivoiceDetailsPanel.add(lblInvoiceId);
+		
+		txtInvoiceId = new JTextField();
+		txtInvoiceId.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtInvoiceId.setEditable(false);
+		txtInvoiceId.setColumns(10);
+		txtInvoiceId.setBounds(140, 23, 50, 30);
+		ivoiceDetailsPanel.add(txtInvoiceId);
+		
 		JLabel lblProductId = new JLabel("Product ID:");
 		lblProductId.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblProductId.setBounds(11, 63, 130, 30);
 		ivoiceDetailsPanel.add(lblProductId);
+		
+		txtProductId = new JTextField();
+		txtProductId.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtProductId.setEditable(false);
+		txtProductId.setColumns(10);
+		txtProductId.setBounds(140, 63, 50, 30);
+		ivoiceDetailsPanel.add(txtProductId);
 		
 		JLabel lblProductName = new JLabel("Product Name:");
 		lblProductName.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblProductName.setBounds(11, 103, 130, 30);
 		ivoiceDetailsPanel.add(lblProductName);
 		
-		textFieldInvoiceId = new JTextField();
-		textFieldInvoiceId.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldInvoiceId.setEditable(false);
-		textFieldInvoiceId.setColumns(10);
-		textFieldInvoiceId.setBounds(140, 23, 50, 30);
-		ivoiceDetailsPanel.add(textFieldInvoiceId);
-		
-		textFieldProductId = new JTextField();
-		textFieldProductId.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldProductId.setEditable(false);
-		textFieldProductId.setColumns(10);
-		textFieldProductId.setBounds(140, 63, 50, 30);
-		ivoiceDetailsPanel.add(textFieldProductId);
+		txtProductName = new JTextField();
+		txtProductName.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtProductName.setEditable(false);
+		txtProductName.setColumns(10);
+		txtProductName.setBounds(140, 103, 148, 30);
+		ivoiceDetailsPanel.add(txtProductName);
 		
 		JLabel lblPaymentType = new JLabel("Payment Type:");
 		lblPaymentType.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblPaymentType.setBounds(11, 143, 130, 30);
 		ivoiceDetailsPanel.add(lblPaymentType);
 		
-		textFieldProductName = new JTextField();
-		textFieldProductName.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldProductName.setEditable(false);
-		textFieldProductName.setColumns(10);
-		textFieldProductName.setBounds(140, 103, 148, 30);
-		ivoiceDetailsPanel.add(textFieldProductName);
-		
-		JLabel lblInvoiceId = new JLabel("Invoice ID:");
-		lblInvoiceId.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblInvoiceId.setBounds(11, 23, 130, 30);
-		ivoiceDetailsPanel.add(lblInvoiceId);
-		
-		textFieldPaymentType = new JTextField();
-		textFieldPaymentType.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldPaymentType.setEditable(false);
-		textFieldPaymentType.setColumns(10);
-		textFieldPaymentType.setBounds(140, 143, 149, 30);
-		ivoiceDetailsPanel.add(textFieldPaymentType);
+		txtPaymentType = new JTextField();
+		txtPaymentType.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtPaymentType.setEditable(false);
+		txtPaymentType.setColumns(10);
+		txtPaymentType.setBounds(140, 143, 149, 30);
+		ivoiceDetailsPanel.add(txtPaymentType);
 		
 		JLabel lblProductQuantity = new JLabel("Quantity:");
 		lblProductQuantity.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblProductQuantity.setBounds(10, 183, 119, 30);
 		ivoiceDetailsPanel.add(lblProductQuantity);
 		
-		textFieldProductQuantity = new JTextField();
-		textFieldProductQuantity.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldProductQuantity.setEditable(false);
-		textFieldProductQuantity.setColumns(10);
-		textFieldProductQuantity.setBounds(140, 183, 149, 30);
-		ivoiceDetailsPanel.add(textFieldProductQuantity);
-		
-		textFieldTotalPrice = new JTextField();
-		textFieldTotalPrice.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldTotalPrice.setEditable(false);
-		textFieldTotalPrice.setColumns(10);
-		textFieldTotalPrice.setBounds(140, 223, 149, 30);
-		ivoiceDetailsPanel.add(textFieldTotalPrice);
+		txtProductQuantity = new JTextField();
+		txtProductQuantity.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtProductQuantity.setEditable(false);
+		txtProductQuantity.setColumns(10);
+		txtProductQuantity.setBounds(140, 183, 149, 30);
+		ivoiceDetailsPanel.add(txtProductQuantity);
 		
 		JLabel lblTotalPrice = new JLabel("Total Price:");
 		lblTotalPrice.setForeground(Color.RED);
 		lblTotalPrice.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblTotalPrice.setBounds(11, 222, 119, 30);
 		ivoiceDetailsPanel.add(lblTotalPrice);
+		
+		txtTotalPrice = new JTextField();
+		txtTotalPrice.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtTotalPrice.setEditable(false);
+		txtTotalPrice.setColumns(10);
+		txtTotalPrice.setBounds(140, 223, 149, 30);
+		ivoiceDetailsPanel.add(txtTotalPrice);
 		
 		JScrollPane scrollPaneInvoicesTable = new JScrollPane();
 		scrollPaneInvoicesTable.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
