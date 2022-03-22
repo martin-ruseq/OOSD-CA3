@@ -34,7 +34,7 @@ public class CustomersPanel extends JPanel
 	private JTextField txtCustomerEmail;
 	private JTextField txtCustomerPhone;
 
-
+	/** Create the frame. */
 	public CustomersPanel()
 	{
 		setBounds(0, 0, 625, 493);

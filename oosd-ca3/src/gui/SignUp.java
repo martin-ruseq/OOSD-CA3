@@ -31,6 +31,11 @@ import javax.swing.ImageIcon;
 // Date:			18/01/2022
 
 @SuppressWarnings("serial")
+/**
+ * This class creates the signup form allowing the user to create an account in the database.
+ * @author Marcin Rusiecki
+ * @version 1.0
+ */
 public class SignUp extends JFrame
 {
 	private JPanel contentPane;
@@ -47,7 +52,7 @@ public class SignUp extends JFrame
 	private JTextField txtZipCode;
 	private JTextField txtCountry;
 
-	/* Launch the application */
+	/** Launch the Sign Up application */
 	public static void main(String[] args)
 	{
 		EventQueue.invokeLater(new Runnable()
@@ -68,7 +73,7 @@ public class SignUp extends JFrame
 		});
 	}
 
-	/* Create the frame */
+	/** Create the Sign Up window */
 	public SignUp()
 	{
 		setLocation(new Point(550, 50));
@@ -311,14 +316,18 @@ public class SignUp extends JFrame
 		
 		seetxtPassword.addMouseListener(new MouseAdapter() 
 		{
-			//show password
+			/**
+			 * Show password when the mouse cursor enters the "eye" icon.
+			 */
 			public void mouseEntered(MouseEvent e) 
 			{
 				txtPassword.setEchoChar((char)0);
 				txtcPassword.setEchoChar((char)0);
 				
 			}
-			//hide password
+			/**
+			 * Hide password when the mouse cursor exits the "eye" icon.
+			 */
 			public void mouseExited(MouseEvent e) 
 			{
 				txtPassword.setEchoChar('*');
@@ -331,6 +340,10 @@ public class SignUp extends JFrame
 		create.addMouseListener(new MouseAdapter() 
 		{
 			@Override
+			/**
+			 * Input validation. If correct, connects to the database and passes the information entered by the user.
+			 * @param e left mouse button click.
+			 */
 			public void mouseClicked(MouseEvent e) 
 			{
 				String fname = txtFName.getText();
@@ -425,13 +438,11 @@ public class SignUp extends JFrame
 						i = prepstat.executeUpdate();
 						if (i == 1)
 						{
-					           JOptionPane.showMessageDialog(null, "Account created succesfully! ",
-	                                   "INFO", JOptionPane.INFORMATION_MESSAGE);
+					           JOptionPane.showMessageDialog(null, "Account created succesfully! ","INFO", JOptionPane.INFORMATION_MESSAGE);
 						}
 						else if (i == 0)
 						{
-					           JOptionPane.showMessageDialog(null, "Account is not created!",
-	                                   "ERROR", JOptionPane.ERROR_MESSAGE);
+					           JOptionPane.showMessageDialog(null, "Account is not created!","ERROR", JOptionPane.ERROR_MESSAGE);
 						}
 						
 						Login login = new Login();

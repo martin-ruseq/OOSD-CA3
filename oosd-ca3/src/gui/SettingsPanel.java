@@ -3,13 +3,21 @@ package gui;
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Panel;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 // Student Name:	Marcin Rusiecki
@@ -30,7 +38,7 @@ public class SettingsPanel extends JPanel
 	private JPasswordField password;
 	private JPasswordField passwordConfirm;
 
-	public SettingsPanel()
+	public SettingsPanel(String email)
 	{
 		setBounds(0, 0, 625, 493);
 		setBackground(new Color(102, 153, 204));
@@ -149,14 +157,81 @@ public class SettingsPanel extends JPanel
 		panelDetails.add(lblConfirmPassword);
 		
 		password = new JPasswordField();
+		password.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		password.setBounds(100, 321, 190, 30);
 		panelDetails.add(password);
 		
 		passwordConfirm = new JPasswordField();
+		passwordConfirm.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		passwordConfirm.setBounds(310, 321, 190, 30);
 		panelDetails.add(passwordConfirm);
 		
 		JButton btnUpdateDetails = new JButton("UPDATE");
+		btnUpdateDetails.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				try
+				{
+					final String DATABASE_URL = "jdbc:mysql://localhost/oosd_ca3";
+					Connection connection = null ;
+					PreparedStatement prepstat = null ;
+					String name = textFieldFname.getText();
+					String lname = textFieldLName.getText();
+					String dob = textFieldDoB.getText();
+					String phone = textFieldPhone.getText(); 
+					String street = textFieldStreet.getText();
+					String town = textFieldTown.getText();
+					String zipcode = textFieldZipCode.getText();
+					String country = textFieldCountry.getText();
+					@SuppressWarnings("deprecation")
+					String Userpassword = password.getText();
+					@SuppressWarnings("deprecation")
+					String confpassword = passwordConfirm.getText();
+					
+					int i = 0;
+					
+					connection = DriverManager.getConnection(DATABASE_URL, "root", "");
+					
+					if ( Userpassword.compareTo(confpassword) !=0 )
+					{
+						throw new PasswordException();
+					}
+					// create Prepared Statement for inserting data into table
+					prepstat = connection.prepareStatement("UPDATE customer SET FirstName=?, LastName=?, Street=?, Town=?, ZipCode=?, Country=?, Phone=?, DateOfBirth=?, Password=? WHERE Email=?");
+					prepstat.setString(1, name);
+					prepstat.setString(2, lname);
+					prepstat.setString(3, street);
+					prepstat.setString(4, town);
+					prepstat.setString(5, zipcode);
+					prepstat.setString(6, country);
+					prepstat.setString(7, phone);
+					prepstat.setString(8, dob);
+					prepstat.setString(9, Userpassword);
+					prepstat.setString(10, email);
+					
+					i=prepstat.executeUpdate();
+					
+					if (i != 1 )
+					{
+						JOptionPane.showMessageDialog(null, "Details have not been updated", "INFO", JOptionPane.ERROR_MESSAGE);
+					}
+					else 
+					{
+						JOptionPane.showMessageDialog(null, "Details have been successfully updated", "INFO", JOptionPane.INFORMATION_MESSAGE);
+					}
+				}
+				catch(PasswordException h)
+				{
+					JOptionPane.showMessageDialog(null, "Passwords must match!");
+				}
+				catch (SQLException sqlException)
+				{
+					sqlException.printStackTrace();
+				}
+			}
+		});
 		btnUpdateDetails.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnUpdateDetails.setBounds(201, 386, 190, 40);
 		panelDetails.add(btnUpdateDetails);
@@ -171,5 +246,60 @@ public class SettingsPanel extends JPanel
 		lblSettings.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblSettings.setBounds(10, 0, 605, 40);
 		add(lblSettings);
+		
+		try 
+		{
+			final String DATABASE_URL = "jdbc:mysql://localhost/oosd_ca3";
+			Connection connection = null ;
+			ResultSet resultset = null;
+			PreparedStatement prepstat = null ;
+			String name = "";
+			String lname = "";
+			String dob = "";
+			String phone = ""; 
+			String street = "";
+			String town = "";
+			String zipcode = "";
+			String country = "";
+			String Userpassword = "";
+			
+			
+			connection = DriverManager.getConnection(DATABASE_URL, "root", "");
+			
+			// create Prepared Statement for inserting data into table
+			prepstat = connection.prepareStatement("SELECT * FROM customer WHERE Email=?");
+			prepstat.setString(1, email);
+			
+			resultset = prepstat.executeQuery();
+			
+			while(resultset.next()) 
+			{
+				name = resultset.getString(2);
+				lname = resultset.getString(3);
+				street = resultset.getString(4);
+				town = resultset.getString(5);
+				zipcode = resultset.getString(6);
+				country = resultset.getString(7);
+				phone = resultset.getString(9);
+				dob = resultset.getString(10);
+				Userpassword = resultset.getString(11);
+
+			}
+
+			textFieldFname.setText(name);
+			textFieldLName.setText(lname);
+			textFieldStreet.setText(street);
+			textFieldTown.setText(town);
+			textFieldZipCode.setText(zipcode);
+			textFieldCountry.setText(country);
+			textFieldPhone.setText(phone);
+			textFieldDoB.setText(dob);
+			password.setText(Userpassword);
+			passwordConfirm.setText(Userpassword);
+		}
+		catch (SQLException sqlException)
+		{
+			sqlException.printStackTrace();
+		}
 	}
 }

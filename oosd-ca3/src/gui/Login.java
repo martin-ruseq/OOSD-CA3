@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Toolkit;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -16,6 +17,11 @@ import java.awt.event.KeyEvent;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.DebugGraphics;
@@ -24,7 +30,11 @@ import javax.swing.DebugGraphics;
 // Student ID:		C00263263
 // Date:			18/01/2022
 
-
+/**
+ * This class creates login window allowing the user to login to the account. 
+ * @author Marcin Rusiecki
+ * @version 1.0
+ */
 public class Login extends JFrame
 {
 	private static final long serialVersionUID = 1L;
@@ -32,7 +42,7 @@ public class Login extends JFrame
 	private JPasswordField txtPassword;
 	private JTextField txtEmail;
 
-	/* Launch the application */
+	/** Launch the Login application */
 	public static void main(String[] args)
 	{
 		EventQueue.invokeLater(new Runnable()
@@ -53,7 +63,7 @@ public class Login extends JFrame
 		});
 	}
 
-	/* Create the frame */
+	/** Create the Login window. */
 	public Login()
 	{
 		setPreferredSize(new Dimension(400, 560));
@@ -77,15 +87,16 @@ public class Login extends JFrame
 		JButton signupButton = new JButton("Sign Up");
 		signupButton.addMouseListener(new MouseAdapter() 
 		{
-
+			/**
+			 * Display sign up form in the screen.
+			 * @param e left mouse button click.
+			 */
 			public void mouseClicked(MouseEvent e) 
 			{
-				//new signupframe().setVisible(true);
 				SignUp signup = new SignUp();
 				signup.setVisible(true);
 				signup.setLocationRelativeTo(null);
 				dispose();
-
 			}
 		});
 		signupButton.setFont(new Font("Tahoma", Font.BOLD, 10));
@@ -124,13 +135,14 @@ public class Login extends JFrame
 		contentPane.add(LoginPanel);
 		LoginPanel.setLayout(null);
 		
-		JButton loginButton = new JButton("Login");
-		loginButton.setBounds(36, 206, 226, 30);
-		LoginPanel.add(loginButton);
-		
 		JLabel lblLoginWarning = new JLabel("");
 		lblLoginWarning.setBounds(36, 180, 226, 16);
 		LoginPanel.add(lblLoginWarning);
+		
+		JLabel lblLoginEmail = new JLabel("EMAIL");
+		lblLoginEmail.setBounds(36, 32, 140, 30);
+		LoginPanel.add(lblLoginEmail);
+		lblLoginEmail.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
 		txtPassword = new JPasswordField();
 		txtPassword.setBounds(36, 140, 226, 30);
@@ -149,9 +161,71 @@ public class Login extends JFrame
 		txtEmail.setName("loginEmail");
 		txtEmail.setColumns(10);
 		
-		JLabel lblLoginEmail = new JLabel("EMAIL");
-		lblLoginEmail.setBounds(36, 32, 140, 30);
-		LoginPanel.add(lblLoginEmail);
-		lblLoginEmail.setFont(new Font("Tahoma", Font.BOLD, 14));
+		JButton loginButton = new JButton("Login");
+		loginButton.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			/**
+			 * Logs the user into the account and displays the user dashboard.
+			 * @param e left mouse button click. 
+			 */
+			public void mouseClicked(MouseEvent e) 
+			{
+				try 
+				{
+					final String DATABASE_URL = "jdbc:mysql://localhost/oosd_ca3";
+					Connection connection = null ;
+					ResultSet resultset = null;
+					PreparedStatement prepstat = null ;
+					String email = txtEmail.getText();
+					@SuppressWarnings("deprecation")
+					String password = txtPassword.getText();
+					String dEmail = "";
+					String dPassword = "";
+					
+					connection = DriverManager.getConnection(DATABASE_URL, "root", "");
+					
+					// create Prepared Statement for inserting data into table
+					prepstat = connection.prepareStatement("SELECT Email, Password FROM customer WHERE Email=? AND Password=?");
+					prepstat.setString(1, email);
+					prepstat.setString(2, password);
+					
+					resultset = prepstat.executeQuery();
+					
+					while(resultset.next())
+					{
+						dEmail = resultset.getString(1);
+						dPassword = resultset.getString(2);
+					}
+					if ( dEmail.compareTo(email)!=0 || dPassword.compareTo(password)!=0 )
+					{
+						throw new LoginException();
+					}
+					else if (email.length() == 0 || password.length() == 0)
+					{
+						throw new LoginException();
+					}
+					else 
+					{
+						UserDashboard l = new UserDashboard(dEmail);
+						l.setVisible(true);
+						dispose();
+					}
+				}
+				catch (LoginException loginException)
+				{
+					JOptionPane.showMessageDialog(null, "Incorrect EMAIL or PASSWORD\n          Please try again", "WARNING!", JOptionPane.WARNING_MESSAGE);
+				}
+				catch (SQLException sqlException)
+				{
+					sqlException.printStackTrace();
+				}
+				
+			}
+		});
+		loginButton.setBounds(36, 206, 226, 30);
+		LoginPanel.add(loginButton);
+		
+
 	}
 }

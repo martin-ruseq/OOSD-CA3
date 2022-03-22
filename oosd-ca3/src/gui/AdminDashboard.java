@@ -24,14 +24,12 @@ public class AdminDashboard extends JFrame
 {
 
 	private static final long serialVersionUID = 1L;
-	
 	private JPanel mainPanel;
-	
 	private CustomersPanel customersPanel;
 	private InvoicesPanel invoicesPanel;
 	private ItemsPanel itemsPanel;
 	
-
+	/** Launch the application */
 	public static void main(String[] args)
 	{
 		EventQueue.invokeLater(new Runnable()
@@ -52,9 +50,7 @@ public class AdminDashboard extends JFrame
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	/** Create the frame. */
 	public AdminDashboard()
 	{
 		setVisible(true);
@@ -113,8 +109,6 @@ public class AdminDashboard extends JFrame
 		btnCustomers.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnCustomers.setBounds(10, 20, 173, 45);
 		menuBtnsPanel.add(btnCustomers);
-		
-		//
 		
 		JButton btnSignOut = new JButton("SIGN OUT");
 		btnSignOut.setActionCommand("SIGN OUT");

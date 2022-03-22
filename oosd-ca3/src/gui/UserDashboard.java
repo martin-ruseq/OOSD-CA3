@@ -22,21 +22,22 @@ import java.awt.event.MouseEvent;
 // Student ID:		C00263263
 // Date:			21/02/2022
 
+/**
+ * This class creates a user dashboard that allows place new orders, view order history and manages the account.
+ * @author Marcin Rusiecki
+ * @version 1.0
+ */
 public class UserDashboard extends JFrame
 {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	private JPanel mainPanel;
 	
+	private static final long serialVersionUID = 1L;
+	private JPanel mainPanel;
 	private StorePanel storePanel;
 	private OrdersHisPanel ordersHisPanel;
 	private MyAccPanel myAccPanel;
 	private SettingsPanel settingsPanel;
 	
-
+	/** Launch the User Dashboard application */
 	public static void main(String[] args)
 	{
 		EventQueue.invokeLater(new Runnable()
@@ -45,7 +46,7 @@ public class UserDashboard extends JFrame
 			{
 				try
 				{
-					UserDashboard frame = new UserDashboard();
+					UserDashboard frame = new UserDashboard("");
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				}
@@ -58,9 +59,10 @@ public class UserDashboard extends JFrame
 	}
 
 	/**
-	 * Create the frame.
+	 * Creats the user dashboard window.
+	 * @param email address that has been used by theuser to log in to the account.
 	 */
-	public UserDashboard()
+	public UserDashboard(String email)
 	{
 		setVisible(true);
 		setTitle("User Dashboard");
@@ -76,8 +78,8 @@ public class UserDashboard extends JFrame
 		
 		storePanel = new StorePanel();
 		ordersHisPanel = new OrdersHisPanel();
-		myAccPanel = new MyAccPanel();
-		settingsPanel = new SettingsPanel();	
+		myAccPanel = new MyAccPanel(email);
+		settingsPanel = new SettingsPanel(email);	
 		
 		JPanel menuPanel = new JPanel();
 		menuPanel.setBackground(Color.WHITE);
@@ -228,6 +230,10 @@ public class UserDashboard extends JFrame
 		menuClicked(storePanel);
 	
 	}
+	/**
+	 * Set the appropriate panel to be visible after the user selects an option in the user dashboard menu.
+	 * @param panel The epmpty panel will nest other panels.
+	 */
 	public void menuClicked(JPanel panel)
 	{
 		storePanel.setVisible(false);
