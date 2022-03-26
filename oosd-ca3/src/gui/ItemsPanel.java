@@ -241,17 +241,21 @@ public class ItemsPanel extends JPanel
 			new String[] {
 				"Product ID", "Product Name", "Product Price", "Stock"
 			}
-		));
-		productsTable.getColumnModel().getColumn(0).setResizable(false);
+		) {
+			private static final long serialVersionUID = 1L;
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
 		productsTable.getColumnModel().getColumn(0).setMinWidth(75);
 		productsTable.getColumnModel().getColumn(0).setMaxWidth(75);
-		productsTable.getColumnModel().getColumn(1).setResizable(false);
 		productsTable.getColumnModel().getColumn(1).setPreferredWidth(120);
 		productsTable.getColumnModel().getColumn(1).setMinWidth(120);
-		productsTable.getColumnModel().getColumn(2).setResizable(false);
 		productsTable.getColumnModel().getColumn(2).setPreferredWidth(120);
 		productsTable.getColumnModel().getColumn(2).setMinWidth(120);
-		productsTable.getColumnModel().getColumn(3).setResizable(false);
 		productsTable.getColumnModel().getColumn(3).setMinWidth(75);
 		productsTable.getColumnModel().getColumn(3).setMaxWidth(75);
 		scrollPaneProductsTable.setViewportView(productsTable);

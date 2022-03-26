@@ -21,6 +21,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SwingConstants;
+import javax.swing.ListSelectionModel;
 
 // Student Name:	Marcin Rusiecki
 // Student ID:		C00263263
@@ -175,14 +176,14 @@ public class StorePanel extends JPanel
 		add(scrollPaneStoreTable);
 		
 		storeTable = new JTable();
+		storeTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		storeTable.setRowHeight(20);
 		storeTable.setSelectionBackground(SystemColor.activeCaption);
 		storeTable.setName("StoreTable");
 		storeTable.setFillsViewportHeight(true);
 		storeTable.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		storeTable.setModel(new DefaultTableModel(
-			new Object[][] 
-			{
+			new Object[][] {
 				{null, null, null, null},
 				{null, null, null, null},
 				{null, null, null, null},
@@ -199,22 +200,16 @@ public class StorePanel extends JPanel
 				{null, null, null, null},
 				{null, null, null, null},
 			},
-			
-			new String[] 
-			{
+			new String[] {
 				"Item ID", "Item Name", "Price", "Stock"
 			}
-		){
-
+		) {
 			private static final long serialVersionUID = 1L;
-			@SuppressWarnings("rawtypes")
-			Class[] columnTypes = new Class[] 
-			{
-				Integer.class, String.class, Double.class, Integer.class
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false
 			};
-			public Class<?> getColumnClass(int columnIndex) 
-			{
-				return columnTypes[columnIndex];
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
 			}
 		});
 		scrollPaneStoreTable.setViewportView(storeTable);

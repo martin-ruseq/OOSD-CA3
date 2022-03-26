@@ -18,6 +18,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.ListSelectionModel;
 
 // Student Name:	Marcin Rusiecki
 // Student ID:		C00263263
@@ -55,14 +56,14 @@ public class OrdersHisPanel extends JPanel
 		add(scrollPaneOrdersTable);
 		
 		OrdersTable = new JTable();
+		OrdersTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		OrdersTable.setRowHeight(20);
 		OrdersTable.setSelectionBackground(SystemColor.activeCaption);
 		OrdersTable.setName("OrdersTable");
 		OrdersTable.setFillsViewportHeight(true);
 		OrdersTable.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		OrdersTable.setModel(new DefaultTableModel(
-			new Object[][] 
-			{
+			new Object[][] {
 				{null, null, null, null, null},
 				{null, null, null, null, null},
 				{null, null, null, null, null},
@@ -72,21 +73,16 @@ public class OrdersHisPanel extends JPanel
 				{null, null, null, null, null},
 				{null, null, null, null, null},
 			},
-			new String[] 
-			{
+			new String[] {
 				"Invoice ID", "Product Name", "Payment Type", "Quantity", "Total Price"
 			}
-		){
+		) {
 			private static final long serialVersionUID = 1L;
-			
-			@SuppressWarnings("rawtypes")
-			Class[] columnTypes = new Class[] 
-			{
-				Integer.class, String.class, String.class, Integer.class, Double.class
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false, false
 			};
-			public Class<?> getColumnClass(int columnIndex) 
-			{
-				return columnTypes[columnIndex];
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
 			}
 		});
 		scrollPaneOrdersTable.setViewportView(OrdersTable);

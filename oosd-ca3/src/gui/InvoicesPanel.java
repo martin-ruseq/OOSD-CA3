@@ -251,12 +251,6 @@ public class InvoicesPanel extends JPanel
 			boolean[] columnEditables = new boolean[] {
 				false, false, false, false, false, false
 			};
-			/**
-			 * Sets if the cell in the table is edtable
-			 * @param row specify which row in the table
-			 * @param column specify which column th the table
-			 * @return if the cell is editable (true) or not (false)
-			 */
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
