@@ -10,6 +10,11 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.SystemColor;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.SwingConstants;
@@ -22,6 +27,11 @@ import javax.swing.JTextArea;
 // Student ID:		C00263263
 // Date:			21/02/2022
 
+/**
+ * This class creates a panel used in the administrator dashboard that is showing all customers in the database.
+ * @author Marcin
+ * @version 1.0
+ */
 public class CustomersPanel extends JPanel
 {
 
@@ -34,7 +44,9 @@ public class CustomersPanel extends JPanel
 	private JTextField txtCustomerEmail;
 	private JTextField txtCustomerPhone;
 
-	/** Create the frame. */
+	/** 
+	 * Runs the panel with all customers in the database for administrator.
+	 */
 	public CustomersPanel()
 	{
 		setBounds(0, 0, 625, 493);
@@ -173,29 +185,32 @@ public class CustomersPanel extends JPanel
 			new String[] {
 				"Customer ID", "First Name", "Last Name", "Address", "E-Mail", "Date of Birth", "Phone"
 			}
-		));
-		customersTable.getColumnModel().getColumn(0).setResizable(false);
+		) {
+			private static final long serialVersionUID = 1L;
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
 		customersTable.getColumnModel().getColumn(0).setMinWidth(75);
 		customersTable.getColumnModel().getColumn(0).setMaxWidth(75);
-		customersTable.getColumnModel().getColumn(1).setResizable(false);
-		customersTable.getColumnModel().getColumn(1).setPreferredWidth(150);
-		customersTable.getColumnModel().getColumn(1).setMinWidth(150);
-		customersTable.getColumnModel().getColumn(2).setResizable(false);
-		customersTable.getColumnModel().getColumn(2).setPreferredWidth(150);
-		customersTable.getColumnModel().getColumn(2).setMinWidth(150);
-		customersTable.getColumnModel().getColumn(3).setResizable(false);
-		customersTable.getColumnModel().getColumn(3).setPreferredWidth(150);
-		customersTable.getColumnModel().getColumn(3).setMinWidth(150);
-		customersTable.getColumnModel().getColumn(4).setResizable(false);
-		customersTable.getColumnModel().getColumn(4).setPreferredWidth(150);
-		customersTable.getColumnModel().getColumn(4).setMinWidth(150);
-		customersTable.getColumnModel().getColumn(5).setResizable(false);
-		customersTable.getColumnModel().getColumn(5).setPreferredWidth(150);
-		customersTable.getColumnModel().getColumn(5).setMinWidth(150);
-		customersTable.getColumnModel().getColumn(6).setResizable(false);
-		customersTable.getColumnModel().getColumn(6).setPreferredWidth(120);
-		customersTable.getColumnModel().getColumn(6).setMinWidth(120);
+		customersTable.getColumnModel().getColumn(1).setPreferredWidth(180);
+		customersTable.getColumnModel().getColumn(1).setMinWidth(180);
+		customersTable.getColumnModel().getColumn(2).setPreferredWidth(180);
+		customersTable.getColumnModel().getColumn(2).setMinWidth(180);
+		customersTable.getColumnModel().getColumn(3).setPreferredWidth(180);
+		customersTable.getColumnModel().getColumn(3).setMinWidth(180);
+		customersTable.getColumnModel().getColumn(4).setPreferredWidth(180);
+		customersTable.getColumnModel().getColumn(4).setMinWidth(180);
+		customersTable.getColumnModel().getColumn(5).setPreferredWidth(180);
+		customersTable.getColumnModel().getColumn(5).setMinWidth(180);
+		customersTable.getColumnModel().getColumn(6).setPreferredWidth(140);
+		customersTable.getColumnModel().getColumn(6).setMinWidth(140);
 		scrollPaneCustomersTable.setViewportView(customersTable);
+		DefaultTableModel table = (DefaultTableModel)customersTable.getModel();
+		table.setRowCount(0);
 		
 		JLabel lblCustomers = new JLabel("CUSTOMERS");
 		lblCustomers.setHorizontalAlignment(SwingConstants.CENTER);
@@ -204,5 +219,29 @@ public class CustomersPanel extends JPanel
 		lblCustomers.setBounds(10, 0, 605, 40);
 		add(lblCustomers);
 		setVisible(true);
+		
+		try
+		{
+			final String DATABASE_URL = "jdbc:mysql://localhost/oosd_ca3";
+			Connection connection = null ;
+			ResultSet resultset = null;
+			PreparedStatement prepstat = null ;
+			
+			connection = DriverManager.getConnection(DATABASE_URL, "root", "");
+
+			prepstat = connection.prepareStatement("SELECT * FROM customer");
+			
+			resultset = prepstat.executeQuery();
+			while(resultset.next())
+			{
+				Object row [] = {resultset.getInt("CustomerId"), resultset.getString("FirstName"), resultset.getString("LastName"), resultset.getString("Street") + " " + resultset.getString("Town") + " " + resultset.getString("ZipCode") + " " + resultset.getString("Country"), resultset.getString("Email"), resultset.getString("DateOfBirth"), resultset.getString("Phone")};
+				table.addRow(row);
+			}
+
+		}
+		catch (SQLException sqlException)
+		{
+			sqlException.printStackTrace();
+		}
 	}
 }

@@ -11,6 +11,11 @@ import javax.swing.JLabel;
 import java.awt.SystemColor;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.SwingConstants;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.ListSelectionModel;
@@ -38,6 +43,10 @@ public class ItemsPanel extends JPanel
 	private JTextField txtAddProductStock;
 
 	@SuppressWarnings({})
+	
+	/**
+	 * Runs the panel with all products in the database for administrator.
+	 */
 	public ItemsPanel()
 	{
 		setBounds(0, 0, 625, 493);
@@ -238,6 +247,8 @@ public class ItemsPanel extends JPanel
 		productsTable.getColumnModel().getColumn(3).setMinWidth(75);
 		productsTable.getColumnModel().getColumn(3).setMaxWidth(75);
 		scrollPaneProductsTable.setViewportView(productsTable);
+		DefaultTableModel table = (DefaultTableModel)productsTable.getModel();
+		table.setRowCount(0);
 		
 		JLabel lblProducts = new JLabel("PRODUCTS");
 		lblProducts.setHorizontalAlignment(SwingConstants.CENTER);
@@ -246,5 +257,29 @@ public class ItemsPanel extends JPanel
 		lblProducts.setBounds(10, 0, 605, 40);
 		add(lblProducts);
 		setVisible(true);
+		
+		try
+		{
+			final String DATABASE_URL = "jdbc:mysql://localhost/oosd_ca3";
+			Connection connection = null ;
+			ResultSet resultset = null;
+			PreparedStatement prepstat = null ;
+			
+			connection = DriverManager.getConnection(DATABASE_URL, "root", "");
+
+			prepstat = connection.prepareStatement("SELECT * FROM product");
+			
+			resultset = prepstat.executeQuery();
+			while(resultset.next())
+			{
+				Object row [] = {resultset.getInt("ProductID") + "  ", resultset.getString("ProductName"), resultset.getDouble("ProductPrice"), resultset.getInt("ProductStock")};
+				table.addRow(row);
+			}
+
+		}
+		catch (SQLException sqlException)
+		{
+			sqlException.printStackTrace();
+		}
 	}
 }

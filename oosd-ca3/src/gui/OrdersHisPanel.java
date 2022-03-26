@@ -7,6 +7,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Panel;
+import java.awt.SystemColor;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.JLabel;
@@ -17,6 +23,11 @@ import javax.swing.SwingConstants;
 // Student ID:		C00263263
 // Date:			21/02/2022
 
+/**
+ * This class creates a panel used in the administrator dashboard that is showing all orders in the database.
+ * @author Marcin
+ * @version 1.0
+ */
 public class OrdersHisPanel extends JPanel
 {
 
@@ -28,7 +39,11 @@ public class OrdersHisPanel extends JPanel
 	private JTextField textFieldQuantity;
 	private JTextField textFieldTotalPrice;
 	
-	public OrdersHisPanel()
+	/**
+	 * Runs the panel with all orders placed by the current user.
+	 * @param email address that has been used by the user to log in to the account. 
+	 */
+	public OrdersHisPanel(String email)
 	{
 		setBounds(0, 0, 625, 493);
 		setBackground(new Color(102, 153, 204));
@@ -40,6 +55,9 @@ public class OrdersHisPanel extends JPanel
 		add(scrollPaneOrdersTable);
 		
 		OrdersTable = new JTable();
+		OrdersTable.setRowHeight(20);
+		OrdersTable.setSelectionBackground(SystemColor.activeCaption);
+		OrdersTable.setName("OrdersTable");
 		OrdersTable.setFillsViewportHeight(true);
 		OrdersTable.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		OrdersTable.setModel(new DefaultTableModel(
@@ -59,7 +77,6 @@ public class OrdersHisPanel extends JPanel
 				"Invoice ID", "Product Name", "Payment Type", "Quantity", "Total Price"
 			}
 		){
-
 			private static final long serialVersionUID = 1L;
 			
 			@SuppressWarnings("rawtypes")
@@ -72,12 +89,9 @@ public class OrdersHisPanel extends JPanel
 				return columnTypes[columnIndex];
 			}
 		});
-		OrdersTable.getColumnModel().getColumn(0).setResizable(false);
-		OrdersTable.getColumnModel().getColumn(1).setResizable(false);
-		OrdersTable.getColumnModel().getColumn(2).setResizable(false);
-		OrdersTable.getColumnModel().getColumn(3).setResizable(false);
-		OrdersTable.setRowHeight(20);
 		scrollPaneOrdersTable.setViewportView(OrdersTable);
+		DefaultTableModel table2 = (DefaultTableModel)OrdersTable.getModel();
+		table2.setRowCount(0);
 		
 		Panel panelDetails = new Panel();
 		panelDetails.setLayout(null);
@@ -158,5 +172,41 @@ public class OrdersHisPanel extends JPanel
 		lblOrdersHistory.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblOrdersHistory.setBounds(10, 0, 605, 40);
 		add(lblOrdersHistory);
+		
+		try
+		{
+			final String DATABASE_URL = "jdbc:mysql://localhost/oosd_ca3";
+			Connection connection = null ;
+			ResultSet resultset = null;
+			PreparedStatement prepstat = null ;
+			int ID = 0;
+			
+			connection = DriverManager.getConnection(DATABASE_URL, "root", "");
+			
+			// create Prepared Statement for inserting data into table
+			prepstat = connection.prepareStatement("SELECT CustomerId FROM customer WHERE Email=?");
+			prepstat.setString(1, email);
+			
+			resultset = prepstat.executeQuery();
+			while(resultset.next())
+			{
+				ID = resultset.getInt(1);
+			}
+			prepstat = connection.prepareStatement("SELECT InvoiceID, PaymentType, Quantity, TotalPrice, product.ProductName FROM invoice "
+					+ "INNER JOIN product ON product.ProductID = invoice.ProductID WHERE invoice.CustomerID=?");
+			prepstat.setInt(1, ID);
+			
+			resultset = prepstat.executeQuery();
+			while(resultset.next())
+			{
+				Object row [] = {resultset.getInt("InvoiceID"), resultset.getString("ProductName"),resultset.getString("PaymentType"), resultset.getInt("Quantity"),resultset.getDouble("TotalPrice")};
+				table2.addRow(row);
+			}
+
+		}
+		catch (SQLException sqlException)
+		{
+			sqlException.printStackTrace();
+		}
 	}
 }

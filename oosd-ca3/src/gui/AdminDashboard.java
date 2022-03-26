@@ -20,6 +20,11 @@ import javax.swing.border.MatteBorder;
 // Student ID:		C00263263
 // Date:			08/03/2022
 
+/**
+ * This class opens administrator dashboar to allow the administrator to manage the shop.
+ * @author Marcin
+ * @version 1.0
+ */
 public class AdminDashboard extends JFrame
 {
 
@@ -29,7 +34,9 @@ public class AdminDashboard extends JFrame
 	private InvoicesPanel invoicesPanel;
 	private ItemsPanel itemsPanel;
 	
-	/** Launch the application */
+	/** 
+	 * Runs the Admin Dashboard application.
+	 */
 	public static void main(String[] args)
 	{
 		EventQueue.invokeLater(new Runnable()
@@ -50,7 +57,9 @@ public class AdminDashboard extends JFrame
 		});
 	}
 
-	/** Create the frame. */
+	/**
+	 *  Buiulds the Admin Dashboard window.
+	 */
 	public AdminDashboard()
 	{
 		setVisible(true);
@@ -195,6 +204,10 @@ public class AdminDashboard extends JFrame
 		
 		menuClicked(customersPanel);
 	}
+	/**
+	 * Set the appropriate panel to be visible after the administrator selects an option in the admin dashboard menu.
+	 * @param panel The empty panel will nest other panels.
+	 */
 	public void menuClicked(JPanel panel)
 	{
 		customersPanel.setVisible(false);

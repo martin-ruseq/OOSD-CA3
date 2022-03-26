@@ -42,7 +42,9 @@ public class Login extends JFrame
 	private JPasswordField txtPassword;
 	private JTextField txtEmail;
 
-	/** Launch the Login application */
+	/*
+	 * Runs the Login application.
+	 */
 	public static void main(String[] args)
 	{
 		EventQueue.invokeLater(new Runnable()
@@ -63,7 +65,9 @@ public class Login extends JFrame
 		});
 	}
 
-	/** Create the Login window. */
+	/*
+	 * Builds the Login window. 
+	 */
 	public Login()
 	{
 		setPreferredSize(new Dimension(400, 560));

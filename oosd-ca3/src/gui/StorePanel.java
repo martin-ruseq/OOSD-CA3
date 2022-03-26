@@ -11,6 +11,11 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.SystemColor;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.JComboBox;
@@ -205,6 +210,9 @@ public class StorePanel extends JPanel
 			}
 		});
 		scrollPaneStoreTable.setViewportView(storeTable);
+		DefaultTableModel table = (DefaultTableModel)storeTable.getModel();
+		table.setRowCount(0);
+		
 		
 		JLabel lblNewLabel = new JLabel("STORE");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -213,5 +221,29 @@ public class StorePanel extends JPanel
 		lblNewLabel.setBounds(10, 0, 605, 40);
 		add(lblNewLabel);
 		setVisible(true);
+		
+		try
+		{
+			final String DATABASE_URL = "jdbc:mysql://localhost/oosd_ca3";
+			Connection connection = null ;
+			ResultSet resultset = null;
+			PreparedStatement prepstat = null ;
+			
+			connection = DriverManager.getConnection(DATABASE_URL, "root", "");
+
+			prepstat = connection.prepareStatement("SELECT * FROM product");
+			
+			resultset = prepstat.executeQuery();
+			while(resultset.next())
+			{
+				Object row [] = {resultset.getInt("ProductID") + "  ", resultset.getString("ProductName"), resultset.getDouble("ProductPrice"), resultset.getInt("ProductStock")};
+				table.addRow(row);
+			}
+
+		}
+		catch (SQLException sqlException)
+		{
+			sqlException.printStackTrace();
+		}
 	}
 }

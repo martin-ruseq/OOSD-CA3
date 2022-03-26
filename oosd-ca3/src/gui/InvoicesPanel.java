@@ -9,6 +9,11 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.Font;
 import javax.swing.JLabel;
 import java.awt.SystemColor;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.SwingConstants;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.ListSelectionModel;
@@ -20,6 +25,11 @@ import javax.swing.JTextField;
 // Student ID:		C00263263
 // Date:			21/02/2022
 
+/**
+ * This class creates a panel used in the administrator dashboard that is showing all invoices in the database.
+ * @author Marcin
+ * @version 1.0
+ */
 public class InvoicesPanel extends JPanel
 {
 
@@ -38,6 +48,10 @@ public class InvoicesPanel extends JPanel
 	private JTextField txtTotalPrice;
 
 	@SuppressWarnings({})
+	
+	/**
+	 * Runs the panel with all invoices in the database for administrator.
+	 */
 	public InvoicesPanel()
 	{
 		setBounds(0, 0, 625, 493);
@@ -204,7 +218,7 @@ public class InvoicesPanel extends JPanel
 		add(scrollPaneInvoicesTable);
 		
 		invoicesTable = new JTable();
-		invoicesTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		invoicesTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		invoicesTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		invoicesTable.setRowHeight(20);
 		invoicesTable.setSelectionBackground(SystemColor.activeCaption);
@@ -212,63 +226,54 @@ public class InvoicesPanel extends JPanel
 		invoicesTable.setFillsViewportHeight(true);
 		invoicesTable.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		invoicesTable.setModel(new DefaultTableModel(
-			new Object[][] 
-			{
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
+			new Object[][] {
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
 			},
-			new String[] 
-			{
-				"Invoice ID", "Product Name", "Product ID", "Payment Type", "Quantity", "Total Price", "Ordered by"
+			new String[] {
+				"Invoice ID", "Product Name", "Product ID", "Payment Type", "Quantity", "Total Price"
 			}
 		) {
 			private static final long serialVersionUID = 1L;
-			boolean[] columnEditables = new boolean[] 
-			{
-				true, false, false, false, false, false, false
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false, false, false
 			};
-			public boolean isCellEditable(int row, int column)
-			{
+			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
 		});
 		invoicesTable.getColumnModel().getColumn(0).setMinWidth(75);
-		invoicesTable.getColumnModel().getColumn(0).setMaxWidth(75);
-		invoicesTable.getColumnModel().getColumn(1).setResizable(false);
+		invoicesTable.getColumnModel().getColumn(0).setMaxWidth(85);
 		invoicesTable.getColumnModel().getColumn(1).setPreferredWidth(150);
 		invoicesTable.getColumnModel().getColumn(1).setMinWidth(150);
-		invoicesTable.getColumnModel().getColumn(2).setResizable(false);
+		invoicesTable.getColumnModel().getColumn(1).setMaxWidth(160);
 		invoicesTable.getColumnModel().getColumn(2).setMinWidth(75);
-		invoicesTable.getColumnModel().getColumn(2).setMaxWidth(75);
-		invoicesTable.getColumnModel().getColumn(3).setResizable(false);
+		invoicesTable.getColumnModel().getColumn(2).setMaxWidth(85);
 		invoicesTable.getColumnModel().getColumn(3).setPreferredWidth(100);
 		invoicesTable.getColumnModel().getColumn(3).setMinWidth(100);
-		invoicesTable.getColumnModel().getColumn(3).setMaxWidth(100);
-		invoicesTable.getColumnModel().getColumn(4).setResizable(false);
+		invoicesTable.getColumnModel().getColumn(3).setMaxWidth(110);
 		invoicesTable.getColumnModel().getColumn(4).setPreferredWidth(60);
 		invoicesTable.getColumnModel().getColumn(4).setMinWidth(60);
-		invoicesTable.getColumnModel().getColumn(4).setMaxWidth(60);
-		invoicesTable.getColumnModel().getColumn(5).setResizable(false);
+		invoicesTable.getColumnModel().getColumn(4).setMaxWidth(70);
 		invoicesTable.getColumnModel().getColumn(5).setPreferredWidth(80);
 		invoicesTable.getColumnModel().getColumn(5).setMinWidth(80);
-		invoicesTable.getColumnModel().getColumn(5).setMaxWidth(80);
-		invoicesTable.getColumnModel().getColumn(6).setResizable(false);
-		invoicesTable.getColumnModel().getColumn(6).setPreferredWidth(150);
-		invoicesTable.getColumnModel().getColumn(6).setMinWidth(150);
+		invoicesTable.getColumnModel().getColumn(5).setMaxWidth(90);
 		scrollPaneInvoicesTable.setViewportView(invoicesTable);
+		DefaultTableModel table = (DefaultTableModel)invoicesTable.getModel();
+		table.setRowCount(0);
 		
 		JLabel lblInvoices = new JLabel("IVOICES");
 		lblInvoices.setHorizontalAlignment(SwingConstants.CENTER);
@@ -277,5 +282,29 @@ public class InvoicesPanel extends JPanel
 		lblInvoices.setBounds(10, 0, 605, 40);
 		add(lblInvoices);
 		setVisible(true);
+		
+		try
+		{
+			final String DATABASE_URL = "jdbc:mysql://localhost/oosd_ca3";
+			Connection connection = null ;
+			ResultSet resultset = null;
+			PreparedStatement prepstat = null ;
+			
+			connection = DriverManager.getConnection(DATABASE_URL, "root", "");
+
+			prepstat = connection.prepareStatement("SELECT InvoiceID, PaymentType, Quantity, TotalPrice, invoice.ProductID, product.ProductName FROM invoice INNER JOIN product ON product.ProductID = invoice.ProductID");
+			
+			resultset = prepstat.executeQuery();
+			while(resultset.next())
+			{
+				Object row [] = {resultset.getInt("InvoiceID"), resultset.getString("product.ProductName"), resultset.getInt("ProductID"), resultset.getString("PaymentType"), resultset.getInt("Quantity"), resultset.getDouble("TotalPrice")};
+				table.addRow(row);
+			}
+
+		}
+		catch (SQLException sqlException)
+		{
+			sqlException.printStackTrace();
+		}
 	}
 }

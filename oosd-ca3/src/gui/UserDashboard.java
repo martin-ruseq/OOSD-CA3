@@ -37,7 +37,9 @@ public class UserDashboard extends JFrame
 	private MyAccPanel myAccPanel;
 	private SettingsPanel settingsPanel;
 	
-	/** Launch the User Dashboard application */
+	/*
+	 * Runs the User Dashboard.
+	 */
 	public static void main(String[] args)
 	{
 		EventQueue.invokeLater(new Runnable()
@@ -59,7 +61,7 @@ public class UserDashboard extends JFrame
 	}
 
 	/**
-	 * Creats the user dashboard window.
+	 * Builds the User Dashboard window.
 	 * @param email address that has been used by theuser to log in to the account.
 	 */
 	public UserDashboard(String email)
@@ -77,7 +79,7 @@ public class UserDashboard extends JFrame
 		mainPanel.setLayout(null);
 		
 		storePanel = new StorePanel();
-		ordersHisPanel = new OrdersHisPanel();
+		ordersHisPanel = new OrdersHisPanel(email);
 		myAccPanel = new MyAccPanel(email);
 		settingsPanel = new SettingsPanel(email);	
 		
@@ -232,7 +234,7 @@ public class UserDashboard extends JFrame
 	}
 	/**
 	 * Set the appropriate panel to be visible after the user selects an option in the user dashboard menu.
-	 * @param panel The epmpty panel will nest other panels.
+	 * @param panel The empty panel will nest other panels.
 	 */
 	public void menuClicked(JPanel panel)
 	{
