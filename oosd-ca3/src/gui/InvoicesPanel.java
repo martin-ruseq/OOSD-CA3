@@ -46,8 +46,6 @@ public class InvoicesPanel extends JPanel
 	private JTextField txtProductQuantity;
 	private JTextField txtCustomerPhone;
 	private JTextField txtTotalPrice;
-
-	@SuppressWarnings({})
 	
 	/**
 	 * Builds the panel with all invoices in the database for administrator.

@@ -52,7 +52,7 @@ public class SignUp extends JFrame
 	private JTextField txtZipCode;
 	private JTextField txtCountry;
 
-	/*
+	/**
 	 * Runs the Sign Up application.
 	 */
 	public static void main(String[] args)

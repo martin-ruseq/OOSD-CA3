@@ -37,7 +37,7 @@ public class UserDashboard extends JFrame
 	private MyAccPanel myAccPanel;
 	private SettingsPanel settingsPanel;
 	
-	/*
+	/**
 	 * Runs the User Dashboard applications.
 	 */
 	public static void main(String[] args)

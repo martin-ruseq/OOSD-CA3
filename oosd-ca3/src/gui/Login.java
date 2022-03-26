@@ -65,7 +65,7 @@ public class Login extends JFrame
 		});
 	}
 
-	/*
+	/**
 	 * Builds the Login window. 
 	 */
 	public Login()

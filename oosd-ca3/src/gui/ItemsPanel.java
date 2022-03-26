@@ -46,8 +46,6 @@ public class ItemsPanel extends JPanel
 	private JTextField txtAddProductName;
 	private JTextField txtAddProductPrice;
 	private JTextField txtAddProductStock;
-
-	@SuppressWarnings({})
 	
 	/**
 	 * Builds the panel with all products in the database for administrator.
