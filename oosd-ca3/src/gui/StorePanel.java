@@ -24,7 +24,7 @@ import javax.swing.SwingConstants;
 
 // Student Name:	Marcin Rusiecki
 // Student ID:		C00263263
-// Date:			21/02/2022
+// Date:			21/02/2022 
 
 /**
  * This class creats the panel for the user dashboard that contains all product from database which user can buy.

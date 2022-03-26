@@ -28,7 +28,7 @@ import javax.swing.DebugGraphics;
 
 // Student Name:	Marcin Rusiecki
 // Student ID:		C00263263
-// Date:			18/01/2022
+// Date:			18/01/2022 
 
 /**
  * This class creates login window allowing the user to login to the account. 

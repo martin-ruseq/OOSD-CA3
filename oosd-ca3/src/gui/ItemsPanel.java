@@ -27,8 +27,13 @@ import javax.swing.JToggleButton;
 
 // Student Name:	Marcin Rusiecki
 // Student ID:		C00263263
-// Date:			21/02/2022
+// Date:			21/02/2022 
 
+/**
+ * This class creates a panel used in the Admin Dashboard that is showing all products in the database and allow adding new products.
+ * @author Marcin Rusiecki
+ * @version 1.0
+ */
 public class ItemsPanel extends JPanel
 {
 
@@ -132,7 +137,7 @@ public class ItemsPanel extends JPanel
 		tglBtnEdit.addItemListener(new ItemListener() 
 		{
 			/**
-			 * This methods enable the fields to editable and disable to non editabme.
+			 * This method enables the fields to be editable or non-editable.
 			 * @param e the event to be processed
 			 */
 			public void itemStateChanged(ItemEvent e)

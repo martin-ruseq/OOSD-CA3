@@ -23,7 +23,7 @@ import javax.swing.JTextField;
 
 // Student Name:	Marcin Rusiecki
 // Student ID:		C00263263
-// Date:			21/02/2022
+// Date:			21/02/2022 
 
 /**
  * This class creates a panel used in the administrator dashboard that is showing all invoices in the database.

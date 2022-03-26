@@ -20,7 +20,7 @@ import java.awt.event.MouseEvent;
 
 // Student Name:	Marcin Rusiecki
 // Student ID:		C00263263
-// Date:			21/02/2022
+// Date:			21/02/2022 
 
 /**
  * This class creates a user dashboard that allows place new orders, view order history and manages the account.

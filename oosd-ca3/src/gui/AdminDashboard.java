@@ -18,11 +18,11 @@ import javax.swing.border.MatteBorder;
 
 // Student Name:	Marcin Rusiecki
 // Student ID:		C00263263
-// Date:			08/03/2022
+// Date:			08/03/2022 
 
 /**
  * This class creates administrator dashboar to allow the administrator to manage the shop.
- * @author Marcin Rusiecki
+ * @author Marcin Rusiecki 
  * @version 1.0
  */
 public class AdminDashboard extends JFrame

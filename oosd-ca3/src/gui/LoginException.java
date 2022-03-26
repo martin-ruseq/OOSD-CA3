@@ -2,7 +2,7 @@ package gui;
 
 // Student Name:	Marcin Rusiecki
 // Student ID:		C00263263
-// Date:			21/03/2022
+// Date:			21/03/2022 
 
 /** 
  * This class handle errors on login screen 
