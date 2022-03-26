@@ -45,7 +45,7 @@ public class ItemsPanel extends JPanel
 	@SuppressWarnings({})
 	
 	/**
-	 * Runs the panel with all products in the database for administrator.
+	 * Builds the panel with all products in the database for administrator.
 	 */
 	public ItemsPanel()
 	{
@@ -131,7 +131,10 @@ public class ItemsPanel extends JPanel
 		
 		tglBtnEdit.addItemListener(new ItemListener() 
 		{
-			@Override
+			/**
+			 * This methods enable the fields to editable and disable to non editabme.
+			 * @param e the event to be processed
+			 */
 			public void itemStateChanged(ItemEvent e)
 			{
 				if(tglBtnEdit.isSelected())

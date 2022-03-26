@@ -43,8 +43,8 @@ public class MyAccPanel extends JPanel
 	private JTextField textFieldTown;
 
 	/**
-	 * Lunche the panel for user dashboard.
-	 * @param email address that has been used by theuser to log in to the account. 
+	 * Builds the panel with non editable user details used in User Dashboard.
+	 * @param email address that has been used by the user to log in to the account. 
 	 */
 	public MyAccPanel(String email)
 	{
@@ -198,7 +198,7 @@ public class MyAccPanel extends JPanel
 		{
 			@Override
 			/**
-			 * Display warning message with confirmation to delete account from the database.
+			 * Displays warning message with confirmation to delete account from the database.
 			 */
 			public void mouseClicked(MouseEvent e) 
 			{

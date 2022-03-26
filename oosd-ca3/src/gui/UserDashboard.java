@@ -38,7 +38,7 @@ public class UserDashboard extends JFrame
 	private SettingsPanel settingsPanel;
 	
 	/*
-	 * Runs the User Dashboard.
+	 * Runs the User Dashboard applications.
 	 */
 	public static void main(String[] args)
 	{
@@ -233,8 +233,8 @@ public class UserDashboard extends JFrame
 	
 	}
 	/**
-	 * Set the appropriate panel to be visible after the user selects an option in the user dashboard menu.
-	 * @param panel The empty panel will nest other panels.
+	 * Set the appropriate panel to be visible after the user selects an option in the UserDashboard menu.
+	 * @param panel is empty and will nest other panels.
 	 */
 	public void menuClicked(JPanel panel)
 	{

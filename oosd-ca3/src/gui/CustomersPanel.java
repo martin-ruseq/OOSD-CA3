@@ -29,7 +29,7 @@ import javax.swing.JTextArea;
 
 /**
  * This class creates a panel used in the administrator dashboard that is showing all customers in the database.
- * @author Marcin
+ * @author Marcin Rusiecki
  * @version 1.0
  */
 public class CustomersPanel extends JPanel
@@ -45,7 +45,7 @@ public class CustomersPanel extends JPanel
 	private JTextField txtCustomerPhone;
 
 	/** 
-	 * Runs the panel with all customers in the database for administrator.
+	 * Builds the panel with all customers in the database for administrator.
 	 */
 	public CustomersPanel()
 	{
@@ -190,6 +190,12 @@ public class CustomersPanel extends JPanel
 			boolean[] columnEditables = new boolean[] {
 				false, false, false, false, false, false, false
 			};
+			/**
+			 * Sets if the cell in the table is edtable
+			 * @param row specify which row in the table
+			 * @param column specify which column th the table
+			 * @return if the cell is editable (true) or not (false)
+			 */
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}

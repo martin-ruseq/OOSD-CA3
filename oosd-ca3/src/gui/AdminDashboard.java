@@ -21,8 +21,8 @@ import javax.swing.border.MatteBorder;
 // Date:			08/03/2022
 
 /**
- * This class opens administrator dashboar to allow the administrator to manage the shop.
- * @author Marcin
+ * This class creates administrator dashboar to allow the administrator to manage the shop.
+ * @author Marcin Rusiecki
  * @version 1.0
  */
 public class AdminDashboard extends JFrame
@@ -58,7 +58,7 @@ public class AdminDashboard extends JFrame
 	}
 
 	/**
-	 *  Buiulds the Admin Dashboard window.
+	 *  Builds the Admin Dashboard window.
 	 */
 	public AdminDashboard()
 	{
@@ -205,8 +205,8 @@ public class AdminDashboard extends JFrame
 		menuClicked(customersPanel);
 	}
 	/**
-	 * Set the appropriate panel to be visible after the administrator selects an option in the admin dashboard menu.
-	 * @param panel The empty panel will nest other panels.
+	 * Set the appropriate panel to be visible after the administrator selects an option in the AdminDashboard menu.
+	 * @param panel is empty and will nest other panels.
 	 */
 	public void menuClicked(JPanel panel)
 	{

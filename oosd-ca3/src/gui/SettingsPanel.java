@@ -24,6 +24,11 @@ import java.awt.event.MouseEvent;
 // Student ID:		C00263263
 // Date:			21/02/2022
 
+/**
+ * This class creats the panel for the user dashboard that allows the user to edith his account details.
+ * @author Marcin Rusiecki
+ * @version 1.0
+ */
 public class SettingsPanel extends JPanel
 {
 	private static final long serialVersionUID = 1L;
@@ -37,7 +42,11 @@ public class SettingsPanel extends JPanel
 	private JTextField textFieldTown;
 	private JPasswordField password;
 	private JPasswordField passwordConfirm;
-
+	
+	/**
+	 * Builds the panel with editable user details used in User Dashboard.
+	 * @param email address that has been used by the user to log in to the account. 
+	 */
 	public SettingsPanel(String email)
 	{
 		setBounds(0, 0, 625, 493);

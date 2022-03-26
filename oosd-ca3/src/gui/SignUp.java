@@ -32,7 +32,7 @@ import javax.swing.ImageIcon;
 
 @SuppressWarnings("serial")
 /**
- * This class creates the signup form allowing the user to create an account in the database.
+ * This class creates the signup form window allowing the user to create an account in the database.
  * @author Marcin Rusiecki
  * @version 1.0
  */
@@ -52,7 +52,9 @@ public class SignUp extends JFrame
 	private JTextField txtZipCode;
 	private JTextField txtCountry;
 
-	/** Launch the Sign Up application */
+	/*
+	 * Runs the Sign Up application.
+	 */
 	public static void main(String[] args)
 	{
 		EventQueue.invokeLater(new Runnable()
@@ -73,7 +75,9 @@ public class SignUp extends JFrame
 		});
 	}
 
-	/** Create the Sign Up window */
+	/** 
+	 * Builds the Sign Up window.
+	 */
 	public SignUp()
 	{
 		setLocation(new Point(550, 50));

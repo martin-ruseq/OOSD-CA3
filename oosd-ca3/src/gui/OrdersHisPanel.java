@@ -40,7 +40,7 @@ public class OrdersHisPanel extends JPanel
 	private JTextField textFieldTotalPrice;
 	
 	/**
-	 * Runs the panel with all orders placed by the current user.
+	 * Builds the panel with the user orders histor used in User Dashboard.
 	 * @param email address that has been used by the user to log in to the account. 
 	 */
 	public OrdersHisPanel(String email)

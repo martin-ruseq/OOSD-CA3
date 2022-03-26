@@ -26,6 +26,11 @@ import javax.swing.SwingConstants;
 // Student ID:		C00263263
 // Date:			21/02/2022
 
+/**
+ * This class creats the panel for the user dashboard that contains all product from database which user can buy.
+ * @author Marcin Rusiecki
+ * @version 1.0
+ */
 public class StorePanel extends JPanel
 {
 
@@ -38,7 +43,9 @@ public class StorePanel extends JPanel
 	private JTextField textFieldItemPrice;
 	private JTextField textFieldItemStock;
 
-	@SuppressWarnings({"rawtypes", "unchecked"})
+	/**
+	 * Builds the panel with all products information from database.
+	 */
 	public StorePanel()
 	{
 		setBounds(0, 0, 625, 493);
@@ -128,9 +135,9 @@ public class StorePanel extends JPanel
 		lblTotalPrice.setBounds(10, 146, 105, 30);
 		itemDetailsPanel.add(lblTotalPrice);
 		
-		JComboBox comboBoxQuantity = new JComboBox();
+		JComboBox<Object> comboBoxQuantity = new JComboBox<Object>();
 		comboBoxQuantity.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		comboBoxQuantity.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5"}));
+		comboBoxQuantity.setModel(new DefaultComboBoxModel<Object>(new String[] {"1", "2", "3", "4", "5"}));
 		comboBoxQuantity.setBounds(96, 26, 191, 30);
 		itemDetailsPanel.add(comboBoxQuantity);
 		
@@ -146,8 +153,8 @@ public class StorePanel extends JPanel
 		lblPaymentType.setBounds(10, 66, 130, 30);
 		itemDetailsPanel.add(lblPaymentType);
 		
-		JComboBox comboBoxPaymentType = new JComboBox();
-		comboBoxPaymentType.setModel(new DefaultComboBoxModel(new String[] {"Card", "PayPal", "Google Pay"}));
+		JComboBox<Object> comboBoxPaymentType = new JComboBox<Object>();
+		comboBoxPaymentType.setModel(new DefaultComboBoxModel<Object>(new String[] {"Card", "PayPal", "Google Pay"}));
 		comboBoxPaymentType.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		comboBoxPaymentType.setBounds(137, 66, 150, 30);
 		itemDetailsPanel.add(comboBoxPaymentType);
@@ -200,11 +207,12 @@ public class StorePanel extends JPanel
 		){
 
 			private static final long serialVersionUID = 1L;
+			@SuppressWarnings("rawtypes")
 			Class[] columnTypes = new Class[] 
 			{
 				Integer.class, String.class, Double.class, Integer.class
 			};
-			public Class getColumnClass(int columnIndex) 
+			public Class<?> getColumnClass(int columnIndex) 
 			{
 				return columnTypes[columnIndex];
 			}
