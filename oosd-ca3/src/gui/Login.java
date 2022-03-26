@@ -42,7 +42,7 @@ public class Login extends JFrame
 	private JPasswordField txtPassword;
 	private JTextField txtEmail;
 
-	/*
+	/**
 	 * Runs the Login application.
 	 */
 	public static void main(String[] args)
