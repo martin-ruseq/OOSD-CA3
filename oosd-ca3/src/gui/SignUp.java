@@ -30,7 +30,6 @@ import javax.swing.ImageIcon;
 // Student ID:		C00263263
 // Date:			18/01/2022 
 
-@SuppressWarnings("serial")
 /**
  * This class creates the signup form window allowing the user to create an account in the database.
  * @author Marcin Rusiecki
@@ -38,6 +37,7 @@ import javax.swing.ImageIcon;
  */
 public class SignUp extends JFrame
 {
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtFName;
 	private JTextField txtDob;
