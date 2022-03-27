@@ -21,6 +21,8 @@ import javax.swing.SwingConstants;
 import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JTextArea;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 // Student Name:	Marcin Rusiecki
@@ -43,6 +45,7 @@ public class CustomersPanel extends JPanel
 	private JTextField txtCutomerDOB;
 	private JTextField txtCustomerEmail;
 	private JTextField txtCustomerPhone;
+	private JTextArea txtCustomerAddress;
 
 	/** 
 	 * Builds the panel with all customers in the database for administrator.
@@ -107,20 +110,13 @@ public class CustomersPanel extends JPanel
 		lblCustomerAddress.setBounds(10, 148, 97, 30);
 		CustomerDetailsPanel.add(lblCustomerAddress);
 		
-		JTextArea txtCustomerAddress = new JTextArea();
-		txtCustomerAddress.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtCustomerAddress.setEditable(false);
-		txtCustomerAddress.setText("");
-		txtCustomerAddress.setBounds(124, 148, 175, 85);
-		CustomerDetailsPanel.add(txtCustomerAddress);
-		
 		JLabel lblCustomerDOB = new JLabel("Date of Birth:");
 		lblCustomerDOB.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblCustomerDOB.setBounds(316, 68, 120, 30);
 		CustomerDetailsPanel.add(lblCustomerDOB);
 		
 		txtCutomerDOB = new JTextField();
-		txtCutomerDOB.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtCutomerDOB.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtCutomerDOB.setEditable(false);
 		txtCutomerDOB.setColumns(10);
 		txtCutomerDOB.setBounds(436, 68, 158, 30);
@@ -132,7 +128,7 @@ public class CustomersPanel extends JPanel
 		CustomerDetailsPanel.add(lblCustomerEmail);
 		
 		txtCustomerEmail = new JTextField();
-		txtCustomerEmail.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtCustomerEmail.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtCustomerEmail.setEditable(false);
 		txtCustomerEmail.setColumns(10);
 		txtCustomerEmail.setBounds(419, 108, 175, 30);
@@ -144,11 +140,22 @@ public class CustomersPanel extends JPanel
 		CustomerDetailsPanel.add(lblCustomerPhone);
 		
 		txtCustomerPhone = new JTextField();
-		txtCustomerPhone.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtCustomerPhone.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtCustomerPhone.setEditable(false);
 		txtCustomerPhone.setColumns(10);
 		txtCustomerPhone.setBounds(419, 148, 175, 30);
 		CustomerDetailsPanel.add(txtCustomerPhone);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(124, 148, 175, 50);
+		CustomerDetailsPanel.add(scrollPane);
+		
+		txtCustomerAddress = new JTextArea();
+		txtCustomerAddress.setLineWrap(true);
+		scrollPane.setViewportView(txtCustomerAddress);
+		txtCustomerAddress.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtCustomerAddress.setEditable(false);
+		txtCustomerAddress.setText("");
 		
 		JScrollPane scrollPaneCustomersTable = new JScrollPane();
 		scrollPaneCustomersTable.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -156,6 +163,23 @@ public class CustomersPanel extends JPanel
 		add(scrollPaneCustomersTable);
 		
 		customersTable = new JTable();
+		customersTable.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				DefaultTableModel model = (DefaultTableModel) customersTable.getModel();
+				int rowSelectedIndex = customersTable.getSelectedRow();
+				
+				txtCustomerId.setText(model.getValueAt(rowSelectedIndex,0).toString());
+				txtCustomerFName.setText(model.getValueAt(rowSelectedIndex,1).toString());
+				txtCustomerLName.setText(model.getValueAt(rowSelectedIndex,2).toString());
+				txtCustomerAddress.setText(model.getValueAt(rowSelectedIndex,3).toString());
+				txtCustomerEmail.setText(model.getValueAt(rowSelectedIndex,4).toString());
+				txtCutomerDOB.setText(model.getValueAt(rowSelectedIndex,5).toString());
+				txtCustomerPhone.setText(model.getValueAt(rowSelectedIndex,6).toString());
+			}
+		});
 		customersTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		customersTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		customersTable.setRowHeight(20);
@@ -164,7 +188,8 @@ public class CustomersPanel extends JPanel
 		customersTable.setFillsViewportHeight(true);
 		customersTable.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		customersTable.setModel(new DefaultTableModel(
-			new Object[][] {
+			new Object[][]
+			{
 				{null, "", null, null, null, null, null},
 				{null, null, null, null, null, null, null},
 				{null, null, null, null, null, null, null},
@@ -182,15 +207,18 @@ public class CustomersPanel extends JPanel
 				{null, null, null, null, null, null, null},
 				{null, null, null, null, null, null, null},
 			},
-			new String[] {
+			new String[] 
+			{
 				"Customer ID", "First Name", "Last Name", "Address", "E-Mail", "Date of Birth", "Phone"
 			}
-		) {
+		){
 			private static final long serialVersionUID = 1L;
-			boolean[] columnEditables = new boolean[] {
+			boolean[] columnEditables = new boolean[] 
+			{
 				false, false, false, false, false, false, false
 			};
-			public boolean isCellEditable(int row, int column) {
+			public boolean isCellEditable(int row, int column) 
+			{
 				return columnEditables[column];
 			}
 		});
@@ -234,7 +262,7 @@ public class CustomersPanel extends JPanel
 			resultset = prepstat.executeQuery();
 			while(resultset.next())
 			{
-				Object row [] = {resultset.getInt("CustomerId"), resultset.getString("FirstName"), resultset.getString("LastName"), resultset.getString("Street") + " " + resultset.getString("Town") + " " + resultset.getString("ZipCode") + " " + resultset.getString("Country"), resultset.getString("Email"), resultset.getString("DateOfBirth"), resultset.getString("Phone")};
+				Object row [] = {resultset.getInt("CustomerId"), resultset.getString("FirstName"), resultset.getString("LastName"), resultset.getString("Street") + ", " + resultset.getString("Town") + ", " + resultset.getString("ZipCode") + ", " + resultset.getString("Country"), resultset.getString("Email"), resultset.getString("DateOfBirth"), resultset.getString("Phone")};
 				table.addRow(row);
 			}
 

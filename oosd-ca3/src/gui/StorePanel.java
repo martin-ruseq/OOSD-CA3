@@ -22,6 +22,8 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SwingConstants;
 import javax.swing.ListSelectionModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 // Student Name:	Marcin Rusiecki
 // Student ID:		C00263263
@@ -83,14 +85,14 @@ public class StorePanel extends JPanel
 		
 		textFieldItemID = new JTextField();
 		textFieldItemID.setEditable(false);
-		textFieldItemID.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textFieldItemID.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textFieldItemID.setBounds(113, 28, 89, 30);
 		selectedDetailsPanel.add(textFieldItemID);
 		textFieldItemID.setColumns(10);
 		
 		textFieldItemName = new JTextField();
 		textFieldItemName.setEditable(false);
-		textFieldItemName.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textFieldItemName.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textFieldItemName.setBounds(113, 68, 174, 30);
 		selectedDetailsPanel.add(textFieldItemName);
 		textFieldItemName.setColumns(10);
@@ -101,14 +103,14 @@ public class StorePanel extends JPanel
 		selectedDetailsPanel.add(lblStock);
 		
 		textFieldItemPrice = new JTextField();
-		textFieldItemPrice.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textFieldItemPrice.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textFieldItemPrice.setEditable(false);
 		textFieldItemPrice.setColumns(10);
 		textFieldItemPrice.setBounds(113, 108, 174, 30);
 		selectedDetailsPanel.add(textFieldItemPrice);
 		
 		textFieldItemStock = new JTextField();
-		textFieldItemStock.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textFieldItemStock.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textFieldItemStock.setEditable(false);
 		textFieldItemStock.setColumns(10);
 		textFieldItemStock.setBounds(113, 148, 89, 30);
@@ -137,13 +139,13 @@ public class StorePanel extends JPanel
 		itemDetailsPanel.add(lblTotalPrice);
 		
 		JComboBox<Object> comboBoxQuantity = new JComboBox<Object>();
-		comboBoxQuantity.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		comboBoxQuantity.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		comboBoxQuantity.setModel(new DefaultComboBoxModel<Object>(new String[] {"1", "2", "3", "4", "5"}));
 		comboBoxQuantity.setBounds(96, 26, 191, 30);
 		itemDetailsPanel.add(comboBoxQuantity);
 		
 		textFieldTotalPrice = new JTextField();
-		textFieldTotalPrice.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textFieldTotalPrice.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textFieldTotalPrice.setEditable(false);
 		textFieldTotalPrice.setBounds(137, 146, 150, 30);
 		itemDetailsPanel.add(textFieldTotalPrice);
@@ -156,7 +158,7 @@ public class StorePanel extends JPanel
 		
 		JComboBox<Object> comboBoxPaymentType = new JComboBox<Object>();
 		comboBoxPaymentType.setModel(new DefaultComboBoxModel<Object>(new String[] {"Card", "PayPal", "Google Pay"}));
-		comboBoxPaymentType.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		comboBoxPaymentType.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		comboBoxPaymentType.setBounds(137, 66, 150, 30);
 		itemDetailsPanel.add(comboBoxPaymentType);
 		
@@ -166,7 +168,7 @@ public class StorePanel extends JPanel
 		itemDetailsPanel.add(lblCardNo);
 		
 		textFieldCardNo = new JTextField();
-		textFieldCardNo.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textFieldCardNo.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textFieldCardNo.setColumns(10);
 		textFieldCardNo.setBounds(96, 106, 191, 30);
 		itemDetailsPanel.add(textFieldCardNo);
@@ -176,12 +178,26 @@ public class StorePanel extends JPanel
 		add(scrollPaneStoreTable);
 		
 		storeTable = new JTable();
+		storeTable.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				DefaultTableModel model = (DefaultTableModel) storeTable.getModel();
+				int rowSelectedIndex = storeTable.getSelectedRow();
+				
+				textFieldItemID.setText(model.getValueAt(rowSelectedIndex,0).toString());
+				textFieldItemName.setText(model.getValueAt(rowSelectedIndex,1).toString());
+				textFieldItemPrice.setText(model.getValueAt(rowSelectedIndex,2).toString());
+				textFieldItemStock.setText(model.getValueAt(rowSelectedIndex,3).toString());
+			}
+		});
 		storeTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		storeTable.setRowHeight(20);
 		storeTable.setSelectionBackground(SystemColor.activeCaption);
 		storeTable.setName("StoreTable");
 		storeTable.setFillsViewportHeight(true);
-		storeTable.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		storeTable.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		storeTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null},

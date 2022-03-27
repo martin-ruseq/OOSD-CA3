@@ -60,7 +60,7 @@ public class SettingsPanel extends JPanel
 		add(panelDetails);
 		
 		textFieldFname = new JTextField();
-		textFieldFname.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textFieldFname.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textFieldFname.setColumns(10);
 		textFieldFname.setBounds(100, 28, 190, 30);
 		panelDetails.add(textFieldFname);
@@ -76,13 +76,13 @@ public class SettingsPanel extends JPanel
 		panelDetails.add(lblLname);
 		
 		textFieldLName = new JTextField();
-		textFieldLName.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textFieldLName.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textFieldLName.setColumns(10);
 		textFieldLName.setBounds(310, 28, 190, 30);
 		panelDetails.add(textFieldLName);
 		
 		textFieldDoB = new JTextField();
-		textFieldDoB.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textFieldDoB.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textFieldDoB.setColumns(10);
 		textFieldDoB.setBounds(100, 95, 190, 30);
 		panelDetails.add(textFieldDoB);
@@ -98,7 +98,7 @@ public class SettingsPanel extends JPanel
 		panelDetails.add(lblPhone);
 		
 		textFieldPhone = new JTextField();
-		textFieldPhone.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textFieldPhone.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textFieldPhone.setColumns(10);
 		textFieldPhone.setBounds(310, 95, 190, 30);
 		panelDetails.add(textFieldPhone);
@@ -123,7 +123,7 @@ public class SettingsPanel extends JPanel
 		panelDetails.add(lblZipCode);
 		
 		textFieldZipCode = new JTextField();
-		textFieldZipCode.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textFieldZipCode.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textFieldZipCode.setColumns(10);
 		textFieldZipCode.setBounds(100, 242, 190, 30);
 		panelDetails.add(textFieldZipCode);
@@ -134,19 +134,19 @@ public class SettingsPanel extends JPanel
 		panelDetails.add(lblCountry);
 		
 		textFieldCountry = new JTextField();
-		textFieldCountry.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textFieldCountry.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textFieldCountry.setColumns(10);
 		textFieldCountry.setBounds(310, 242, 190, 30);
 		panelDetails.add(textFieldCountry);
 		
 		textFieldStreet = new JTextField();
-		textFieldStreet.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textFieldStreet.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textFieldStreet.setColumns(10);
 		textFieldStreet.setBounds(100, 174, 190, 30);
 		panelDetails.add(textFieldStreet);
 		
 		textFieldTown = new JTextField();
-		textFieldTown.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textFieldTown.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textFieldTown.setColumns(10);
 		textFieldTown.setBounds(310, 174, 190, 30);
 		panelDetails.add(textFieldTown);
@@ -166,12 +166,12 @@ public class SettingsPanel extends JPanel
 		panelDetails.add(lblConfirmPassword);
 		
 		password = new JPasswordField();
-		password.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		password.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		password.setBounds(100, 321, 190, 30);
 		panelDetails.add(password);
 		
 		passwordConfirm = new JPasswordField();
-		passwordConfirm.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		passwordConfirm.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		passwordConfirm.setBounds(310, 321, 190, 30);
 		panelDetails.add(passwordConfirm);
 		

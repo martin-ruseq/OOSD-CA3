@@ -19,6 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.ListSelectionModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 // Student Name:	Marcin Rusiecki
 // Student ID:		C00263263
@@ -56,12 +58,27 @@ public class OrdersHisPanel extends JPanel
 		add(scrollPaneOrdersTable);
 		
 		OrdersTable = new JTable();
+		OrdersTable.addMouseListener(new MouseAdapter()
+		{
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+				DefaultTableModel model = (DefaultTableModel) OrdersTable.getModel();
+				int rowSelectedIndex = OrdersTable.getSelectedRow();
+				
+				textFieldInvoiceID.setText(model.getValueAt(rowSelectedIndex,0).toString());
+				textFieldProductName.setText(model.getValueAt(rowSelectedIndex,1).toString());
+				textFieldPaymentType.setText(model.getValueAt(rowSelectedIndex,2).toString());
+				textFieldQuantity.setText(model.getValueAt(rowSelectedIndex,3).toString());
+				textFieldTotalPrice.setText(model.getValueAt(rowSelectedIndex,4).toString());
+			}
+		});
 		OrdersTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		OrdersTable.setRowHeight(20);
 		OrdersTable.setSelectionBackground(SystemColor.activeCaption);
 		OrdersTable.setName("OrdersTable");
 		OrdersTable.setFillsViewportHeight(true);
-		OrdersTable.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		OrdersTable.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		OrdersTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null},
@@ -113,14 +130,14 @@ public class OrdersHisPanel extends JPanel
 		invoideDetailsPanel.add(lblPaymentType);
 		
 		textFieldInvoiceID = new JTextField();
-		textFieldInvoiceID.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textFieldInvoiceID.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textFieldInvoiceID.setEditable(false);
 		textFieldInvoiceID.setColumns(10);
 		textFieldInvoiceID.setBounds(138, 28, 198, 30);
 		invoideDetailsPanel.add(textFieldInvoiceID);
 		
 		textFieldProductName = new JTextField();
-		textFieldProductName.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textFieldProductName.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textFieldProductName.setEditable(false);
 		textFieldProductName.setColumns(10);
 		textFieldProductName.setBounds(138, 68, 198, 30);
@@ -132,14 +149,14 @@ public class OrdersHisPanel extends JPanel
 		invoideDetailsPanel.add(lblQuantity);
 		
 		textFieldPaymentType = new JTextField();
-		textFieldPaymentType.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textFieldPaymentType.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textFieldPaymentType.setEditable(false);
 		textFieldPaymentType.setColumns(10);
 		textFieldPaymentType.setBounds(138, 108, 198, 30);
 		invoideDetailsPanel.add(textFieldPaymentType);
 		
 		textFieldQuantity = new JTextField();
-		textFieldQuantity.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textFieldQuantity.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textFieldQuantity.setEditable(false);
 		textFieldQuantity.setColumns(10);
 		textFieldQuantity.setBounds(138, 148, 198, 30);
@@ -151,7 +168,7 @@ public class OrdersHisPanel extends JPanel
 		invoideDetailsPanel.add(lblInvoiceId);
 		
 		textFieldTotalPrice = new JTextField();
-		textFieldTotalPrice.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textFieldTotalPrice.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textFieldTotalPrice.setEditable(false);
 		textFieldTotalPrice.setColumns(10);
 		textFieldTotalPrice.setBounds(138, 188, 198, 30);
