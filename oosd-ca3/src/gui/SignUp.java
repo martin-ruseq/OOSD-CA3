@@ -39,16 +39,16 @@ public class SignUp extends JFrame
 {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField txtFName;
-	private JTextField txtDob;
-	private JTextField txtLName;
-	private JTextField textPhone;
+	private JTextField txtFirstName;
+	private JTextField txtDoB;
+	private JTextField txtLastName;
+	private JTextField txtPhone;
 	private JTextField txtStreet;
 	private JTextField txtTown;
 	private JTextField txtEmail;
 	private JTextField txtEmailConf;
 	private JPasswordField txtPassword;
-	private JPasswordField txtcPassword;
+	private JPasswordField txtConfirmPass;
 	private JTextField txtZipCode;
 	private JTextField txtCountry;
 
@@ -102,63 +102,63 @@ public class SignUp extends JFrame
 		contentPane.add(pDetailsPanel);
 		pDetailsPanel.setLayout(null);
 		
-		JLabel lblFName = new JLabel("FIRST NAME *");
-		lblFName.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblFName.setBounds(32, 27, 130, 20);
-		pDetailsPanel.add(lblFName);
+		JLabel lblFirstName = new JLabel("FIRST NAME *");
+		lblFirstName.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblFirstName.setBounds(32, 27, 130, 20);
+		pDetailsPanel.add(lblFirstName);
 		
-		txtFName = new JTextField();
-		txtFName.setCaretColor(new Color(0, 102, 255));
-		txtFName.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtFName.setBackground(Color.WHITE);
-		txtFName.setToolTipText("Enter your first name");
-		lblFName.setLabelFor(txtFName);
-		txtFName.setBounds(32, 50, 150, 25);
-		pDetailsPanel.add(txtFName);
-		txtFName.setColumns(10);
+		txtFirstName = new JTextField();
+		txtFirstName.setCaretColor(new Color(0, 102, 255));
+		txtFirstName.setFont(new Font("Tahoma", Font.BOLD, 12));
+		txtFirstName.setBackground(Color.WHITE);
+		txtFirstName.setToolTipText("Enter your first name");
+		lblFirstName.setLabelFor(txtFirstName);
+		txtFirstName.setBounds(32, 50, 150, 25);
+		pDetailsPanel.add(txtFirstName);
+		txtFirstName.setColumns(10);
 		
-		JLabel lblDob = new JLabel("DATE OF BIRTH*");
-		lblDob.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblDob.setBounds(32, 85, 130, 20);
-		pDetailsPanel.add(lblDob);
+		JLabel lblLastName = new JLabel("LAST NAME *");
+		lblLastName.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblLastName.setBounds(234, 27, 130, 20);
+		pDetailsPanel.add(lblLastName);
+		lblLastName.setLabelFor(txtLastName);
 		
-		txtDob = new JTextField();
-		txtDob.setCaretColor(new Color(0, 102, 255));
-		txtDob.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtDob.setToolTipText("Enter your date of birth\r\n");
-		lblDob.setLabelFor(txtDob);
-		txtDob.setColumns(10);
-		txtDob.setBounds(32, 108, 150, 25);
-		pDetailsPanel.add(txtDob);
+		txtLastName = new JTextField();
+		txtLastName.setCaretColor(new Color(0, 102, 255));
+		txtLastName.setFont(new Font("Tahoma", Font.BOLD, 12));
+		txtLastName.setBackground(Color.WHITE);
+		txtLastName.setToolTipText("Enter your last name");
+		txtLastName.setColumns(10);
+		txtLastName.setBounds(234, 50, 150, 25);
+		pDetailsPanel.add(txtLastName);
 		
-		JLabel lblLName = new JLabel("LAST NAME *");
-		lblLName.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblLName.setBounds(234, 27, 130, 20);
-		pDetailsPanel.add(lblLName);
+		JLabel lblDoB = new JLabel("DATE OF BIRTH*");
+		lblDoB.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblDoB.setBounds(32, 85, 130, 20);
+		pDetailsPanel.add(lblDoB);
 		
-		txtLName = new JTextField();
-		txtLName.setCaretColor(new Color(0, 102, 255));
-		txtLName.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtLName.setBackground(Color.WHITE);
-		txtLName.setToolTipText("Enter your last name");
-		lblLName.setLabelFor(txtLName);
-		txtLName.setColumns(10);
-		txtLName.setBounds(234, 50, 150, 25);
-		pDetailsPanel.add(txtLName);
-		
-		textPhone = new JTextField();
-		textPhone.setCaretColor(new Color(0, 102, 255));
-		textPhone.setFont(new Font("Tahoma", Font.BOLD, 12));
-		textPhone.setToolTipText("Enter your phone number");
-		textPhone.setColumns(10);
-		textPhone.setBounds(234, 108, 150, 25);
-		pDetailsPanel.add(textPhone);
+		txtDoB = new JTextField();
+		txtDoB.setCaretColor(new Color(0, 102, 255));
+		txtDoB.setFont(new Font("Tahoma", Font.BOLD, 12));
+		txtDoB.setToolTipText("Enter your date of birth\r\n");
+		lblDoB.setLabelFor(txtDoB);
+		txtDoB.setColumns(10);
+		txtDoB.setBounds(32, 108, 150, 25);
+		pDetailsPanel.add(txtDoB);
 		
 		JLabel lblPhone = new JLabel("PHONE *");
-		lblPhone.setLabelFor(textPhone);
+		lblPhone.setLabelFor(txtPhone);
 		lblPhone.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblPhone.setBounds(234, 85, 130, 20);
 		pDetailsPanel.add(lblPhone);
+		
+		txtPhone = new JTextField();
+		txtPhone.setCaretColor(new Color(0, 102, 255));
+		txtPhone.setFont(new Font("Tahoma", Font.BOLD, 12));
+		txtPhone.setToolTipText("Enter your phone number");
+		txtPhone.setColumns(10);
+		txtPhone.setBounds(234, 108, 150, 25);
+		pDetailsPanel.add(txtPhone);
 		
 		JLabel warningPesonalPanel = new JLabel("");
 		warningPesonalPanel.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -190,37 +190,24 @@ public class SignUp extends JFrame
 		txtStreet.setBounds(32, 50, 150, 25);
 		aDetailsPanel.add(txtStreet);
 		
-		JLabel lblCounty = new JLabel("ZIP CODE *");
-		lblCounty.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblCounty.setBounds(32, 85, 130, 20);
-		aDetailsPanel.add(lblCounty);
-		
 		JLabel lblTown = new JLabel("TOWN *");
 		lblTown.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblTown.setBounds(234, 27, 130, 20);
 		aDetailsPanel.add(lblTown);
+		lblTown.setLabelFor(txtTown);
 		
 		txtTown = new JTextField();
 		txtTown.setCaretColor(new Color(0, 102, 255));
 		txtTown.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtTown.setToolTipText("Enter your town");
-		lblTown.setLabelFor(txtTown);
 		txtTown.setColumns(10);
 		txtTown.setBounds(234, 50, 150, 25);
 		aDetailsPanel.add(txtTown);
 		
-		JLabel lblCountry = new JLabel("COUNTRY *");
-		lblCountry.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblCountry.setBounds(234, 85, 130, 20);
-		aDetailsPanel.add(lblCountry);
-		
-		JLabel warningAddressPanel = new JLabel("");
-		warningAddressPanel.setHorizontalTextPosition(SwingConstants.CENTER);
-		warningAddressPanel.setHorizontalAlignment(SwingConstants.CENTER);
-		warningAddressPanel.setForeground(Color.RED);
-		warningAddressPanel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		warningAddressPanel.setBounds(63, 145, 290, 25);
-		aDetailsPanel.add(warningAddressPanel);
+		JLabel lblZipCode = new JLabel("ZIP CODE *");
+		lblZipCode.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblZipCode.setBounds(32, 85, 130, 20);
+		aDetailsPanel.add(lblZipCode);
 		
 		txtZipCode = new JTextField();
 		txtZipCode.setToolTipText("Enter your street and house number");
@@ -230,6 +217,11 @@ public class SignUp extends JFrame
 		txtZipCode.setBounds(32, 110, 150, 25);
 		aDetailsPanel.add(txtZipCode);
 		
+		JLabel lblCountry = new JLabel("COUNTRY *");
+		lblCountry.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblCountry.setBounds(234, 85, 130, 20);
+		aDetailsPanel.add(lblCountry);
+		
 		txtCountry = new JTextField();
 		txtCountry.setToolTipText("Enter your street and house number");
 		txtCountry.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -237,6 +229,14 @@ public class SignUp extends JFrame
 		txtCountry.setCaretColor(new Color(0, 102, 255));
 		txtCountry.setBounds(234, 110, 150, 25);
 		aDetailsPanel.add(txtCountry);
+		
+		JLabel warningAddressPanel = new JLabel("");
+		warningAddressPanel.setHorizontalTextPosition(SwingConstants.CENTER);
+		warningAddressPanel.setHorizontalAlignment(SwingConstants.CENTER);
+		warningAddressPanel.setForeground(Color.RED);
+		warningAddressPanel.setFont(new Font("Tahoma", Font.BOLD, 12));
+		warningAddressPanel.setBounds(63, 145, 290, 25);
+		aDetailsPanel.add(warningAddressPanel);
 		
 		JPanel lDetailsPanel = new JPanel();
 		lDetailsPanel.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -246,13 +246,11 @@ public class SignUp extends JFrame
 		contentPane.add(lDetailsPanel);
 		lDetailsPanel.setLayout(null);
 		
-		JLabel seetxtPassword = new JLabel("");
-		seetxtPassword.setHorizontalTextPosition(SwingConstants.CENTER);
-		seetxtPassword.setToolTipText("See Password");
-		seetxtPassword.setHorizontalAlignment(SwingConstants.CENTER);
-		seetxtPassword.setIcon(new ImageIcon(SignUp.class.getResource("/resources/show.png")));
-		seetxtPassword.setBounds(383, 51, 24, 25);
-		lDetailsPanel.add(seetxtPassword);
+		JLabel lblEmail = new JLabel("E-MAIL *");
+		lblEmail.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblEmail.setBounds(32, 28, 130, 20);
+		lDetailsPanel.add(lblEmail);
+		lblEmail.setLabelFor(txtEmail);
 		
 		txtEmail = new JTextField();
 		txtEmail.setCaretColor(new Color(0, 102, 255));
@@ -264,35 +262,53 @@ public class SignUp extends JFrame
 		lDetailsPanel.add(txtEmail);
 		txtEmail.setColumns(10);
 		
-		JLabel lblEmail = new JLabel("E-MAIL *");
-		lblEmail.setLabelFor(txtEmail);
-		lblEmail.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblEmail.setBounds(32, 28, 130, 20);
-		lDetailsPanel.add(lblEmail);
-		
 		JLabel lblEmailConf = new JLabel("CONFIRM E-MAIL *");
 		lblEmailConf.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblEmailConf.setBounds(32, 86, 130, 20);
+		lblEmailConf.setBounds(234, 28, 130, 20);
 		lDetailsPanel.add(lblEmailConf);
+		lblEmailConf.setLabelFor(txtEmailConf);
 		
 		txtEmailConf = new JTextField();
 		txtEmailConf.setCaretColor(new Color(0, 102, 255));
 		txtEmailConf.setToolTipText("Repeat your e-mail");
 		txtEmailConf.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblEmailConf.setLabelFor(txtEmailConf);
 		txtEmailConf.setColumns(10);
-		txtEmailConf.setBounds(32, 109, 150, 25);
+		txtEmailConf.setBounds(234, 51, 150, 25);
 		lDetailsPanel.add(txtEmailConf);
 		
 		JLabel lblPassword = new JLabel("PASSWORD *");
 		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblPassword.setBounds(235, 28, 130, 20);
+		lblPassword.setBounds(33, 86, 130, 20);
 		lDetailsPanel.add(lblPassword);
 		
-		JLabel lblEmail_2 = new JLabel("CONFIRM PASSWORD *");
-		lblEmail_2.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblEmail_2.setBounds(234, 86, 150, 20);
-		lDetailsPanel.add(lblEmail_2);
+		txtPassword = new JPasswordField();
+		txtPassword.setEchoChar('*');
+		txtPassword.setCaretColor(new Color(0, 102, 255));
+		txtPassword.setToolTipText("Enter your password");
+		txtPassword.setFont(new Font("Tahoma", Font.BOLD, 12));
+		txtPassword.setBounds(32, 109, 150, 25);
+		lDetailsPanel.add(txtPassword);
+		
+		JLabel lblConfirmPass = new JLabel("CONFIRM PASSWORD *");
+		lblConfirmPass.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblConfirmPass.setBounds(234, 86, 150, 20);
+		lDetailsPanel.add(lblConfirmPass);
+		
+		txtConfirmPass = new JPasswordField();
+		txtConfirmPass.setEchoChar('*');
+		txtConfirmPass.setCaretColor(new Color(0, 102, 255));
+		txtConfirmPass.setToolTipText("Repeat your password");
+		txtConfirmPass.setFont(new Font("Tahoma", Font.BOLD, 12));
+		txtConfirmPass.setBounds(234, 109, 150, 25);
+		lDetailsPanel.add(txtConfirmPass);
+		
+		JLabel icoSeePass = new JLabel("");
+		icoSeePass.setHorizontalTextPosition(SwingConstants.CENTER);
+		icoSeePass.setToolTipText("See Password");
+		icoSeePass.setHorizontalAlignment(SwingConstants.CENTER);
+		icoSeePass.setIcon(new ImageIcon(SignUp.class.getResource("/resources/show.png")));
+		icoSeePass.setBounds(383, 109, 24, 25);
+		lDetailsPanel.add(icoSeePass);
 		
 		JLabel warningLoginPanel = new JLabel("");
 		warningLoginPanel.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -302,23 +318,7 @@ public class SignUp extends JFrame
 		warningLoginPanel.setBounds(63, 144, 290, 25);
 		lDetailsPanel.add(warningLoginPanel);
 		
-		txtcPassword = new JPasswordField();
-		txtcPassword.setEchoChar('*');
-		txtcPassword.setCaretColor(new Color(0, 102, 255));
-		txtcPassword.setToolTipText("Repeat your password");
-		txtcPassword.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtcPassword.setBounds(234, 109, 150, 25);
-		lDetailsPanel.add(txtcPassword);
-		
-		txtPassword = new JPasswordField();
-		txtPassword.setEchoChar('*');
-		txtPassword.setCaretColor(new Color(0, 102, 255));
-		txtPassword.setToolTipText("Enter your password");
-		txtPassword.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtPassword.setBounds(234, 51, 150, 25);
-		lDetailsPanel.add(txtPassword);
-		
-		seetxtPassword.addMouseListener(new MouseAdapter() 
+		icoSeePass.addMouseListener(new MouseAdapter() 
 		{
 			/**
 			 * Show password when the mouse cursor enters the "eye" icon.
@@ -326,7 +326,7 @@ public class SignUp extends JFrame
 			public void mouseEntered(MouseEvent e) 
 			{
 				txtPassword.setEchoChar((char)0);
-				txtcPassword.setEchoChar((char)0);
+				txtConfirmPass.setEchoChar((char)0);
 				
 			}
 			/**
@@ -335,13 +335,13 @@ public class SignUp extends JFrame
 			public void mouseExited(MouseEvent e) 
 			{
 				txtPassword.setEchoChar('*');
-				txtcPassword.setEchoChar('*');
+				txtConfirmPass.setEchoChar('*');
 			}
 		});
 		
-		JButton create = new JButton("Create Account");
-		create.setFont(new Font("Tahoma", Font.BOLD, 12));
-		create.addMouseListener(new MouseAdapter() 
+		JButton btnCreateAccount = new JButton("Create Account");
+		btnCreateAccount.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnCreateAccount.addMouseListener(new MouseAdapter() 
 		{
 			@Override
 			/**
@@ -350,10 +350,10 @@ public class SignUp extends JFrame
 			 */
 			public void mouseClicked(MouseEvent e) 
 			{
-				String fname = txtFName.getText();
-				String lname = txtLName.getText();
-				String dob = txtDob.getText();
-				String phone = textPhone.getText();
+				String fname = txtFirstName.getText();
+				String lname = txtLastName.getText();
+				String dob = txtDoB.getText();
+				String phone = txtPhone.getText();
 				String street = txtStreet.getText();
 				String town = txtTown.getText();
 				String zipcode = txtZipCode.getText();
@@ -361,7 +361,7 @@ public class SignUp extends JFrame
 				@SuppressWarnings("deprecation")
 				String password = txtPassword.getText();
 				@SuppressWarnings("deprecation")
-				String cPassword = txtcPassword.getText();
+				String cPassword = txtConfirmPass.getText();
 				String email = txtEmail.getText();
 				String cEmail = txtEmailConf.getText();
 				
@@ -474,8 +474,8 @@ public class SignUp extends JFrame
 			}
 			
 		});
-		create.setBounds(145, 550, 146, 33);
-		contentPane.add(create);
+		btnCreateAccount.setBounds(145, 550, 146, 33);
+		contentPane.add(btnCreateAccount);
 		
 	}
 }

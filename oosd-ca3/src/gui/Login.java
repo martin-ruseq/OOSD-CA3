@@ -39,8 +39,8 @@ public class Login extends JFrame
 {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JPasswordField txtPassword;
-	private JTextField txtEmail;
+	private JPasswordField txtLoginPass;
+	private JTextField txtLoginEmail;
 
 	/**
 	 * Runs the Login application.
@@ -88,8 +88,8 @@ public class Login extends JFrame
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton signupButton = new JButton("Sign Up");
-		signupButton.addMouseListener(new MouseAdapter() 
+		JButton btnSignUp = new JButton("Sign Up");
+		btnSignUp.addMouseListener(new MouseAdapter() 
 		{
 			/**
 			 * Display sign up form in the screen.
@@ -103,9 +103,9 @@ public class Login extends JFrame
 				dispose();
 			}
 		});
-		signupButton.setFont(new Font("Tahoma", Font.BOLD, 10));
-		signupButton.setBounds(116, 462, 153, 30);
-		contentPane.add(signupButton);
+		btnSignUp.setFont(new Font("Tahoma", Font.BOLD, 10));
+		btnSignUp.setBounds(116, 462, 153, 30);
+		contentPane.add(btnSignUp);
 		
 		JLabel loginLogo = new JLabel("");
 		loginLogo.setIcon(new ImageIcon(Login.class.getResource("/resources/logo.png")));
@@ -117,7 +117,7 @@ public class Login extends JFrame
 		lblSignUpInfo1.setPreferredSize(new Dimension(320, 13));
 		lblSignUpInfo1.setToolTipText("");
 		lblSignUpInfo1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblSignUpInfo1.setLabelFor(signupButton);
+		lblSignUpInfo1.setLabelFor(btnSignUp);
 		lblSignUpInfo1.setBounds(116, 396, 153, 30);
 		contentPane.add(lblSignUpInfo1);
 		
@@ -138,35 +138,31 @@ public class Login extends JFrame
 		LoginPanel.setBounds(45, 140, 296, 256);
 		contentPane.add(LoginPanel);
 		LoginPanel.setLayout(null);
-		
-		JLabel lblLoginWarning = new JLabel("");
-		lblLoginWarning.setBounds(36, 180, 226, 16);
-		LoginPanel.add(lblLoginWarning);
-		
+			
 		JLabel lblLoginEmail = new JLabel("EMAIL");
 		lblLoginEmail.setBounds(36, 32, 140, 30);
 		LoginPanel.add(lblLoginEmail);
 		lblLoginEmail.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
-		txtPassword = new JPasswordField();
-		txtPassword.setBounds(36, 140, 226, 30);
-		LoginPanel.add(txtPassword);
-		txtPassword.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		txtLoginEmail = new JTextField();
+		txtLoginEmail.setBounds(37, 66, 225, 30);
+		LoginPanel.add(txtLoginEmail);
+		txtLoginEmail.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		txtLoginEmail.setName("loginEmail");
+		txtLoginEmail.setColumns(10);
 		
 		JLabel lblLoginPass = new JLabel("PASSWORD");
 		lblLoginPass.setBounds(36, 106, 140, 30);
 		LoginPanel.add(lblLoginPass);
 		lblLoginPass.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
-		txtEmail = new JTextField();
-		txtEmail.setBounds(37, 66, 225, 30);
-		LoginPanel.add(txtEmail);
-		txtEmail.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		txtEmail.setName("loginEmail");
-		txtEmail.setColumns(10);
+		txtLoginPass = new JPasswordField();
+		txtLoginPass.setBounds(36, 140, 226, 30);
+		LoginPanel.add(txtLoginPass);
+		txtLoginPass.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		
-		JButton loginButton = new JButton("Login");
-		loginButton.addMouseListener(new MouseAdapter() 
+		JButton btnLogin = new JButton("Login");
+		btnLogin.addMouseListener(new MouseAdapter() 
 		{
 			@Override
 			/**
@@ -181,9 +177,9 @@ public class Login extends JFrame
 					Connection connection = null ;
 					ResultSet resultset = null;
 					PreparedStatement prepstat = null ;
-					String email = txtEmail.getText();
+					String email = txtLoginEmail.getText();
 					@SuppressWarnings("deprecation")
-					String password = txtPassword.getText();
+					String password = txtLoginPass.getText();
 					String dEmail = "";
 					String dPassword = "";
 					
@@ -227,8 +223,8 @@ public class Login extends JFrame
 				
 			}
 		});
-		loginButton.setBounds(36, 206, 226, 30);
-		LoginPanel.add(loginButton);
+		btnLogin.setBounds(36, 206, 226, 30);
+		LoginPanel.add(btnLogin);
 		
 
 	}

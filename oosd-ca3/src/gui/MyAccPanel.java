@@ -31,16 +31,16 @@ import java.awt.event.MouseEvent;
 public class MyAccPanel extends JPanel
 {
 	private static final long serialVersionUID = 1L;
-	private JTextField textFieldFName;
-	private JTextField textFieldLName;
-	private JTextField textFieldId;
-	private JTextField textFieldDoB;
-	private JTextField textFieldPhone;
-	private JTextField textFieldMail;
-	private JTextField textFieldZipCode;
-	private JTextField textFieldCountry;
-	private JTextField textFieldStreet;
-	private JTextField textFieldTown;
+	private JTextField txtFirstName;
+	private JTextField txtLastName;
+	private JTextField txtId;
+	private JTextField txtDoB;
+	private JTextField txtPhone;
+	private JTextField txtMail;
+	private JTextField txtZipCode;
+	private JTextField txtCountry;
+	private JTextField txtStreet;
+	private JTextField txtTown;
 
 	/**
 	 * Builds the panel with non editable user details used in User Dashboard.
@@ -65,129 +65,129 @@ public class MyAccPanel extends JPanel
 		panelDetails.setBounds(10, 46, 605, 437);
 		add(panelDetails);
 		
-		textFieldFName = new JTextField();
-		textFieldFName.setEditable(false);
-		textFieldFName.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldFName.setBounds(10, 39, 190, 30);
-		panelDetails.add(textFieldFName);
-		textFieldFName.setColumns(10);
+		JLabel lblFirstName = new JLabel("First Name");
+		lblFirstName.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblFirstName.setBounds(10, 10, 103, 30);
+		panelDetails.add(lblFirstName);
 		
-		JLabel lblFname = new JLabel("First Name");
-		lblFname.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblFname.setBounds(10, 10, 103, 30);
-		panelDetails.add(lblFname);
+		txtFirstName = new JTextField();
+		txtFirstName.setEditable(false);
+		txtFirstName.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtFirstName.setBounds(10, 39, 190, 30);
+		panelDetails.add(txtFirstName);
+		txtFirstName.setColumns(10);
 		
-		JLabel lblLname = new JLabel("Last Name");
-		lblLname.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblLname.setBounds(210, 10, 103, 30);
-		panelDetails.add(lblLname);
+		JLabel lblLastName = new JLabel("Last Name");
+		lblLastName.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblLastName.setBounds(210, 10, 103, 30);
+		panelDetails.add(lblLastName);
 		
-		textFieldLName = new JTextField();
-		textFieldLName.setEditable(false);
-		textFieldLName.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldLName.setColumns(10);
-		textFieldLName.setBounds(207, 39, 190, 30);
-		panelDetails.add(textFieldLName);
+		txtLastName = new JTextField();
+		txtLastName.setEditable(false);
+		txtLastName.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtLastName.setColumns(10);
+		txtLastName.setBounds(207, 39, 190, 30);
+		panelDetails.add(txtLastName);
 		
 		JLabel lblId = new JLabel("ID");
 		lblId.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblId.setBounds(407, 10, 88, 30);
 		panelDetails.add(lblId);
 		
-		textFieldId = new JTextField();
-		textFieldId.setEditable(false);
-		textFieldId.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldId.setColumns(10);
-		textFieldId.setBounds(407, 39, 85, 30);
-		panelDetails.add(textFieldId);
-		
-		textFieldDoB = new JTextField();
-		textFieldDoB.setEditable(false);
-		textFieldDoB.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldDoB.setColumns(10);
-		textFieldDoB.setBounds(10, 108, 190, 30);
-		panelDetails.add(textFieldDoB);
+		txtId = new JTextField();
+		txtId.setEditable(false);
+		txtId.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtId.setColumns(10);
+		txtId.setBounds(407, 39, 85, 30);
+		panelDetails.add(txtId);
 		
 		JLabel lblDoB = new JLabel("Date of Birth");
 		lblDoB.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblDoB.setBounds(10, 79, 121, 30);
 		panelDetails.add(lblDoB);
 		
+		txtDoB = new JTextField();
+		txtDoB.setEditable(false);
+		txtDoB.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtDoB.setColumns(10);
+		txtDoB.setBounds(10, 108, 190, 30);
+		panelDetails.add(txtDoB);
+		
 		JLabel lblPhone = new JLabel("Phone");
 		lblPhone.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblPhone.setBounds(210, 79, 103, 30);
 		panelDetails.add(lblPhone);
 		
-		textFieldPhone = new JTextField();
-		textFieldPhone.setEditable(false);
-		textFieldPhone.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldPhone.setColumns(10);
-		textFieldPhone.setBounds(207, 108, 190, 30);
-		panelDetails.add(textFieldPhone);
+		txtPhone = new JTextField();
+		txtPhone.setEditable(false);
+		txtPhone.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtPhone.setColumns(10);
+		txtPhone.setBounds(207, 108, 190, 30);
+		panelDetails.add(txtPhone);
 		
-		textFieldMail = new JTextField();
-		textFieldMail.setEditable(false);
-		textFieldMail.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldMail.setColumns(10);
-		textFieldMail.setBounds(405, 108, 190, 30);
-		panelDetails.add(textFieldMail);
+		JLabel lblMail = new JLabel("Email");
+		lblMail.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblMail.setBounds(409, 79, 103, 30);
+		panelDetails.add(lblMail);
 		
-		JLabel lblmail = new JLabel("Email");
-		lblmail.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblmail.setBounds(409, 79, 103, 30);
-		panelDetails.add(lblmail);
+		txtMail = new JTextField();
+		txtMail.setEditable(false);
+		txtMail.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtMail.setColumns(10);
+		txtMail.setBounds(405, 108, 190, 30);
+		panelDetails.add(txtMail);
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(10, 148, 585, 2);
 		panelDetails.add(separator);
-		
-		JLabel lblTown = new JLabel("Town");
-		lblTown.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblTown.setBounds(210, 160, 103, 30);
-		panelDetails.add(lblTown);
 		
 		JLabel lblStreet = new JLabel("Street");
 		lblStreet.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblStreet.setBounds(10, 160, 103, 30);
 		panelDetails.add(lblStreet);
 		
+		txtStreet = new JTextField();
+		txtStreet.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtStreet.setEditable(false);
+		txtStreet.setColumns(10);
+		txtStreet.setBounds(10, 189, 190, 30);
+		panelDetails.add(txtStreet);
+		
+		JLabel lblTown = new JLabel("Town");
+		lblTown.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblTown.setBounds(210, 160, 103, 30);
+		panelDetails.add(lblTown);
+		
+		txtTown = new JTextField();
+		txtTown.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtTown.setEditable(false);
+		txtTown.setColumns(10);
+		txtTown.setBounds(207, 189, 190, 30);
+		panelDetails.add(txtTown);
+		
 		JLabel lblZipCode = new JLabel("Zip Code");
 		lblZipCode.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblZipCode.setBounds(10, 229, 121, 30);
 		panelDetails.add(lblZipCode);
 		
-		textFieldZipCode = new JTextField();
-		textFieldZipCode.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldZipCode.setEditable(false);
-		textFieldZipCode.setColumns(10);
-		textFieldZipCode.setBounds(10, 258, 190, 30);
-		panelDetails.add(textFieldZipCode);
+		txtZipCode = new JTextField();
+		txtZipCode.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtZipCode.setEditable(false);
+		txtZipCode.setColumns(10);
+		txtZipCode.setBounds(10, 258, 190, 30);
+		panelDetails.add(txtZipCode);
 		
 		JLabel lblCountry = new JLabel("Country");
 		lblCountry.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblCountry.setBounds(210, 229, 103, 30);
 		panelDetails.add(lblCountry);
 		
-		textFieldCountry = new JTextField();
-		textFieldCountry.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldCountry.setEditable(false);
-		textFieldCountry.setColumns(10);
-		textFieldCountry.setBounds(207, 258, 190, 30);
-		panelDetails.add(textFieldCountry);
-		
-		textFieldStreet = new JTextField();
-		textFieldStreet.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldStreet.setEditable(false);
-		textFieldStreet.setColumns(10);
-		textFieldStreet.setBounds(10, 189, 190, 30);
-		panelDetails.add(textFieldStreet);
-		
-		textFieldTown = new JTextField();
-		textFieldTown.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldTown.setEditable(false);
-		textFieldTown.setColumns(10);
-		textFieldTown.setBounds(207, 189, 190, 30);
-		panelDetails.add(textFieldTown);
+		txtCountry = new JTextField();
+		txtCountry.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtCountry.setEditable(false);
+		txtCountry.setColumns(10);
+		txtCountry.setBounds(207, 258, 190, 30);
+		panelDetails.add(txtCountry);
 		
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBounds(10, 298, 585, 2);
@@ -278,16 +278,16 @@ public class MyAccPanel extends JPanel
 				dob = resultset.getString(10);
 
 			}
-			textFieldId.setText("" + id);
-			textFieldFName.setText(name);
-			textFieldLName.setText(lname);
-			textFieldStreet.setText(street);
-			textFieldTown.setText(town);
-			textFieldZipCode.setText(zipcode);
-			textFieldCountry.setText(country);
-			textFieldPhone.setText(phone);
-			textFieldDoB.setText(dob);
-			textFieldMail.setText(email);
+			txtId.setText("" + id);
+			txtFirstName.setText(name);
+			txtLastName.setText(lname);
+			txtStreet.setText(street);
+			txtTown.setText(town);
+			txtZipCode.setText(zipcode);
+			txtCountry.setText(country);
+			txtPhone.setText(phone);
+			txtDoB.setText(dob);
+			txtMail.setText(email);
 		}
 		catch (SQLException sqlException)
 		{

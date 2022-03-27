@@ -36,11 +36,11 @@ public class OrdersHisPanel extends JPanel
 
 	private static final long serialVersionUID = 1L;
 	private JTable OrdersTable;
-	private JTextField textFieldInvoiceID;
-	private JTextField textFieldProductName;
-	private JTextField textFieldPaymentType;
-	private JTextField textFieldQuantity;
-	private JTextField textFieldTotalPrice;
+	private JTextField txtInvoiceId;
+	private JTextField txtProductName;
+	private JTextField txtPaymentType;
+	private JTextField txtQuantity;
+	private JTextField txtTotalPrice;
 	
 	/**
 	 * Builds the panel with the user orders histor used in User Dashboard.
@@ -51,6 +51,13 @@ public class OrdersHisPanel extends JPanel
 		setBounds(0, 0, 625, 493);
 		setBackground(new Color(102, 153, 204));
 		setLayout(null);
+		
+		JLabel lblOrdersHistory = new JLabel("ORDERS HISTORY");
+		lblOrdersHistory.setHorizontalAlignment(SwingConstants.CENTER);
+		lblOrdersHistory.setForeground(new Color(224, 255, 255));
+		lblOrdersHistory.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblOrdersHistory.setBounds(10, 0, 605, 40);
+		add(lblOrdersHistory);
 		
 		JScrollPane scrollPaneOrdersTable = new JScrollPane();
 		scrollPaneOrdersTable.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -66,11 +73,11 @@ public class OrdersHisPanel extends JPanel
 				DefaultTableModel model = (DefaultTableModel) OrdersTable.getModel();
 				int rowSelectedIndex = OrdersTable.getSelectedRow();
 				
-				textFieldInvoiceID.setText(model.getValueAt(rowSelectedIndex,0).toString());
-				textFieldProductName.setText(model.getValueAt(rowSelectedIndex,1).toString());
-				textFieldPaymentType.setText(model.getValueAt(rowSelectedIndex,2).toString());
-				textFieldQuantity.setText(model.getValueAt(rowSelectedIndex,3).toString());
-				textFieldTotalPrice.setText(model.getValueAt(rowSelectedIndex,4).toString());
+				txtInvoiceId.setText(model.getValueAt(rowSelectedIndex,0).toString());
+				txtProductName.setText(model.getValueAt(rowSelectedIndex,1).toString());
+				txtPaymentType.setText(model.getValueAt(rowSelectedIndex,2).toString());
+				txtQuantity.setText(model.getValueAt(rowSelectedIndex,3).toString());
+				txtTotalPrice.setText(model.getValueAt(rowSelectedIndex,4).toString());
 			}
 		});
 		OrdersTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -119,72 +126,65 @@ public class OrdersHisPanel extends JPanel
 		invoideDetailsPanel.setBounds(1, 10, 346, 231);
 		panelDetails.add(invoideDetailsPanel);
 		
+		JLabel lblInvoiceId = new JLabel("Invoice ID:");
+		lblInvoiceId.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblInvoiceId.setBounds(10, 28, 97, 30);
+		invoideDetailsPanel.add(lblInvoiceId);
+		
+		txtInvoiceId = new JTextField();
+		txtInvoiceId.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtInvoiceId.setEditable(false);
+		txtInvoiceId.setColumns(10);
+		txtInvoiceId.setBounds(138, 28, 198, 30);
+		invoideDetailsPanel.add(txtInvoiceId);
+		
 		JLabel lblProductName = new JLabel("Product Name:");
 		lblProductName.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblProductName.setBounds(10, 68, 130, 30);
 		invoideDetailsPanel.add(lblProductName);
+		
+		txtProductName = new JTextField();
+		txtProductName.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtProductName.setEditable(false);
+		txtProductName.setColumns(10);
+		txtProductName.setBounds(138, 68, 198, 30);
+		invoideDetailsPanel.add(txtProductName);
 		
 		JLabel lblPaymentType = new JLabel("Payment Type:");
 		lblPaymentType.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblPaymentType.setBounds(10, 108, 130, 30);
 		invoideDetailsPanel.add(lblPaymentType);
 		
-		textFieldInvoiceID = new JTextField();
-		textFieldInvoiceID.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldInvoiceID.setEditable(false);
-		textFieldInvoiceID.setColumns(10);
-		textFieldInvoiceID.setBounds(138, 28, 198, 30);
-		invoideDetailsPanel.add(textFieldInvoiceID);
-		
-		textFieldProductName = new JTextField();
-		textFieldProductName.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldProductName.setEditable(false);
-		textFieldProductName.setColumns(10);
-		textFieldProductName.setBounds(138, 68, 198, 30);
-		invoideDetailsPanel.add(textFieldProductName);
+		txtPaymentType = new JTextField();
+		txtPaymentType.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtPaymentType.setEditable(false);
+		txtPaymentType.setColumns(10);
+		txtPaymentType.setBounds(138, 108, 198, 30);
+		invoideDetailsPanel.add(txtPaymentType);
 		
 		JLabel lblQuantity = new JLabel("Quantity: ");
 		lblQuantity.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblQuantity.setBounds(10, 148, 97, 30);
 		invoideDetailsPanel.add(lblQuantity);
 		
-		textFieldPaymentType = new JTextField();
-		textFieldPaymentType.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldPaymentType.setEditable(false);
-		textFieldPaymentType.setColumns(10);
-		textFieldPaymentType.setBounds(138, 108, 198, 30);
-		invoideDetailsPanel.add(textFieldPaymentType);
+		txtQuantity = new JTextField();
+		txtQuantity.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtQuantity.setEditable(false);
+		txtQuantity.setColumns(10);
+		txtQuantity.setBounds(138, 148, 198, 30);
+		invoideDetailsPanel.add(txtQuantity);
 		
-		textFieldQuantity = new JTextField();
-		textFieldQuantity.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldQuantity.setEditable(false);
-		textFieldQuantity.setColumns(10);
-		textFieldQuantity.setBounds(138, 148, 198, 30);
-		invoideDetailsPanel.add(textFieldQuantity);
+		JLabel lblTotalPrice = new JLabel("Total Price: ");
+		lblTotalPrice.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblTotalPrice.setBounds(10, 188, 97, 30);
+		invoideDetailsPanel.add(lblTotalPrice);
 		
-		JLabel lblInvoiceId = new JLabel("Invoice ID:");
-		lblInvoiceId.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblInvoiceId.setBounds(10, 28, 97, 30);
-		invoideDetailsPanel.add(lblInvoiceId);
-		
-		textFieldTotalPrice = new JTextField();
-		textFieldTotalPrice.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldTotalPrice.setEditable(false);
-		textFieldTotalPrice.setColumns(10);
-		textFieldTotalPrice.setBounds(138, 188, 198, 30);
-		invoideDetailsPanel.add(textFieldTotalPrice);
-		
-		JLabel lblQuantity_1 = new JLabel("Total Price: ");
-		lblQuantity_1.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblQuantity_1.setBounds(10, 188, 97, 30);
-		invoideDetailsPanel.add(lblQuantity_1);
-		
-		JLabel lblOrdersHistory = new JLabel("ORDERS HISTORY");
-		lblOrdersHistory.setHorizontalAlignment(SwingConstants.CENTER);
-		lblOrdersHistory.setForeground(new Color(224, 255, 255));
-		lblOrdersHistory.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblOrdersHistory.setBounds(10, 0, 605, 40);
-		add(lblOrdersHistory);
+		txtTotalPrice = new JTextField();
+		txtTotalPrice.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtTotalPrice.setEditable(false);
+		txtTotalPrice.setColumns(10);
+		txtTotalPrice.setBounds(138, 188, 198, 30);
+		invoideDetailsPanel.add(txtTotalPrice);
 		
 		try
 		{

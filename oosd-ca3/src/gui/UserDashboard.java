@@ -145,37 +145,6 @@ public class UserDashboard extends JFrame
 		btnOrdersHis.setBounds(10, 91, 173, 45);
 		menuBtnsPanel.add(btnOrdersHis);
 		
-		JButton btnSignOut = new JButton("SIGN OUT");
-		btnSignOut.setActionCommand("SIGN OUT");
-		btnSignOut.addMouseListener(new MouseAdapter() 
-		{
-			@Override
-			public void mouseEntered(MouseEvent e) 
-			{
-				btnSignOut.setBackground(new Color(255, 204, 204));
-			}
-			
-			public void mouseExited(MouseEvent e) 
-			{
-				btnSignOut.setBackground(new Color(240, 240, 240));
-			}
-			@SuppressWarnings("static-access")
-			public void mouseClicked(MouseEvent e)
-			{
-				JOptionPane signOut = new JOptionPane();
-				int result = signOut.showConfirmDialog(null, "Do you want to Sign Out?", "Confirm", JOptionPane.YES_NO_OPTION);
-				
-				if (result == 0)
-				{
-					dispose();
-				}
-			}
-		});
-		btnSignOut.setForeground(new Color(204, 0, 0));
-		btnSignOut.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnSignOut.setBounds(10, 391, 173, 45);
-		menuBtnsPanel.add(btnSignOut);
-		
 		JButton btnMyAcc = new JButton("MY ACCOUNT");
 		btnMyAcc.addMouseListener(new MouseAdapter() 
 		{
@@ -217,6 +186,37 @@ public class UserDashboard extends JFrame
 		btnSettings.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnSettings.setBounds(10, 238, 173, 45);
 		menuBtnsPanel.add(btnSettings);
+		
+		JButton btnSignOut = new JButton("SIGN OUT");
+		btnSignOut.setActionCommand("SIGN OUT");
+		btnSignOut.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				btnSignOut.setBackground(new Color(255, 204, 204));
+			}
+			
+			public void mouseExited(MouseEvent e) 
+			{
+				btnSignOut.setBackground(new Color(240, 240, 240));
+			}
+			@SuppressWarnings("static-access")
+			public void mouseClicked(MouseEvent e)
+			{
+				JOptionPane signOut = new JOptionPane();
+				int result = signOut.showConfirmDialog(null, "Do you want to Sign Out?", "Confirm", JOptionPane.YES_NO_OPTION);
+				
+				if (result == 0)
+				{
+					dispose();
+				}
+			}
+		});
+		btnSignOut.setForeground(new Color(204, 0, 0));
+		btnSignOut.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnSignOut.setBounds(10, 391, 173, 45);
+		menuBtnsPanel.add(btnSignOut);
 		
 		JPanel contentPanel = new JPanel();
 		contentPanel.setBounds(201, 10, 625, 493);

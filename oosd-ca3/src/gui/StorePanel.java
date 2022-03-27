@@ -39,12 +39,11 @@ public class StorePanel extends JPanel
 
 	private static final long serialVersionUID = 1L;
 	private JTable storeTable;
-	private JTextField textFieldItemID;
-	private JTextField textFieldItemName;
-	private JTextField textFieldTotalPrice;
-	private JTextField textFieldCardNo;
-	private JTextField textFieldItemPrice;
-	private JTextField textFieldItemStock;
+	private JTextField txtItemId;
+	private JTextField txtItemName;
+	private JTextField txtTotalPrice;
+	private JTextField txtItemPrice;
+	private JTextField txtItemStock;
 
 	/**
 	 * Builds the panel with all products information from database.
@@ -55,123 +54,13 @@ public class StorePanel extends JPanel
 		setBackground(new Color(102, 153, 204));
 		setLayout(null);
 		
-		Panel panelDetails = new Panel();
-		panelDetails.setName("");
-		panelDetails.setBounds(10, 230, 605, 263);
-		add(panelDetails);
-		panelDetails.setLayout(null);
 		
-		JButton btnBuy = new JButton("BUY");
-		btnBuy.setFont(new Font("Tahoma", Font.BOLD, 16));
-		btnBuy.setBounds(1, 224, 605, 39);
-		panelDetails.add(btnBuy);
-		
-		JPanel selectedDetailsPanel = new JPanel();
-		selectedDetailsPanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "SELECTED ITEM", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(64, 64, 64)));
-		selectedDetailsPanel.setBounds(1, 10, 297, 199);
-		selectedDetailsPanel.setBackground(new Color(102, 153, 204));
-		panelDetails.add(selectedDetailsPanel);
-		selectedDetailsPanel.setLayout(null);
-		
-		JLabel lblItemName = new JLabel("Item Name:");
-		lblItemName.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblItemName.setBounds(10, 68, 130, 30);
-		selectedDetailsPanel.add(lblItemName);
-		
-		JLabel lblPrice = new JLabel("Price:");
-		lblPrice.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblPrice.setBounds(10, 108, 130, 30);
-		selectedDetailsPanel.add(lblPrice);
-		
-		textFieldItemID = new JTextField();
-		textFieldItemID.setEditable(false);
-		textFieldItemID.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldItemID.setBounds(113, 28, 89, 30);
-		selectedDetailsPanel.add(textFieldItemID);
-		textFieldItemID.setColumns(10);
-		
-		textFieldItemName = new JTextField();
-		textFieldItemName.setEditable(false);
-		textFieldItemName.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldItemName.setBounds(113, 68, 174, 30);
-		selectedDetailsPanel.add(textFieldItemName);
-		textFieldItemName.setColumns(10);
-		
-		JLabel lblStock = new JLabel("Stock:");
-		lblStock.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblStock.setBounds(10, 148, 97, 30);
-		selectedDetailsPanel.add(lblStock);
-		
-		textFieldItemPrice = new JTextField();
-		textFieldItemPrice.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldItemPrice.setEditable(false);
-		textFieldItemPrice.setColumns(10);
-		textFieldItemPrice.setBounds(113, 108, 174, 30);
-		selectedDetailsPanel.add(textFieldItemPrice);
-		
-		textFieldItemStock = new JTextField();
-		textFieldItemStock.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldItemStock.setEditable(false);
-		textFieldItemStock.setColumns(10);
-		textFieldItemStock.setBounds(113, 148, 89, 30);
-		selectedDetailsPanel.add(textFieldItemStock);
-		
-		JLabel lblItemId = new JLabel("Item ID:");
-		lblItemId.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblItemId.setBounds(10, 28, 97, 30);
-		selectedDetailsPanel.add(lblItemId);
-		
-		JPanel itemDetailsPanel = new JPanel();
-		itemDetailsPanel.setLayout(null);
-		itemDetailsPanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "DETAILS", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(64, 64, 64)));
-		itemDetailsPanel.setBackground(new Color(102, 153, 204));
-		itemDetailsPanel.setBounds(308, 10, 297, 199);
-		panelDetails.add(itemDetailsPanel);
-		
-		JLabel lblQuantity = new JLabel("Quantity:");
-		lblQuantity.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblQuantity.setBounds(10, 26, 89, 30);
-		itemDetailsPanel.add(lblQuantity);
-		
-		JLabel lblTotalPrice = new JLabel("Total Price:");
-		lblTotalPrice.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblTotalPrice.setBounds(10, 146, 105, 30);
-		itemDetailsPanel.add(lblTotalPrice);
-		
-		JComboBox<Object> comboBoxQuantity = new JComboBox<Object>();
-		comboBoxQuantity.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		comboBoxQuantity.setModel(new DefaultComboBoxModel<Object>(new String[] {"1", "2", "3", "4", "5"}));
-		comboBoxQuantity.setBounds(96, 26, 191, 30);
-		itemDetailsPanel.add(comboBoxQuantity);
-		
-		textFieldTotalPrice = new JTextField();
-		textFieldTotalPrice.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldTotalPrice.setEditable(false);
-		textFieldTotalPrice.setBounds(137, 146, 150, 30);
-		itemDetailsPanel.add(textFieldTotalPrice);
-		textFieldTotalPrice.setColumns(10);
-		
-		JLabel lblPaymentType = new JLabel("Payment type:");
-		lblPaymentType.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblPaymentType.setBounds(10, 66, 130, 30);
-		itemDetailsPanel.add(lblPaymentType);
-		
-		JComboBox<Object> comboBoxPaymentType = new JComboBox<Object>();
-		comboBoxPaymentType.setModel(new DefaultComboBoxModel<Object>(new String[] {"Card", "PayPal", "Google Pay"}));
-		comboBoxPaymentType.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		comboBoxPaymentType.setBounds(137, 66, 150, 30);
-		itemDetailsPanel.add(comboBoxPaymentType);
-		
-		JLabel lblCardNo = new JLabel("Card No.:");
-		lblCardNo.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblCardNo.setBounds(10, 106, 130, 30);
-		itemDetailsPanel.add(lblCardNo);
-		
-		textFieldCardNo = new JTextField();
-		textFieldCardNo.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldCardNo.setColumns(10);
-		textFieldCardNo.setBounds(96, 106, 191, 30);
-		itemDetailsPanel.add(textFieldCardNo);
+		JLabel lblNewLabel = new JLabel("STORE");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setForeground(new Color(224, 255, 255));
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblNewLabel.setBounds(10, 0, 605, 40);
+		add(lblNewLabel);
 		
 		JScrollPane scrollPaneStoreTable = new JScrollPane();
 		scrollPaneStoreTable.setBounds(10, 40, 605, 177);
@@ -186,10 +75,10 @@ public class StorePanel extends JPanel
 				DefaultTableModel model = (DefaultTableModel) storeTable.getModel();
 				int rowSelectedIndex = storeTable.getSelectedRow();
 				
-				textFieldItemID.setText(model.getValueAt(rowSelectedIndex,0).toString());
-				textFieldItemName.setText(model.getValueAt(rowSelectedIndex,1).toString());
-				textFieldItemPrice.setText(model.getValueAt(rowSelectedIndex,2).toString());
-				textFieldItemStock.setText(model.getValueAt(rowSelectedIndex,3).toString());
+				txtItemId.setText(model.getValueAt(rowSelectedIndex,0).toString());
+				txtItemName.setText(model.getValueAt(rowSelectedIndex,1).toString());
+				txtItemPrice.setText(model.getValueAt(rowSelectedIndex,2).toString());
+				txtItemStock.setText(model.getValueAt(rowSelectedIndex,3).toString());
 			}
 		});
 		storeTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -230,15 +119,114 @@ public class StorePanel extends JPanel
 		});
 		scrollPaneStoreTable.setViewportView(storeTable);
 		DefaultTableModel table = (DefaultTableModel)storeTable.getModel();
+		
+		Panel panelDetails = new Panel();
+		panelDetails.setName("");
+		panelDetails.setBounds(10, 230, 605, 263);
+		add(panelDetails);
+		panelDetails.setLayout(null);
+		
+		JPanel selectedDetailsPanel = new JPanel();
+		selectedDetailsPanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "SELECTED ITEM", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(64, 64, 64)));
+		selectedDetailsPanel.setBounds(1, 10, 297, 199);
+		selectedDetailsPanel.setBackground(new Color(102, 153, 204));
+		panelDetails.add(selectedDetailsPanel);
+		selectedDetailsPanel.setLayout(null);
+		
+		JLabel lblItemId = new JLabel("Item ID:");
+		lblItemId.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblItemId.setBounds(10, 28, 97, 30);
+		selectedDetailsPanel.add(lblItemId);
+		
+		txtItemId = new JTextField();
+		txtItemId.setEditable(false);
+		txtItemId.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtItemId.setBounds(113, 28, 89, 30);
+		selectedDetailsPanel.add(txtItemId);
+		txtItemId.setColumns(10);
+		
+		JLabel lblItemName = new JLabel("Item Name:");
+		lblItemName.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblItemName.setBounds(10, 68, 130, 30);
+		selectedDetailsPanel.add(lblItemName);
+		
+		txtItemName = new JTextField();
+		txtItemName.setEditable(false);
+		txtItemName.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtItemName.setBounds(113, 68, 174, 30);
+		selectedDetailsPanel.add(txtItemName);
+		txtItemName.setColumns(10);
+		
+		JLabel lblItemPrice = new JLabel("Price:");
+		lblItemPrice.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblItemPrice.setBounds(10, 108, 130, 30);
+		selectedDetailsPanel.add(lblItemPrice);
+		
+		txtItemPrice = new JTextField();
+		txtItemPrice.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtItemPrice.setEditable(false);
+		txtItemPrice.setColumns(10);
+		txtItemPrice.setBounds(113, 108, 174, 30);
+		selectedDetailsPanel.add(txtItemPrice);
+		
+		JLabel lblItemStock = new JLabel("Stock:");
+		lblItemStock.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblItemStock.setBounds(10, 148, 97, 30);
+		selectedDetailsPanel.add(lblItemStock);
+		
+		txtItemStock = new JTextField();
+		txtItemStock.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtItemStock.setEditable(false);
+		txtItemStock.setColumns(10);
+		txtItemStock.setBounds(113, 148, 89, 30);
+		selectedDetailsPanel.add(txtItemStock);
+		
+		JPanel itemDetailsPanel = new JPanel();
+		itemDetailsPanel.setLayout(null);
+		itemDetailsPanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "DETAILS", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(64, 64, 64)));
+		itemDetailsPanel.setBackground(new Color(102, 153, 204));
+		itemDetailsPanel.setBounds(308, 10, 297, 199);
+		panelDetails.add(itemDetailsPanel);
+		
+		JLabel lblQuantity = new JLabel("Quantity:");
+		lblQuantity.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblQuantity.setBounds(10, 26, 89, 30);
+		itemDetailsPanel.add(lblQuantity);
+		
+		JComboBox<Object> lstQuantity = new JComboBox<Object>();
+		lstQuantity.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lstQuantity.setModel(new DefaultComboBoxModel<Object>(new String[] {"1", "2", "3", "4", "5"}));
+		lstQuantity.setBounds(96, 26, 191, 30);
+		itemDetailsPanel.add(lstQuantity);
+		
+		JLabel lblPaymentType = new JLabel("Payment type:");
+		lblPaymentType.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblPaymentType.setBounds(10, 66, 130, 30);
+		itemDetailsPanel.add(lblPaymentType);
+		
+		JComboBox<Object> lstPaymentType = new JComboBox<Object>();
+		lstPaymentType.setModel(new DefaultComboBoxModel<Object>(new String[] {"Card", "PayPal", "Google Pay"}));
+		lstPaymentType.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lstPaymentType.setBounds(137, 66, 150, 30);
+		itemDetailsPanel.add(lstPaymentType);
+		
+		JLabel lblTotalPrice = new JLabel("Total Price:");
+		lblTotalPrice.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblTotalPrice.setBounds(10, 106, 105, 30);
+		itemDetailsPanel.add(lblTotalPrice);
+		
+		txtTotalPrice = new JTextField();
+		txtTotalPrice.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtTotalPrice.setEditable(false);
+		txtTotalPrice.setBounds(137, 106, 150, 30);
+		itemDetailsPanel.add(txtTotalPrice);
+		txtTotalPrice.setColumns(10);
+		
+		JButton btnBuy = new JButton("BUY");
+		btnBuy.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnBuy.setBounds(1, 224, 605, 39);
+		panelDetails.add(btnBuy);
 		table.setRowCount(0);
-		
-		
-		JLabel lblNewLabel = new JLabel("STORE");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setForeground(new Color(224, 255, 255));
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblNewLabel.setBounds(10, 0, 605, 40);
-		add(lblNewLabel);
 		setVisible(true);
 		
 		try
