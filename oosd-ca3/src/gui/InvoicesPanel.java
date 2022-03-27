@@ -20,6 +20,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.JTextField;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 // Student Name:	Marcin Rusiecki
 // Student ID:		C00263263
@@ -66,7 +68,7 @@ public class InvoicesPanel extends JPanel
 		customerDetailsPanel.setLayout(null);
 		customerDetailsPanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "CUSTOMER DETAILS", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(64, 64, 64)));
 		customerDetailsPanel.setBackground(new Color(102, 153, 204));
-		customerDetailsPanel.setBounds(0, 0, 297, 263);
+		customerDetailsPanel.setBounds(307, 0, 297, 263);
 		panelDetails.add(customerDetailsPanel);
 		
 		JLabel lblCustomerId = new JLabel("Customer ID:");
@@ -133,7 +135,7 @@ public class InvoicesPanel extends JPanel
 		ivoiceDetailsPanel.setLayout(null);
 		ivoiceDetailsPanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "IVOICE DETAILS", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(64, 64, 64)));
 		ivoiceDetailsPanel.setBackground(new Color(102, 153, 204));
-		ivoiceDetailsPanel.setBounds(308, 0, 297, 263);
+		ivoiceDetailsPanel.setBounds(0, 0, 297, 263);
 		panelDetails.add(ivoiceDetailsPanel);
 		
 		JLabel lblInvoiceId = new JLabel("Invoice ID:");
@@ -216,6 +218,22 @@ public class InvoicesPanel extends JPanel
 		add(scrollPaneInvoicesTable);
 		
 		invoicesTable = new JTable();
+		invoicesTable.addMouseListener(new MouseAdapter()
+		{
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+				DefaultTableModel model = (DefaultTableModel) invoicesTable.getModel();
+				int rowSelectedIndex = invoicesTable.getSelectedRow();
+				
+				txtInvoiceId.setText(model.getValueAt(rowSelectedIndex,0).toString());
+				txtProductName.setText(model.getValueAt(rowSelectedIndex,1).toString());
+				txtProductId.setText(model.getValueAt(rowSelectedIndex,2).toString());
+				txtPaymentType.setText(model.getValueAt(rowSelectedIndex,3).toString());
+				txtProductQuantity.setText(model.getValueAt(rowSelectedIndex,4).toString());
+				txtTotalPrice.setText(model.getValueAt(rowSelectedIndex,5).toString());
+			}
+		});
 		invoicesTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		invoicesTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		invoicesTable.setRowHeight(20);

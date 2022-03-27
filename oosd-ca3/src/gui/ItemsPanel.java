@@ -24,6 +24,8 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JToggleButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 // Student Name:	Marcin Rusiecki
 // Student ID:		C00263263
@@ -211,6 +213,20 @@ public class ItemsPanel extends JPanel
 		add(scrollPaneProductsTable);
 		
 		productsTable = new JTable();
+		productsTable.addMouseListener(new MouseAdapter()
+		{
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+				DefaultTableModel model = (DefaultTableModel) productsTable.getModel();
+				int rowSelectedIndex = productsTable.getSelectedRow();
+				
+				txtUpProductId.setText(model.getValueAt(rowSelectedIndex,0).toString());
+				txtUpProductName.setText(model.getValueAt(rowSelectedIndex,1).toString());
+				txtUpProductPrice.setText(model.getValueAt(rowSelectedIndex,2).toString());
+				txtUpProductStock.setText(model.getValueAt(rowSelectedIndex,3).toString());
+			}
+		});
 		productsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		productsTable.setFillsViewportHeight(true);
 		productsTable.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
