@@ -78,7 +78,7 @@ public class UserDashboard extends JFrame
 		setContentPane(mainPanel);
 		mainPanel.setLayout(null);
 		
-		storePanel = new StorePanel();
+		storePanel = new StorePanel(email);
 		ordersHisPanel = new OrdersHisPanel(email);
 		myAccPanel = new MyAccPanel(email);
 		settingsPanel = new SettingsPanel(email);	

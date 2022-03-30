@@ -8,6 +8,7 @@ import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Font;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.SystemColor;
@@ -24,6 +25,8 @@ import javax.swing.SwingConstants;
 import javax.swing.ListSelectionModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 // Student Name:	Marcin Rusiecki
 // Student ID:		C00263263
@@ -48,7 +51,7 @@ public class StorePanel extends JPanel
 	/**
 	 * Builds the panel with all products information from database.
 	 */
-	public StorePanel()
+	public StorePanel(String email)
 	{
 		setBounds(0, 0, 625, 493);
 		setBackground(new Color(102, 153, 204));
@@ -198,6 +201,18 @@ public class StorePanel extends JPanel
 		lstQuantity.setModel(new DefaultComboBoxModel<Object>(new String[] {"1", "2", "3", "4", "5"}));
 		lstQuantity.setBounds(96, 26, 191, 30);
 		itemDetailsPanel.add(lstQuantity);
+		lstQuantity.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				int quantity = (int) lstQuantity.getSelectedIndex() + 1;
+				String priceField = txtItemPrice.getText();
+				double price = Double.parseDouble(priceField);
+				double totalprice = price*quantity;
+				totalprice = Math.round(totalprice * 100.00)/100.00;
+				txtTotalPrice.setText(""+ totalprice);
+			}
+		});
 		
 		JLabel lblPaymentType = new JLabel("Payment type:");
 		lblPaymentType.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -223,6 +238,63 @@ public class StorePanel extends JPanel
 		txtTotalPrice.setColumns(10);
 		
 		JButton btnBuy = new JButton("BUY");
+		btnBuy.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				try {
+
+					final String DATABASE_URL = "jdbc:mysql://localhost/oosd_ca3";
+					Connection connection = null ;
+					ResultSet resultset = null;
+					PreparedStatement prepstat = null ;
+					PreparedStatement prepstat1 = null ;
+					String payment =(String) lstPaymentType.getSelectedItem();
+					int quantity = (int) lstQuantity.getSelectedIndex() + 1;
+					double totalprice = Double.parseDouble(txtTotalPrice.getText());
+					int id = 0;
+					String productID = txtItemId.getText();
+					int PID = Integer.parseInt(productID);
+					int index = 0;
+					
+					connection = DriverManager.getConnection(DATABASE_URL, "root", "");
+					
+					prepstat = connection.prepareStatement("SELECT CustomerId FROM customer WHERE Email=?");
+					prepstat.setString(1, email);
+					
+					resultset = prepstat.executeQuery();
+					while(resultset.next())
+					{
+						id = resultset.getInt(1);
+					}
+					
+
+					prepstat1 = connection.prepareStatement("INSERT INTO invoice (PaymentType, Quantity, TotalPrice, CustomerID, ProductID) VALUES (?,?,?,?,?)");
+					prepstat1.setString(1, payment);
+					prepstat1.setInt(2, quantity);
+					prepstat1.setDouble(3, totalprice);
+					prepstat1.setInt(4, id);
+					prepstat1.setInt(5, PID);
+
+					index = prepstat1.executeUpdate();
+			
+					if ( index == 1 )
+					{
+						JOptionPane.showMessageDialog(null, "Order successfully created");
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null, "Order has not been created");
+					}
+
+				}
+			catch(SQLException sqlexception)
+			{
+				
+			}
+			}
+		});
 		btnBuy.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnBuy.setBounds(1, 224, 605, 39);
 		panelDetails.add(btnBuy);
@@ -243,7 +315,7 @@ public class StorePanel extends JPanel
 			resultset = prepstat.executeQuery();
 			while(resultset.next())
 			{
-				Object row [] = {resultset.getInt("ProductID") + "  ", resultset.getString("ProductName"), resultset.getDouble("ProductPrice"), resultset.getInt("ProductStock")};
+				Object row [] = {resultset.getInt("ProductID"), resultset.getString("ProductName"), resultset.getDouble("ProductPrice"), resultset.getInt("ProductStock")};
 				table.addRow(row);
 			}
 

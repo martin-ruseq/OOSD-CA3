@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Dimension;
@@ -157,9 +158,37 @@ public class Login extends JFrame
 		lblLoginPass.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
 		txtLoginPass = new JPasswordField();
+		txtLoginPass.setEchoChar('*');
 		txtLoginPass.setBounds(36, 140, 226, 30);
 		LoginPanel.add(txtLoginPass);
 		txtLoginPass.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		
+		JLabel icoSeePass = new JLabel("");
+		icoSeePass.setHorizontalTextPosition(SwingConstants.CENTER);
+		icoSeePass.setToolTipText("See Password");
+		icoSeePass.setHorizontalAlignment(SwingConstants.CENTER);
+		icoSeePass.setIcon(new ImageIcon(SignUp.class.getResource("/resources/show.png")));
+		icoSeePass.setBounds(261, 140, 35, 30);
+		LoginPanel.add(icoSeePass);
+		
+		icoSeePass.addMouseListener(new MouseAdapter() 
+		{
+			/**
+			 * Show password when the mouse cursor enters the "eye" icon.
+			 */
+			public void mouseEntered(MouseEvent e) 
+			{
+				txtLoginPass.setEchoChar((char)0);
+				
+			}
+			/**
+			 * Hide password when the mouse cursor exits the "eye" icon.
+			 */
+			public void mouseExited(MouseEvent e) 
+			{
+				txtLoginPass.setEchoChar('*');
+			}
+		});
 		
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addMouseListener(new MouseAdapter() 
@@ -197,6 +226,13 @@ public class Login extends JFrame
 						dEmail = resultset.getString(1);
 						dPassword = resultset.getString(2);
 					}
+					if (dEmail.compareTo("admin@inoshop.com") == 0 && dPassword.compareTo("password") == 0)
+					{
+						AdminDashboard l = new AdminDashboard();
+						l.setVisible(true);
+						dispose();
+					}
+					else {
 					if ( dEmail.compareTo(email)!=0 || dPassword.compareTo(password)!=0 )
 					{
 						throw new LoginException();
@@ -210,6 +246,7 @@ public class Login extends JFrame
 						UserDashboard l = new UserDashboard(dEmail);
 						l.setVisible(true);
 						dispose();
+					}
 					}
 				}
 				catch (LoginException loginException)

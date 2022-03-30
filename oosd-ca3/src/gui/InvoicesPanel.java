@@ -232,6 +232,36 @@ public class InvoicesPanel extends JPanel
 				txtPaymentType.setText(model.getValueAt(rowSelectedIndex,3).toString());
 				txtProductQuantity.setText(model.getValueAt(rowSelectedIndex,4).toString());
 				txtTotalPrice.setText(model.getValueAt(rowSelectedIndex,5).toString());
+				try {
+					
+					final String DATABASE_URL = "jdbc:mysql://localhost/oosd_ca3";
+					Connection connection = null ;
+					ResultSet resultset = null;
+					PreparedStatement prepstat = null ;
+					String invoiceID = txtInvoiceId.getText();
+					int id = Integer.parseInt(invoiceID);
+					
+					connection = DriverManager.getConnection(DATABASE_URL, "root", "");
+	
+					prepstat = connection.prepareStatement("SELECT customer.CustomerID, customer.FirstName, customer.LastName, customer.Email, customer.Phone FROM customer "
+							+ "INNER JOIN invoice ON invoice.CustomerID = customer.CustomerId WHERE invoice.InvoiceID = ?");
+					prepstat.setInt(1, id);
+					
+					resultset = prepstat.executeQuery();
+					while(resultset.next())
+					{
+						txtCustomerId.setText(""+resultset.getInt(1));
+						txtCustomerFName.setText(resultset.getString(2));
+						txtCustomerLName.setText(resultset.getString(3));
+						txtCustomerEmail.setText(resultset.getString(4));
+						txtCustomerPhone.setText(resultset.getString(5));
+					}
+				}
+				catch (SQLException sqlException)
+				{
+					sqlException.printStackTrace();
+				}
+				
 			}
 		});
 		invoicesTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
@@ -263,6 +293,9 @@ public class InvoicesPanel extends JPanel
 				"Invoice ID", "Product Name", "Product ID", "Payment Type", "Quantity", "Total Price"
 			}
 		) {
+			/**
+			 * 
+			 */
 			private static final long serialVersionUID = 1L;
 			boolean[] columnEditables = new boolean[] {
 				false, false, false, false, false, false
@@ -308,7 +341,8 @@ public class InvoicesPanel extends JPanel
 			
 			connection = DriverManager.getConnection(DATABASE_URL, "root", "");
 
-			prepstat = connection.prepareStatement("SELECT InvoiceID, PaymentType, Quantity, TotalPrice, invoice.ProductID, product.ProductName FROM invoice INNER JOIN product ON product.ProductID = invoice.ProductID");
+			prepstat = connection.prepareStatement("SELECT InvoiceID, PaymentType, Quantity, TotalPrice, invoice.ProductID, product.ProductName FROM invoice "
+					+ "INNER JOIN product ON product.ProductID = invoice.ProductID");
 			
 			resultset = prepstat.executeQuery();
 			while(resultset.next())

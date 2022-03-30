@@ -8,6 +8,7 @@ import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Font;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import java.awt.SystemColor;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -120,11 +121,92 @@ public class ItemsPanel extends JPanel
 		updateProductPanel.add(txtUpProductStock);
 		
 		JButton btnUpdateProduct = new JButton("UPDATE");
+		btnUpdateProduct.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				try
+				{
+					final String DATABASE_URL = "jdbc:mysql://localhost/oosd_ca3";
+					Connection connection = null ;
+					PreparedStatement prepstat = null ;
+					
+					String name = txtUpProductName.getText();
+					String stock = txtUpProductStock.getText();
+					int inStock = Integer.parseInt(stock);
+					String price1 = txtUpProductPrice.getText();
+					double price = Double.parseDouble(price1);
+					String id1 = txtUpProductId.getText();
+					int id = Integer.parseInt(id1);
+					int index = 0;
+
+					connection = DriverManager.getConnection(DATABASE_URL, "root", "");
+					
+					prepstat = connection.prepareStatement("UPDATE product SET ProductName=?, ProductPrice=?, ProductStock=? WHERE ProductID=?");
+					prepstat.setString(1, name);
+					prepstat.setDouble(2, price);
+					prepstat.setInt(3, inStock);
+					prepstat.setInt(4, id);
+					
+					index = prepstat.executeUpdate();
+					if ( index == 1 )
+					{
+						JOptionPane.showMessageDialog(null, "Product successfully updated");
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null, "Product has not been updated");
+					}
+					
+				}
+				catch(SQLException sqlexception)
+				{
+					
+				}
+			}
+		});
 		btnUpdateProduct.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnUpdateProduct.setBounds(10, 213, 115, 40);
 		updateProductPanel.add(btnUpdateProduct);
 		
 		JButton btnDeleteProduct = new JButton("DELETE");
+		btnDeleteProduct.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				try
+				{
+					final String DATABASE_URL = "jdbc:mysql://localhost/oosd_ca3";
+					Connection connection = null ;
+					PreparedStatement prepstat = null ;
+					String id1 = txtUpProductId.getText();
+					int id = Integer.parseInt(id1);
+					int index = 0;
+
+					connection = DriverManager.getConnection(DATABASE_URL, "root", "");
+					
+					prepstat = connection.prepareStatement("DELETE FROM product WHERE ProductID=?");
+					prepstat.setInt(1, id);
+					
+					index = prepstat.executeUpdate();
+					if ( index == 1 )
+					{
+						JOptionPane.showMessageDialog(null, "Product successfully deleted");
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null, "Product has not been deleted");
+					}
+					
+				}
+				catch(SQLException sqlexception)
+				{
+					
+				}
+			}
+		});
 		btnDeleteProduct.setBackground(Color.RED);
 		btnDeleteProduct.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnDeleteProduct.setBounds(172, 213, 115, 40);
@@ -201,6 +283,47 @@ public class ItemsPanel extends JPanel
 		addProductPanel.add(txtAddProductStock);
 		
 		JButton btnAddProduct = new JButton("ADD PRODUCT");
+		btnAddProduct.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				try
+				{
+					final String DATABASE_URL = "jdbc:mysql://localhost/oosd_ca3";
+					Connection connection = null ;
+					PreparedStatement prepstat = null ;
+					String name = txtAddProductName.getText();
+					String stock = txtAddProductStock.getText();
+					int inStock = Integer.parseInt(stock);
+					String price1 = txtAddProductPrice.getText();
+					double price = Double.parseDouble(price1);
+					int index = 0;
+
+					connection = DriverManager.getConnection(DATABASE_URL, "root", "");
+					
+					prepstat = connection.prepareStatement("INSERT INTO product (ProductName, ProductPrice, ProductStock) VALUES (?,?,?)");
+					prepstat.setString(1, name);
+					prepstat.setDouble(2, price);
+					prepstat.setInt(3, inStock);
+					
+					index = prepstat.executeUpdate();
+					if ( index == 1 )
+					{
+						JOptionPane.showMessageDialog(null, "Product successfully added");
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null, "Product has not been added");
+					}
+
+				}
+				catch(SQLException sqlexception)
+				{
+					
+				}
+			}
+		});
 		btnAddProduct.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnAddProduct.setBounds(50, 213, 200, 40);
 		addProductPanel.add(btnAddProduct);
@@ -256,6 +379,9 @@ public class ItemsPanel extends JPanel
 				"Product ID", "Product Name", "Product Price", "Stock"
 			}
 		) {
+			/**
+			 * 
+			 */
 			private static final long serialVersionUID = 1L;
 			boolean[] columnEditables = new boolean[] {
 				false, false, false, false
@@ -298,7 +424,7 @@ public class ItemsPanel extends JPanel
 			resultset = prepstat.executeQuery();
 			while(resultset.next())
 			{
-				Object row [] = {resultset.getInt("ProductID") + "  ", resultset.getString("ProductName"), resultset.getDouble("ProductPrice"), resultset.getInt("ProductStock")};
+				Object row [] = {resultset.getInt("ProductID"), resultset.getString("ProductName"), resultset.getDouble("ProductPrice"), resultset.getInt("ProductStock")};
 				table.addRow(row);
 			}
 
