@@ -289,18 +289,18 @@ public class InvoicesPanel extends JPanel
 				{null, null, null, null, null, null},
 				{null, null, null, null, null, null},
 			},
-			new String[] {
+			new String[]
+			{
 				"Invoice ID", "Product Name", "Product ID", "Payment Type", "Quantity", "Total Price"
 			}
 		) {
-			/**
-			 * 
-			 */
 			private static final long serialVersionUID = 1L;
-			boolean[] columnEditables = new boolean[] {
+			boolean[] columnEditables = new boolean[] 
+			{
 				false, false, false, false, false, false
 			};
-			public boolean isCellEditable(int row, int column) {
+			public boolean isCellEditable(int row, int column)
+			{
 				return columnEditables[column];
 			}
 		});

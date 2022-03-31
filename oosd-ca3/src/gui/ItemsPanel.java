@@ -120,49 +120,143 @@ public class ItemsPanel extends JPanel
 		txtUpProductStock.setBounds(135, 143, 153, 30);
 		updateProductPanel.add(txtUpProductStock);
 		
+		JScrollPane scrollPaneProductsTable = new JScrollPane();
+		scrollPaneProductsTable.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		scrollPaneProductsTable.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPaneProductsTable.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		scrollPaneProductsTable.setBounds(10, 37, 605, 177);
+		add(scrollPaneProductsTable);
+		
+		productsTable = new JTable();
+		productsTable.addMouseListener(new MouseAdapter()
+		{
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+				DefaultTableModel model = (DefaultTableModel) productsTable.getModel();
+				int rowSelectedIndex = productsTable.getSelectedRow();
+				
+				txtUpProductId.setText(model.getValueAt(rowSelectedIndex,0).toString());
+				txtUpProductName.setText(model.getValueAt(rowSelectedIndex,1).toString());
+				txtUpProductPrice.setText(model.getValueAt(rowSelectedIndex,2).toString());
+				txtUpProductStock.setText(model.getValueAt(rowSelectedIndex,3).toString());
+			}
+		});
+		productsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		productsTable.setFillsViewportHeight(true);
+		productsTable.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
+		productsTable.setRowHeight(20);
+		productsTable.setSelectionBackground(SystemColor.activeCaption);
+		productsTable.setName("");
+		productsTable.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		productsTable.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+			},
+			new String[] {
+				"Product ID", "Product Name", "Product Price", "Stock"
+			}
+		) {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		productsTable.getColumnModel().getColumn(0).setMinWidth(75);
+		productsTable.getColumnModel().getColumn(0).setMaxWidth(75);
+		productsTable.getColumnModel().getColumn(1).setPreferredWidth(120);
+		productsTable.getColumnModel().getColumn(1).setMinWidth(120);
+		productsTable.getColumnModel().getColumn(2).setPreferredWidth(120);
+		productsTable.getColumnModel().getColumn(2).setMinWidth(120);
+		productsTable.getColumnModel().getColumn(3).setMinWidth(75);
+		productsTable.getColumnModel().getColumn(3).setMaxWidth(75);
+		scrollPaneProductsTable.setViewportView(productsTable);
+		DefaultTableModel table = (DefaultTableModel)productsTable.getModel();
+		table.setRowCount(0);
+		
+		
 		JButton btnUpdateProduct = new JButton("UPDATE");
 		btnUpdateProduct.addMouseListener(new MouseAdapter() 
 		{
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				try
+				JOptionPane updateConfirm = new JOptionPane();
+				@SuppressWarnings("static-access")
+				int result = updateConfirm.showConfirmDialog(null, "Update the product?", "Confirm", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+				
+				if (result == 0)
 				{
-					final String DATABASE_URL = "jdbc:mysql://localhost/oosd_ca3";
-					Connection connection = null ;
-					PreparedStatement prepstat = null ;
-					
-					String name = txtUpProductName.getText();
-					String stock = txtUpProductStock.getText();
-					int inStock = Integer.parseInt(stock);
-					String price1 = txtUpProductPrice.getText();
-					double price = Double.parseDouble(price1);
-					String id1 = txtUpProductId.getText();
-					int id = Integer.parseInt(id1);
-					int index = 0;
+					try
+					{
+						final String DATABASE_URL = "jdbc:mysql://localhost/oosd_ca3";
+						Connection connection = null ;
+						ResultSet resultset = null;
+						PreparedStatement prepstat = null ;
+						
+						String name = txtUpProductName.getText();
+						String stock = txtUpProductStock.getText();
+						int inStock = Integer.parseInt(stock);
+						String price1 = txtUpProductPrice.getText();
+						double price = Double.parseDouble(price1);
+						String id1 = txtUpProductId.getText();
+						int id = Integer.parseInt(id1);
+						int index = 0;
 
-					connection = DriverManager.getConnection(DATABASE_URL, "root", "");
-					
-					prepstat = connection.prepareStatement("UPDATE product SET ProductName=?, ProductPrice=?, ProductStock=? WHERE ProductID=?");
-					prepstat.setString(1, name);
-					prepstat.setDouble(2, price);
-					prepstat.setInt(3, inStock);
-					prepstat.setInt(4, id);
-					
-					index = prepstat.executeUpdate();
-					if ( index == 1 )
-					{
-						JOptionPane.showMessageDialog(null, "Product successfully updated");
+						connection = DriverManager.getConnection(DATABASE_URL, "root", "");
+						
+						prepstat = connection.prepareStatement("UPDATE product SET ProductName=?, ProductPrice=?, ProductStock=? WHERE ProductID=?");
+						prepstat.setString(1, name);
+						prepstat.setDouble(2, price);
+						prepstat.setInt(3, inStock);
+						prepstat.setInt(4, id);
+						
+						index = prepstat.executeUpdate();
+						DefaultTableModel model = (DefaultTableModel) productsTable.getModel();
+						model.setRowCount(0);
+						
+						if ( index == 1 )
+						{
+							JOptionPane.showMessageDialog(null, "Product successfully updated");
+						}
+						else
+						{
+							JOptionPane.showMessageDialog(null, "Product has not been updated");
+						}
+						
+						prepstat = connection.prepareStatement("SELECT * FROM product");
+						
+						resultset = prepstat.executeQuery();
+						while(resultset.next())
+						{
+							Object row [] = {resultset.getInt("ProductID"), resultset.getString("ProductName"), resultset.getDouble("ProductPrice"), resultset.getInt("ProductStock")};
+							table.addRow(row);
+						}
 					}
-					else
+					catch(SQLException sqlexception)
 					{
-						JOptionPane.showMessageDialog(null, "Product has not been updated");
+						
 					}
-					
-				}
-				catch(SQLException sqlexception)
-				{
-					
 				}
 			}
 		});
@@ -176,35 +270,56 @@ public class ItemsPanel extends JPanel
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				try
+				JOptionPane deleteConfirm = new JOptionPane();
+				@SuppressWarnings("static-access")
+				int result = deleteConfirm.showConfirmDialog(null, "Delete the product?", "Confirm", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+				
+				if (result == 0)
 				{
-					final String DATABASE_URL = "jdbc:mysql://localhost/oosd_ca3";
-					Connection connection = null ;
-					PreparedStatement prepstat = null ;
-					String id1 = txtUpProductId.getText();
-					int id = Integer.parseInt(id1);
-					int index = 0;
+					try
+					{
+						final String DATABASE_URL = "jdbc:mysql://localhost/oosd_ca3";
+						Connection connection = null ;
+						ResultSet resultset = null;
+						PreparedStatement prepstat = null ;
+						String id1 = txtUpProductId.getText();
+						int id = Integer.parseInt(id1);
+						int index = 0;
 
-					connection = DriverManager.getConnection(DATABASE_URL, "root", "");
-					
-					prepstat = connection.prepareStatement("DELETE FROM product WHERE ProductID=?");
-					prepstat.setInt(1, id);
-					
-					index = prepstat.executeUpdate();
-					if ( index == 1 )
-					{
-						JOptionPane.showMessageDialog(null, "Product successfully deleted");
+						connection = DriverManager.getConnection(DATABASE_URL, "root", "");
+						
+						prepstat = connection.prepareStatement("DELETE FROM product WHERE ProductID=?");
+						prepstat.setInt(1, id);
+						
+						index = prepstat.executeUpdate();
+						DefaultTableModel model = (DefaultTableModel) productsTable.getModel();
+						model.setRowCount(0);
+						
+						if ( index == 1 )
+						{
+							JOptionPane.showMessageDialog(null, "Product successfully deleted");
+						}
+						else
+						{
+							JOptionPane.showMessageDialog(null, "Product has not been deleted");
+						}
+						
+						prepstat = connection.prepareStatement("SELECT * FROM product");
+						
+						resultset = prepstat.executeQuery();
+						while(resultset.next())
+						{
+							Object row [] = {resultset.getInt("ProductID"), resultset.getString("ProductName"), resultset.getDouble("ProductPrice"), resultset.getInt("ProductStock")};
+							table.addRow(row);
+						}
+						
 					}
-					else
+					catch(SQLException sqlexception)
 					{
-						JOptionPane.showMessageDialog(null, "Product has not been deleted");
+						
 					}
-					
 				}
-				catch(SQLException sqlexception)
-				{
-					
-				}
+				
 			}
 		});
 		btnDeleteProduct.setBackground(Color.RED);
@@ -292,6 +407,7 @@ public class ItemsPanel extends JPanel
 				{
 					final String DATABASE_URL = "jdbc:mysql://localhost/oosd_ca3";
 					Connection connection = null ;
+					ResultSet resultset = null;
 					PreparedStatement prepstat = null ;
 					String name = txtAddProductName.getText();
 					String stock = txtAddProductStock.getText();
@@ -308,6 +424,9 @@ public class ItemsPanel extends JPanel
 					prepstat.setInt(3, inStock);
 					
 					index = prepstat.executeUpdate();
+					DefaultTableModel model = (DefaultTableModel) productsTable.getModel();
+					model.setRowCount(0);
+					
 					if ( index == 1 )
 					{
 						JOptionPane.showMessageDialog(null, "Product successfully added");
@@ -315,6 +434,15 @@ public class ItemsPanel extends JPanel
 					else
 					{
 						JOptionPane.showMessageDialog(null, "Product has not been added");
+					}
+					
+					prepstat = connection.prepareStatement("SELECT * FROM product");
+					
+					resultset = prepstat.executeQuery();
+					while(resultset.next())
+					{
+						Object row [] = {resultset.getInt("ProductID"), resultset.getString("ProductName"), resultset.getDouble("ProductPrice"), resultset.getInt("ProductStock")};
+						table.addRow(row);
 					}
 
 				}
@@ -327,80 +455,6 @@ public class ItemsPanel extends JPanel
 		btnAddProduct.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnAddProduct.setBounds(50, 213, 200, 40);
 		addProductPanel.add(btnAddProduct);
-		
-		JScrollPane scrollPaneProductsTable = new JScrollPane();
-		scrollPaneProductsTable.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		scrollPaneProductsTable.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPaneProductsTable.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scrollPaneProductsTable.setBounds(10, 37, 605, 177);
-		add(scrollPaneProductsTable);
-		
-		productsTable = new JTable();
-		productsTable.addMouseListener(new MouseAdapter()
-		{
-			@Override
-			public void mouseClicked(MouseEvent e)
-			{
-				DefaultTableModel model = (DefaultTableModel) productsTable.getModel();
-				int rowSelectedIndex = productsTable.getSelectedRow();
-				
-				txtUpProductId.setText(model.getValueAt(rowSelectedIndex,0).toString());
-				txtUpProductName.setText(model.getValueAt(rowSelectedIndex,1).toString());
-				txtUpProductPrice.setText(model.getValueAt(rowSelectedIndex,2).toString());
-				txtUpProductStock.setText(model.getValueAt(rowSelectedIndex,3).toString());
-			}
-		});
-		productsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		productsTable.setFillsViewportHeight(true);
-		productsTable.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
-		productsTable.setRowHeight(20);
-		productsTable.setSelectionBackground(SystemColor.activeCaption);
-		productsTable.setName("");
-		productsTable.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		productsTable.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-			},
-			new String[] {
-				"Product ID", "Product Name", "Product Price", "Stock"
-			}
-		) {
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
-			boolean[] columnEditables = new boolean[] {
-				false, false, false, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
-		productsTable.getColumnModel().getColumn(0).setMinWidth(75);
-		productsTable.getColumnModel().getColumn(0).setMaxWidth(75);
-		productsTable.getColumnModel().getColumn(1).setPreferredWidth(120);
-		productsTable.getColumnModel().getColumn(1).setMinWidth(120);
-		productsTable.getColumnModel().getColumn(2).setPreferredWidth(120);
-		productsTable.getColumnModel().getColumn(2).setMinWidth(120);
-		productsTable.getColumnModel().getColumn(3).setMinWidth(75);
-		productsTable.getColumnModel().getColumn(3).setMaxWidth(75);
-		scrollPaneProductsTable.setViewportView(productsTable);
-		DefaultTableModel table = (DefaultTableModel)productsTable.getModel();
-		table.setRowCount(0);
 		
 		JLabel lblProducts = new JLabel("PRODUCTS");
 		lblProducts.setHorizontalAlignment(SwingConstants.CENTER);

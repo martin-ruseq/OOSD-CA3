@@ -21,6 +21,7 @@ import javax.swing.SwingConstants;
 import javax.swing.ListSelectionModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JButton;
 
 // Student Name:	Marcin Rusiecki
 // Student ID:		C00263263
@@ -185,6 +186,70 @@ public class OrdersHisPanel extends JPanel
 		txtTotalPrice.setColumns(10);
 		txtTotalPrice.setBounds(138, 188, 198, 30);
 		invoideDetailsPanel.add(txtTotalPrice);
+		
+		JLabel lblRefreshInfo1 = new JLabel("Refresh the table if you");
+		lblRefreshInfo1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRefreshInfo1.setForeground(Color.RED);
+		lblRefreshInfo1.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblRefreshInfo1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblRefreshInfo1.setBounds(357, 148, 238, 25);
+		panelDetails.add(lblRefreshInfo1);
+		
+		JLabel lblRefreshInfo2 = new JLabel("do not see your latest order");
+		lblRefreshInfo2.setVerticalAlignment(SwingConstants.TOP);
+		lblRefreshInfo2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRefreshInfo2.setForeground(Color.RED);
+		lblRefreshInfo2.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblRefreshInfo2.setBounds(357, 178, 238, 25);
+		panelDetails.add(lblRefreshInfo2);
+		
+		JButton btnRefreshTable = new JButton("REFRESH TABLE");
+		btnRefreshTable.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				try
+				{
+					final String DATABASE_URL = "jdbc:mysql://localhost/oosd_ca3";
+					Connection connection = null ;
+					ResultSet resultset = null;
+					PreparedStatement prepstat = null ;
+					int ID = 0;
+					
+					connection = DriverManager.getConnection(DATABASE_URL, "root", "");
+					
+					// create Prepared Statement for inserting data into table
+					prepstat = connection.prepareStatement("SELECT CustomerId FROM customer WHERE Email=?");
+					prepstat.setString(1, email);
+					
+					resultset = prepstat.executeQuery();
+					while(resultset.next())
+					{
+						ID = resultset.getInt(1);
+					}
+					prepstat = connection.prepareStatement("SELECT InvoiceID, PaymentType, Quantity, TotalPrice, product.ProductName FROM invoice "
+							+ "INNER JOIN product ON product.ProductID = invoice.ProductID WHERE invoice.CustomerID=?");
+					prepstat.setInt(1, ID);
+					
+					resultset = prepstat.executeQuery();
+					DefaultTableModel model = (DefaultTableModel) OrdersTable.getModel();
+					model.setRowCount(0);
+					while(resultset.next())
+					{
+						Object row [] = {resultset.getInt("InvoiceID"), resultset.getString("ProductName"),resultset.getString("PaymentType"), resultset.getInt("Quantity"),resultset.getDouble("TotalPrice")};
+						table2.addRow(row);
+					}
+
+				}
+				catch (SQLException sqlException)
+				{
+					sqlException.printStackTrace();
+				}
+			}
+		});
+		btnRefreshTable.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnRefreshTable.setBounds(357, 206, 238, 35);
+		panelDetails.add(btnRefreshTable);
 		
 		try
 		{
