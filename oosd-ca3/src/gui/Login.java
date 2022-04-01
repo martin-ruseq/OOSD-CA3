@@ -203,9 +203,9 @@ public class Login extends JFrame
 				try 
 				{
 					final String DATABASE_URL = "jdbc:mysql://localhost/oosd_ca3";
-					Connection connection = null ;
+					Connection connection = null;
 					ResultSet resultset = null;
-					PreparedStatement prepstat = null ;
+					PreparedStatement prepstat = null;
 					String email = txtLoginEmail.getText();
 					@SuppressWarnings("deprecation")
 					String password = txtLoginPass.getText();
@@ -232,21 +232,22 @@ public class Login extends JFrame
 						l.setVisible(true);
 						dispose();
 					}
-					else {
-					if ( dEmail.compareTo(email)!=0 || dPassword.compareTo(password)!=0 )
+					else
 					{
-						throw new LoginException();
-					}
-					else if (email.length() == 0 || password.length() == 0)
-					{
-						throw new LoginException();
-					}
-					else 
-					{
-						UserDashboard l = new UserDashboard(dEmail);
-						l.setVisible(true);
-						dispose();
-					}
+						if ( dEmail.compareTo(email)!=0 || dPassword.compareTo(password)!=0 )
+						{
+							throw new LoginException();
+						}
+						else if (email.length() == 0 || password.length() == 0)
+						{
+							throw new LoginException();
+						}
+						else 
+						{
+							UserDashboard l = new UserDashboard(dEmail);
+							l.setVisible(true);
+							dispose();
+						}
 					}
 				}
 				catch (LoginException loginException)

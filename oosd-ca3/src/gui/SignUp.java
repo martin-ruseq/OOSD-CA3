@@ -365,53 +365,6 @@ public class SignUp extends JFrame
 				String email = txtEmail.getText();
 				String cEmail = txtEmailConf.getText();
 				
-				//Personel Details Warning
-				if((fname.length() == 0) || (lname.length() == 0) || (dob.length() == 0) || (phone.length() == 0))
-				{
-					warningPesonalPanel.setText("WARNING! Fill out ALL fields!");
-				}
-				else
-				{
-					warningPesonalPanel.setText("");
-				}
-				
-				//Address Details Warning
-				if ((street.length() == 0) || (town.length() == 0) || (zipcode.length() == 0) || (country.length() == 0))
-				{
-					warningAddressPanel.setText("WARNING! Fill out ALL fields!");
-				}
-				else
-				{
-					warningAddressPanel.setText("");
-				}
-				
-				//Match Passowrd and Email
-				if  ((email.compareTo(cEmail) != 0) && (password.compareTo(cPassword) != 0))
-				{
-					warningLoginPanel.setText("Check your email or passowrd!");
-				}
-				else if(email.compareTo(cEmail) != 0) 
-				{
-					warningLoginPanel.setText("Email MUST match!");
-				}
-				else if(password.compareTo(cPassword) != 0)
-				{
-					warningLoginPanel.setText("Password MUST mach!");
-				}
-				else
-				{
-					warningLoginPanel.setText("");
-				}
-				
-				if ((email.length() == 0) || (cEmail.length() == 0) || (password.length() == 0) || (cPassword.length() == 0))
-				{
-					warningLoginPanel.setText("WARNING! Fill out all fields");
-				}
-				else
-				{
-					warningLoginPanel.setText("");
-				}
-				
 				if ((warningPesonalPanel.getText() == "") && (warningAddressPanel.getText() == "") && (warningLoginPanel.getText() == ""))
 				{
 					final String DATABASE_URL = "jdbc:mysql://localhost/oosd_ca3";
@@ -421,6 +374,32 @@ public class SignUp extends JFrame
 					
 					try
 					{
+						//Personel Details Warning
+						if((fname.length() == 0) || (lname.length() == 0) || (dob.length() == 0) || (phone.length() == 0))
+						{
+							throw new SignUpException();
+						}
+
+						//Address Details Warning
+						if ((street.length() == 0) || (town.length() == 0) || (zipcode.length() == 0) || (country.length() == 0))
+						{
+							throw new SignUpException();
+						}
+
+						//Match Passowrd and Email
+						if  ((email.length() == 0) || (cEmail.length() == 0) || (password.length() == 0) || (cPassword.length() == 0))
+						{
+							throw new SignUpException();
+						}	
+						if(email.compareTo(cEmail) != 0) 
+						{
+							throw new EmailException();
+						}
+						if(password.compareTo(cPassword) != 0)
+						{
+							throw new PasswordException();
+						}
+						
 						// establish connection to database
 						connection = DriverManager.getConnection(DATABASE_URL, "root", "");
 						
@@ -453,6 +432,18 @@ public class SignUp extends JFrame
 						login.setVisible(true);
 						login.setLocationRelativeTo(null);
 						dispose();
+					}
+					catch(SignUpException signupException)
+					{
+						JOptionPane.showMessageDialog(null, "Fill out all fields!","WARNING!", JOptionPane.WARNING_MESSAGE);
+					}
+					catch(EmailException emailException)
+					{
+						JOptionPane.showMessageDialog(null, "Email MUST match!","WARNING!", JOptionPane.WARNING_MESSAGE);
+					}
+					catch(PasswordException passwordException)
+					{
+						JOptionPane.showMessageDialog(null, "Password MUST match!","WARNING!", JOptionPane.WARNING_MESSAGE);
 					}
 					catch(SQLException sqlException)
 					{
