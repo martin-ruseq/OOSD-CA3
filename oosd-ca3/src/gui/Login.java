@@ -234,7 +234,7 @@ public class Login extends JFrame
 					}
 					else
 					{
-						if ( dEmail.compareTo(email)!=0 || dPassword.compareTo(password)!=0 )
+						if (dEmail.compareTo(email)!=0 || dPassword.compareTo(password)!=0)
 						{
 							throw new LoginException();
 						}

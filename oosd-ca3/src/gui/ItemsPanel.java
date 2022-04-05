@@ -150,7 +150,8 @@ public class ItemsPanel extends JPanel
 		productsTable.setName("");
 		productsTable.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		productsTable.setModel(new DefaultTableModel(
-			new Object[][] {
+			new Object[][]
+			{
 				{null, null, null, null},
 				{null, null, null, null},
 				{null, null, null, null},
@@ -167,18 +168,18 @@ public class ItemsPanel extends JPanel
 				{null, null, null, null},
 				{null, null, null, null},
 			},
-			new String[] {
+			new String[]
+			{
 				"Product ID", "Product Name", "Product Price", "Stock"
 			}
-		) {
-			/**
-			 * 
-			 */
+		){
 			private static final long serialVersionUID = 1L;
-			boolean[] columnEditables = new boolean[] {
+			boolean[] columnEditables = new boolean[] 
+			{
 				false, false, false, false
 			};
-			public boolean isCellEditable(int row, int column) {
+			public boolean isCellEditable(int row, int column) 
+			{
 				return columnEditables[column];
 			}
 		});
@@ -235,7 +236,7 @@ public class ItemsPanel extends JPanel
 						DefaultTableModel model = (DefaultTableModel) productsTable.getModel();
 						model.setRowCount(0);
 						
-						if ( index == 1 )
+						if (index == 1)
 						{
 							JOptionPane.showMessageDialog(null, "Product successfully updated");
 						}
@@ -295,7 +296,7 @@ public class ItemsPanel extends JPanel
 						DefaultTableModel model = (DefaultTableModel) productsTable.getModel();
 						model.setRowCount(0);
 						
-						if ( index == 1 )
+						if (index == 1)
 						{
 							JOptionPane.showMessageDialog(null, "Product successfully deleted");
 						}

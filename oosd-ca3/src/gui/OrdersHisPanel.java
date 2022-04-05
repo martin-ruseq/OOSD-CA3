@@ -88,7 +88,8 @@ public class OrdersHisPanel extends JPanel
 		OrdersTable.setFillsViewportHeight(true);
 		OrdersTable.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		OrdersTable.setModel(new DefaultTableModel(
-			new Object[][] {
+			new Object[][]
+			{
 				{null, null, null, null, null},
 				{null, null, null, null, null},
 				{null, null, null, null, null},
@@ -98,15 +99,18 @@ public class OrdersHisPanel extends JPanel
 				{null, null, null, null, null},
 				{null, null, null, null, null},
 			},
-			new String[] {
+			new String[]
+			{
 				"Invoice ID", "Product Name", "Payment Type", "Quantity", "Total Price"
 			}
-		) {
+		){
 			private static final long serialVersionUID = 1L;
-			boolean[] columnEditables = new boolean[] {
+			boolean[] columnEditables = new boolean[]
+			{
 				false, false, false, false, false
 			};
-			public boolean isCellEditable(int row, int column) {
+			public boolean isCellEditable(int row, int column)
+			{
 				return columnEditables[column];
 			}
 		});

@@ -379,13 +379,11 @@ public class SignUp extends JFrame
 						{
 							throw new SignUpException();
 						}
-
 						//Address Details Warning
 						if ((street.length() == 0) || (town.length() == 0) || (zipcode.length() == 0) || (country.length() == 0))
 						{
 							throw new SignUpException();
 						}
-
 						//Match Passowrd and Email
 						if  ((email.length() == 0) || (cEmail.length() == 0) || (password.length() == 0) || (cPassword.length() == 0))
 						{
@@ -427,7 +425,6 @@ public class SignUp extends JFrame
 						{
 					           JOptionPane.showMessageDialog(null, "Account is not created!","ERROR", JOptionPane.ERROR_MESSAGE);
 						}
-						
 						Login login = new Login();
 						login.setVisible(true);
 						login.setLocationRelativeTo(null);
@@ -463,10 +460,8 @@ public class SignUp extends JFrame
 					}
 				}
 			}
-			
 		});
 		btnCreateAccount.setBounds(145, 550, 146, 33);
 		contentPane.add(btnCreateAccount);
-		
 	}
 }

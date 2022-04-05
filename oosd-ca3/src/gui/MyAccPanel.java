@@ -18,7 +18,6 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-
 // Student Name:	Marcin Rusiecki
 // Student ID:		C00263263
 // Date:			21/02/2022 
@@ -222,7 +221,7 @@ public class MyAccPanel extends JPanel
 						prepstat.setString(1, email);
 						
 						i = prepstat.executeUpdate();
-						if ( i != 0)
+						if (i != 0)
 						{
 							System.exit(i);
 						}

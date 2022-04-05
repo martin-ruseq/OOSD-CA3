@@ -91,7 +91,8 @@ public class StorePanel extends JPanel
 		storeTable.setFillsViewportHeight(true);
 		storeTable.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		storeTable.setModel(new DefaultTableModel(
-			new Object[][] {
+			new Object[][]
+			{
 				{null, null, null, null},
 				{null, null, null, null},
 				{null, null, null, null},
@@ -108,15 +109,18 @@ public class StorePanel extends JPanel
 				{null, null, null, null},
 				{null, null, null, null},
 			},
-			new String[] {
+			new String[]
+			{
 				"Item ID", "Item Name", "Price", "Stock"
 			}
-		) {
+		){
 			private static final long serialVersionUID = 1L;
-			boolean[] columnEditables = new boolean[] {
+			boolean[] columnEditables = new boolean[]
+			{
 				false, false, false, false
 			};
-			public boolean isCellEditable(int row, int column) {
+			public boolean isCellEditable(int row, int column)
+			{
 				return columnEditables[column];
 			}
 		});
@@ -205,12 +209,12 @@ public class StorePanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				int quantity = (int) lstQuantity.getSelectedIndex() + 1;
+				int quantity = (int)lstQuantity.getSelectedIndex() + 1;
 				String priceField = txtItemPrice.getText();
 				double price = Double.parseDouble(priceField);
-				double totalprice = price*quantity;
-				totalprice = Math.round(totalprice * 100.00)/100.00;
-				txtTotalPrice.setText(""+ totalprice);
+				double totalprice = price * quantity;
+				totalprice = Math.round(totalprice * 100.00) / 100.00;
+				txtTotalPrice.setText("" + totalprice);
 			}
 		});
 		
@@ -243,7 +247,8 @@ public class StorePanel extends JPanel
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				try {
+				try
+				{
 
 					final String DATABASE_URL = "jdbc:mysql://localhost/oosd_ca3";
 					Connection connection = null ;
@@ -268,7 +273,6 @@ public class StorePanel extends JPanel
 					{
 						id = resultset.getInt(1);
 					}
-					
 
 					prepstat1 = connection.prepareStatement("INSERT INTO invoice (PaymentType, Quantity, TotalPrice, CustomerID, ProductID) VALUES (?,?,?,?,?)");
 					prepstat1.setString(1, payment);
@@ -279,7 +283,7 @@ public class StorePanel extends JPanel
 
 					index = prepstat1.executeUpdate();
 			
-					if ( index == 1 )
+					if (index == 1)
 					{
 						JOptionPane.showMessageDialog(null, "Order successfully created");
 					}
@@ -287,12 +291,11 @@ public class StorePanel extends JPanel
 					{
 						JOptionPane.showMessageDialog(null, "Order has not been created");
 					}
-
 				}
-			catch(SQLException sqlexception)
-			{
+				catch(SQLException sqlexception)
+				{
 				
-			}
+				}
 			}
 		});
 		btnBuy.setFont(new Font("Tahoma", Font.BOLD, 16));

@@ -210,7 +210,7 @@ public class SettingsPanel extends JPanel
 					
 					connection = DriverManager.getConnection(DATABASE_URL, "root", "");
 					
-					if ( Userpassword.compareTo(confpassword) !=0 )
+					if ( Userpassword.compareTo(confpassword) != 0)
 					{
 						throw new PasswordException();
 					}
@@ -229,7 +229,7 @@ public class SettingsPanel extends JPanel
 					
 					i=prepstat.executeUpdate();
 					
-					if (i != 1 )
+					if (i != 1)
 					{
 						JOptionPane.showMessageDialog(null, "Details have not been updated", "INFO", JOptionPane.ERROR_MESSAGE);
 					}
