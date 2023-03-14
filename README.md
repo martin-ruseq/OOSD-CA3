@@ -1,2 +1,2 @@
-# :open_file_folder: ObjectOrientedSoftwareDevelopmentProject-Y2
+# :open_file_folder: OOSDProject-Y2
 Customer Invoice Management System
